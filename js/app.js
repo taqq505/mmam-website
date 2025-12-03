@@ -171,7 +171,7 @@ const translations = {
         },
         hero: {
             badge: 'SMPTE ST 2110向けオープンソースIPAM',
-            title: 'すべてのマルチキャストスロットを掌握する',
+            title: 'Media Multicast Address Manager',
             subtitle: 'MMAMはアドレス計画、NMOS連携、監査ログを一元化し、放送チームが衝突を気にせず高速に作業できるようにします。',
             primary: 'GitHubを開く',
             secondary: 'クイックスタートを見る',
