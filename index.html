@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,47 +29,27 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#2563EB',
-                            600: '#1d4ed8',
-                            700: '#1e40af',
-                            900: '#0A1628',
-                        },
-                        accent: {
-                            500: '#10B981',
-                            600: '#059669',
-                        }
+                        primary: '#0A0A0A',
+                        secondary: '#2563EB',
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="font-sans antialiased bg-white text-gray-900">
+<body class="bg-white text-primary antialiased">
     <div id="app">
         <!-- Header -->
-        <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
-            <div class="container mx-auto px-6 py-4">
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+            <div class="container mx-auto px-6 lg:px-12 py-6">
                 <nav class="flex items-center justify-between">
-                    <div class="flex items-center space-x-8">
-                        <a href="#" class="text-2xl font-bold text-primary-900">MMAM</a>
-                        <div class="hidden md:flex space-x-6">
-                            <a :href="'#'+t.nav.home" class="nav-link">{{ t.nav.home }}</a>
-                            <a :href="'#'+t.nav.features" class="nav-link">{{ t.nav.features }}</a>
-                            <a :href="'#'+t.nav.screenshots" class="nav-link">{{ t.nav.screenshots }}</a>
-                            <a :href="'#'+t.nav.quickstart" class="nav-link">{{ t.nav.quickstart }}</a>
-                            <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="nav-link">GitHub</a>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <!-- Language Toggle -->
-                        <button @click="toggleLanguage" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition">
-                            <span class="text-sm font-medium">{{ lang === 'en' ? 'EN' : '日本語' }}</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
-                            </svg>
+                    <a href="#" class="text-2xl font-bold tracking-tight">MMAM</a>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a :href="'#'+t.nav.features" class="nav-link">{{ t.nav.features }}</a>
+                        <a :href="'#'+t.nav.screenshots" class="nav-link">{{ t.nav.screenshots }}</a>
+                        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="nav-link">GitHub</a>
+                        <button @click="toggleLanguage" class="lang-toggle">
+                            {{ lang === 'en' ? 'EN' : '日本語' }}
                         </button>
                     </div>
                 </nav>
@@ -77,33 +57,29 @@
         </header>
 
         <!-- Hero Section -->
-        <section id="home" class="pt-32 pb-20 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 text-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <section class="min-h-screen flex items-center justify-center pt-24 pb-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="space-y-8 fade-in-section">
+                    <div class="flex flex-wrap gap-3 mb-8">
                         <span class="badge">SMPTE ST 2110</span>
-                        <span class="badge">NMOS IS-04</span>
-                        <span class="badge">NMOS IS-05</span>
+                        <span class="badge">NMOS IS-04/05</span>
                         <span class="badge">Multicast IPAM</span>
                     </div>
-                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+
+                    <h1 class="hero-title">
                         {{ t.hero.title }}
                     </h1>
-                    <p class="text-xl md:text-2xl text-blue-100 mb-10 leading-relaxed">
+
+                    <p class="hero-subtitle">
                         {{ t.hero.subtitle }}
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+
+                    <div class="flex flex-wrap gap-4 pt-8">
                         <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="btn-primary">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
-                            </svg>
                             {{ t.hero.viewGithub }}
                         </a>
                         <a href="#quickstart" class="btn-secondary">
                             {{ t.hero.getStarted }}
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
                         </a>
                     </div>
                 </div>
@@ -111,28 +87,25 @@
         </section>
 
         <!-- Problem Section -->
-        <section id="problem" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
-                    <h2 class="section-title">{{ t.problem.title }}</h2>
-                    <p class="section-subtitle">{{ t.problem.subtitle }}</p>
-                    <div class="grid md:grid-cols-2 gap-8 mt-12">
-                        <div class="space-y-6">
-                            <div v-for="(item, index) in t.problem.items" :key="index" class="flex items-start space-x-4">
-                                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold text-lg mb-2">{{ item.title }}</h3>
-                                    <p class="text-gray-600">{{ item.desc }}</p>
-                                </div>
+        <section class="py-32 px-6 bg-gray-50">
+            <div class="container mx-auto max-w-6xl">
+                <div class="fade-in-section space-y-16">
+                    <div class="max-w-3xl">
+                        <h2 class="section-title">{{ t.problem.title }}</h2>
+                        <p class="section-desc mt-6">{{ t.problem.subtitle }}</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div class="space-y-8">
+                            <div v-for="(item, index) in t.problem.items" :key="index" class="problem-card">
+                                <h3 class="font-bold text-xl mb-3">{{ item.title }}</h3>
+                                <p class="text-gray-600 leading-relaxed">{{ item.desc }}</p>
                             </div>
                         </div>
-                        <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
-                            <h3 class="text-xl font-bold mb-4 text-accent-600">{{ t.problem.solution }}</h3>
-                            <p class="text-gray-700 leading-relaxed">{{ t.problem.solutionDesc }}</p>
+
+                        <div class="solution-card">
+                            <h3 class="font-bold text-2xl mb-6 text-secondary">{{ t.problem.solution }}</h3>
+                            <p class="text-gray-700 leading-relaxed text-lg">{{ t.problem.solutionDesc }}</p>
                         </div>
                     </div>
                 </div>
@@ -140,20 +113,18 @@
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
-                    <h2 class="section-title">{{ t.features.title }}</h2>
-                    <p class="section-subtitle">{{ t.features.subtitle }}</p>
-                    <div class="grid md:grid-cols-3 gap-8 mt-12">
+        <section class="py-32 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="fade-in-section space-y-16">
+                    <div class="max-w-3xl">
+                        <h2 class="section-title">{{ t.features.title }}</h2>
+                        <p class="section-desc mt-6">{{ t.features.subtitle }}</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
                         <div v-for="(feature, index) in t.features.items" :key="index" class="feature-card">
-                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="feature.icon"></path>
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold mb-3">{{ feature.title }}</h3>
-                            <p class="text-gray-600">{{ feature.desc }}</p>
+                            <h3 class="font-bold text-lg mb-4">{{ feature.title }}</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">{{ feature.desc }}</p>
                         </div>
                     </div>
                 </div>
@@ -161,13 +132,16 @@
         </section>
 
         <!-- Architecture Section -->
-        <section id="architecture" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
-                    <h2 class="section-title">{{ t.architecture.title }}</h2>
-                    <p class="section-subtitle">{{ t.architecture.subtitle }}</p>
-                    <div class="mt-12 bg-white rounded-xl shadow-lg p-8 border border-gray-200">
-                        <div class="aspect-video bg-gray-100 rounded-lg flex items-center justify-center mb-8">
+        <section class="py-32 px-6 bg-gray-50">
+            <div class="container mx-auto max-w-6xl">
+                <div class="fade-in-section space-y-16">
+                    <div class="max-w-3xl">
+                        <h2 class="section-title">{{ t.architecture.title }}</h2>
+                        <p class="section-desc mt-6">{{ t.architecture.subtitle }}</p>
+                    </div>
+
+                    <div class="arch-card">
+                        <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8">
                             <p class="text-gray-400 text-sm">{{ t.architecture.placeholder }}</p>
                         </div>
                         <div class="flex flex-wrap gap-3 justify-center">
@@ -176,7 +150,7 @@
                             <span class="tech-badge">Vue.js 3</span>
                             <span class="tech-badge">Tailwind CSS</span>
                             <span class="tech-badge">MQTT</span>
-                            <span class="tech-badge">Docker Compose</span>
+                            <span class="tech-badge">Docker</span>
                         </div>
                     </div>
                 </div>
@@ -184,17 +158,18 @@
         </section>
 
         <!-- Screenshots Section -->
-        <section id="screenshots" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
-                    <h2 class="section-title">{{ t.screenshots.title }}</h2>
-                    <p class="section-subtitle">{{ t.screenshots.subtitle }}</p>
-                    <div class="grid md:grid-cols-2 gap-8 mt-12">
+        <section class="py-32 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="fade-in-section space-y-16">
+                    <div class="max-w-3xl">
+                        <h2 class="section-title">{{ t.screenshots.title }}</h2>
+                        <p class="section-desc mt-6">{{ t.screenshots.subtitle }}</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-12">
                         <div v-for="(screenshot, index) in t.screenshots.items" :key="index" class="screenshot-card">
-                            <div class="aspect-video bg-gray-100 rounded-lg mb-4 flex items-center justify-center">
-                                <p class="text-gray-400 text-sm">{{ screenshot.placeholder }}</p>
-                            </div>
-                            <h3 class="font-semibold text-lg mb-2">{{ screenshot.title }}</h3>
+                            <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-6"></div>
+                            <h3 class="font-bold text-lg mb-2">{{ screenshot.title }}</h3>
                             <p class="text-gray-600 text-sm">{{ screenshot.desc }}</p>
                         </div>
                     </div>
@@ -203,43 +178,50 @@
         </section>
 
         <!-- Quick Start Section -->
-        <section id="quickstart" class="py-20 bg-primary-900 text-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="section-title text-white">{{ t.quickstart.title }}</h2>
-                    <p class="section-subtitle text-blue-100">{{ t.quickstart.subtitle }}</p>
-                    <div class="mt-12 bg-primary-800 rounded-xl p-8">
-                        <ol class="space-y-6">
-                            <li v-for="(step, index) in t.quickstart.steps" :key="index" class="flex items-start space-x-4">
-                                <span class="flex-shrink-0 w-8 h-8 bg-accent-500 rounded-full flex items-center justify-center font-bold">{{ index + 1 }}</span>
+        <section class="py-32 px-6 bg-primary text-white">
+            <div class="container mx-auto max-w-5xl">
+                <div class="fade-in-section space-y-16">
+                    <div class="max-w-3xl">
+                        <h2 class="text-5xl font-bold mb-6">{{ t.quickstart.title }}</h2>
+                        <p class="text-xl text-gray-300">{{ t.quickstart.subtitle }}</p>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div v-for="(step, index) in t.quickstart.steps" :key="index" class="quickstart-step">
+                            <div class="flex items-start gap-6">
+                                <span class="step-number">{{ index + 1 }}</span>
                                 <div class="flex-1">
-                                    <h3 class="font-semibold mb-2">{{ step.title }}</h3>
-                                    <p class="text-blue-100 text-sm mb-2">{{ step.desc }}</p>
-                                    <pre v-if="step.code" class="bg-primary-950 text-blue-100 p-4 rounded-lg text-sm overflow-x-auto"><code>{{ step.code }}</code></pre>
+                                    <h3 class="font-bold text-xl mb-2">{{ step.title }}</h3>
+                                    <p class="text-gray-400 mb-4">{{ step.desc }}</p>
+                                    <pre v-if="step.code" class="code-block"><code>{{ step.code }}</code></pre>
                                 </div>
-                            </li>
-                        </ol>
-                        <div class="mt-8 pt-8 border-t border-primary-700">
-                            <p class="text-blue-100">
-                                {{ t.quickstart.more }}
-                                <a href="https://github.com/taqq505/mmam-docker#readme" target="_blank" class="text-accent-400 hover:text-accent-300 font-semibold underline">GitHub README</a>
-                            </p>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-white/10">
+                        <p class="text-gray-400">
+                            {{ t.quickstart.more }}
+                            <a href="https://github.com/taqq505/mmam-docker#readme" target="_blank" class="text-secondary hover:underline font-semibold">GitHub README</a>
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Use Cases Section -->
-        <section id="usecases" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="max-w-6xl mx-auto">
-                    <h2 class="section-title">{{ t.usecases.title }}</h2>
-                    <p class="section-subtitle">{{ t.usecases.subtitle }}</p>
-                    <div class="grid md:grid-cols-2 gap-8 mt-12">
-                        <div v-for="(usecase, index) in t.usecases.items" :key="index" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+        <section class="py-32 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="fade-in-section space-y-16">
+                    <div class="max-w-3xl">
+                        <h2 class="section-title">{{ t.usecases.title }}</h2>
+                        <p class="section-desc mt-6">{{ t.usecases.subtitle }}</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div v-for="(usecase, index) in t.usecases.items" :key="index" class="usecase-card">
                             <h3 class="font-bold text-lg mb-3">{{ usecase.title }}</h3>
-                            <p class="text-gray-600">{{ usecase.desc }}</p>
+                            <p class="text-gray-600 text-sm leading-relaxed">{{ usecase.desc }}</p>
                         </div>
                     </div>
                 </div>
@@ -247,14 +229,17 @@
         </section>
 
         <!-- Community Section -->
-        <section id="community" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="section-title">{{ t.community.title }}</h2>
-                    <p class="section-subtitle">{{ t.community.subtitle }}</p>
-                    <div class="mt-12 bg-gradient-to-br from-primary-50 to-accent-50 p-8 rounded-xl">
-                        <p class="text-gray-700 mb-6">{{ t.community.desc }}</p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <section class="py-32 px-6 bg-gray-50">
+            <div class="container mx-auto max-w-4xl text-center">
+                <div class="fade-in-section space-y-12">
+                    <div>
+                        <h2 class="section-title">{{ t.community.title }}</h2>
+                        <p class="section-desc mt-6 mx-auto">{{ t.community.subtitle }}</p>
+                    </div>
+
+                    <div class="community-card">
+                        <p class="text-gray-700 text-lg mb-8">{{ t.community.desc }}</p>
+                        <div class="flex flex-wrap gap-4 justify-center">
                             <a href="https://github.com/taqq505/mmam-docker/issues" target="_blank" class="btn-primary">
                                 {{ t.community.reportIssue }}
                             </a>
@@ -262,24 +247,20 @@
                                 {{ t.community.contributePR }}
                             </a>
                         </div>
-                        <p class="mt-8 text-sm text-gray-600">
-                            {{ t.community.license }}
-                        </p>
+                        <p class="mt-8 text-sm text-gray-500">{{ t.community.license }}</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="bg-primary-900 text-white py-12">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <div class="mb-4 md:mb-0">
-                        <p class="text-blue-100">&copy; 2025 MMAM Project. {{ t.footer.rights }}</p>
-                    </div>
-                    <div class="flex space-x-6">
-                        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="hover:text-accent-400 transition">GitHub</a>
-                        <a href="https://github.com/taqq505/mmam-docker/blob/main/LICENSE" target="_blank" class="hover:text-accent-400 transition">{{ t.footer.license }}</a>
+        <footer class="py-16 px-6 bg-primary text-white">
+            <div class="container mx-auto max-w-6xl">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <p class="text-gray-400 text-sm">&copy; 2025 MMAM Project. {{ t.footer.rights }}</p>
+                    <div class="flex gap-8">
+                        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="footer-link">GitHub</a>
+                        <a href="https://github.com/taqq505/mmam-docker/blob/main/LICENSE" target="_blank" class="footer-link">{{ t.footer.license }}</a>
                     </div>
                 </div>
             </div>
@@ -292,7 +273,7 @@
     <!-- App Script -->
     <script src="js/app.js"></script>
 
-    <!-- Parallax & Scroll Effects -->
-    <script src="js/parallax.js"></script>
+    <!-- Scroll Effects -->
+    <script src="js/scroll.js"></script>
 </body>
 </html>
