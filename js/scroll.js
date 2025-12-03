@@ -1,7 +1,7 @@
 // Minimal Scroll Effects for MMAM Website
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Intersection Observer for fade-in animations
+    // Intersection Observer for reveal animations
     const observerOptions = {
         threshold: 0.15,
         rootMargin: '0px 0px -100px 0px'
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe all fade-in sections
-    const fadeInSections = document.querySelectorAll('.fade-in-section');
-    fadeInSections.forEach(section => {
+    // Observe all reveal sections
+    const revealSections = document.querySelectorAll('.reveal');
+    revealSections.forEach(section => {
         observer.observe(section);
     });
 

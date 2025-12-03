@@ -1,279 +1,233 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MMAM - Media Multicast Address Manager for SMPTE ST 2110 Broadcast Networks">
-    <meta name="keywords" content="SMPTE ST 2110, NMOS, IS-04, IS-05, multicast, IPAM, broadcast, RTP">
-    <title>MMAM - Media Multicast Address Manager</title>
-
-    <!-- Favicon -->
+    <meta name="description" content="MMAM Docker distribution landing site">
+    <title>MMAM · Media Multicast Address Manager</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Custom Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#0A0A0A',
-                        secondary: '#2563EB',
-                    }
-                }
-            }
-        }
-    </script>
 </head>
-<body class="bg-white text-primary antialiased">
+<body class="site-body" id="top">
     <div id="app">
-        <!-- Header -->
-        <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-            <div class="container mx-auto px-6 lg:px-12 py-6">
-                <nav class="flex items-center justify-between">
-                    <a href="#" class="text-2xl font-bold tracking-tight">MMAM</a>
-                    <div class="hidden md:flex items-center space-x-8">
-                        <a :href="'#'+t.nav.features" class="nav-link">{{ t.nav.features }}</a>
-                        <a :href="'#'+t.nav.screenshots" class="nav-link">{{ t.nav.screenshots }}</a>
-                        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="nav-link">GitHub</a>
-                        <button @click="toggleLanguage" class="lang-toggle">
-                            {{ lang === 'en' ? 'EN' : '日本語' }}
-                        </button>
-                    </div>
+        <header class="site-header">
+            <div class="shell header__inner">
+                <a href="#top" class="logo">MMAM</a>
+                <button class="nav-toggle" @click="menuOpen = !menuOpen" :class="{ 'is-active': menuOpen }" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="header__nav" :class="{ 'header__nav--open': menuOpen }">
+                    <a href="#vision" @click="menuOpen = false">{{ t.nav.vision }}</a>
+                    <a href="#capabilities" @click="menuOpen = false">{{ t.nav.capabilities }}</a>
+                    <a href="#stack" @click="menuOpen = false">{{ t.nav.stack }}</a>
+                    <a href="#starter" @click="menuOpen = false">{{ t.nav.starter }}</a>
+                    <a href="#showcase" @click="menuOpen = false">{{ t.nav.showcase }}</a>
                 </nav>
+                <div class="header__actions">
+                    <button @click="toggleLanguage" class="lang-switch">
+                        {{ lang === 'en' ? 'EN' : '日本語' }}
+                    </button>
+                    <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="btn btn--ghost btn--sm">{{ t.nav.openRepo }}</a>
+                </div>
             </div>
         </header>
 
-        <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center pt-24 pb-20 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <div class="space-y-8 fade-in-section">
-                    <div class="flex flex-wrap gap-3 mb-8">
-                        <span class="badge">SMPTE ST 2110</span>
-                        <span class="badge">NMOS IS-04/05</span>
-                        <span class="badge">Multicast IPAM</span>
+        <main>
+            <section id="home" class="hero reveal">
+                <div class="shell hero__grid">
+                    <div class="hero__content">
+                        <p class="kicker">{{ t.hero.badge }}</p>
+                        <h1>{{ t.hero.title }}</h1>
+                        <p class="lead">{{ t.hero.subtitle }}</p>
+                        <div class="hero__actions">
+                            <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="btn btn--primary">{{ t.hero.primary }}</a>
+                            <a href="#starter" class="btn btn--quiet">{{ t.hero.secondary }}</a>
+                        </div>
+                        <ul class="metrics">
+                            <li v-for="(metric, index) in t.hero.metrics" :key="'metric-'+index">
+                                <span class="metrics__value">{{ metric.value }}</span>
+                                <span class="metrics__label">{{ metric.label }}</span>
+                                <p>{{ metric.detail }}</p>
+                            </li>
+                        </ul>
                     </div>
+                    <div class="hero__panel">
+                        <div class="panel__header">
+                            <p class="panel__title">{{ t.hero.panel.title }}</p>
+                            <p class="panel__desc">{{ t.hero.panel.desc }}</p>
+                        </div>
+                        <ul class="panel__list">
+                            <li v-for="(item, index) in t.hero.panel.items" :key="'panel-'+index">{{ item }}</li>
+                        </ul>
+                        <div class="panel__footer">
+                            <p>{{ t.hero.panel.footer }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="shell hero-highlights">
+                    <article v-for="(card, index) in t.hero.highlights" :key="'highlight-'+index">
+                        <p class="eyebrow">{{ card.eyebrow }}</p>
+                        <h3>{{ card.title }}</h3>
+                        <p>{{ card.desc }}</p>
+                    </article>
+                </div>
+            </section>
 
-                    <h1 class="hero-title">
-                        {{ t.hero.title }}
-                    </h1>
+            <section id="vision" class="section reveal">
+                <div class="shell">
+                    <div class="section__header">
+                        <p class="kicker">{{ t.vision.kicker }}</p>
+                        <h2>{{ t.vision.title }}</h2>
+                        <p>{{ t.vision.lead }}</p>
+                    </div>
+                    <div class="vision__grid">
+                        <article v-for="(card, index) in t.vision.cards" :key="'vision-'+index">
+                            <h3>{{ card.title }}</h3>
+                            <p>{{ card.desc }}</p>
+                        </article>
+                    </div>
+                    <div class="blueprint">
+                        <div class="blueprint__content">
+                            <p class="eyebrow">{{ t.vision.blueprint.title }}</p>
+                            <h3>{{ t.vision.blueprint.headline }}</h3>
+                            <p>{{ t.vision.blueprint.desc }}</p>
+                        </div>
+                        <ul>
+                            <li v-for="(item, index) in t.vision.blueprint.items" :key="'blueprint-'+index">{{ item }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-                    <p class="hero-subtitle">
-                        {{ t.hero.subtitle }}
+            <section id="capabilities" class="section section--alt reveal">
+                <div class="shell">
+                    <div class="section__header">
+                        <p class="kicker">{{ t.capabilities.kicker }}</p>
+                        <h2>{{ t.capabilities.title }}</h2>
+                        <p>{{ t.capabilities.lead }}</p>
+                    </div>
+                    <div class="capabilities__grid">
+                        <article v-for="(column, index) in t.capabilities.columns" :key="'cap-'+index">
+                            <div class="capabilities__heading">
+                                <p class="eyebrow">{{ column.eyebrow }}</p>
+                                <h3>{{ column.title }}</h3>
+                            </div>
+                            <ul>
+                                <li v-for="(item, idx) in column.items" :key="'cap-item-'+index+'-'+idx">{{ item }}</li>
+                            </ul>
+                        </article>
+                    </div>
+                    <div class="pillars">
+                        <div v-for="(tag, index) in t.capabilities.pillars" :key="'pillar-'+index">{{ tag }}</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="stack" class="section reveal">
+                <div class="shell">
+                    <div class="section__header">
+                        <p class="kicker">{{ t.stack.kicker }}</p>
+                        <h2>{{ t.stack.title }}</h2>
+                        <p>{{ t.stack.lead }}</p>
+                    </div>
+                    <div class="stack__tiers">
+                        <article v-for="(tier, index) in t.stack.tiers" :key="'tier-'+index">
+                            <div class="tier__header">
+                                <p class="eyebrow">{{ tier.label }}</p>
+                                <h3>{{ tier.name }}</h3>
+                            </div>
+                            <p>{{ tier.desc }}</p>
+                            <ul>
+                                <li v-for="(item, idx) in tier.items" :key="'tier-item-'+index+'-'+idx">{{ item }}</li>
+                            </ul>
+                        </article>
+                    </div>
+                    <div class="stack__notes">
+                        <div v-for="(note, index) in t.stack.notes" :key="'note-'+index">
+                            <h4>{{ note.title }}</h4>
+                            <p>{{ note.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="showcase" class="section section--alt reveal">
+                <div class="shell">
+                    <div class="section__header">
+                        <p class="kicker">{{ t.showcase.kicker }}</p>
+                        <h2>{{ t.showcase.title }}</h2>
+                        <p>{{ t.showcase.lead }}</p>
+                    </div>
+                    <div class="showcase__grid">
+                        <article v-for="(item, index) in t.showcase.cards" :key="'show-'+index">
+                            <div class="mockup"></div>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.desc }}</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="starter" class="section section--accent reveal">
+                <div class="shell">
+                    <div class="section__header">
+                        <p class="kicker">{{ t.quickstart.kicker }}</p>
+                        <h2>{{ t.quickstart.title }}</h2>
+                        <p>{{ t.quickstart.lead }}</p>
+                    </div>
+                    <div class="quickstart__steps">
+                        <article v-for="(step, index) in t.quickstart.steps" :key="'step-'+index">
+                            <div class="step__index">{{ index + 1 }}</div>
+                            <div>
+                                <h3>{{ step.title }}</h3>
+                                <p>{{ step.desc }}</p>
+                                <pre v-if="step.code"><code>{{ step.code }}</code></pre>
+                            </div>
+                        </article>
+                    </div>
+                    <p class="section__note">
+                        {{ t.quickstart.note }}
+                        <a href="https://github.com/taqq505/mmam-docker#readme" target="_blank">{{ t.quickstart.noteLink }}</a>
                     </p>
-
-                    <div class="flex flex-wrap gap-4 pt-8">
-                        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="btn-primary">
-                            {{ t.hero.viewGithub }}
-                        </a>
-                        <a href="#quickstart" class="btn-secondary">
-                            {{ t.hero.getStarted }}
-                        </a>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Problem Section -->
-        <section class="py-32 px-6 bg-gray-50">
-            <div class="container mx-auto max-w-6xl">
-                <div class="fade-in-section space-y-16">
-                    <div class="max-w-3xl">
-                        <h2 class="section-title">{{ t.problem.title }}</h2>
-                        <p class="section-desc mt-6">{{ t.problem.subtitle }}</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-12">
-                        <div class="space-y-8">
-                            <div v-for="(item, index) in t.problem.items" :key="index" class="problem-card">
-                                <h3 class="font-bold text-xl mb-3">{{ item.title }}</h3>
-                                <p class="text-gray-600 leading-relaxed">{{ item.desc }}</p>
-                            </div>
-                        </div>
-
-                        <div class="solution-card">
-                            <h3 class="font-bold text-2xl mb-6 text-secondary">{{ t.problem.solution }}</h3>
-                            <p class="text-gray-700 leading-relaxed text-lg">{{ t.problem.solutionDesc }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="py-32 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <div class="fade-in-section space-y-16">
-                    <div class="max-w-3xl">
-                        <h2 class="section-title">{{ t.features.title }}</h2>
-                        <p class="section-desc mt-6">{{ t.features.subtitle }}</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div v-for="(feature, index) in t.features.items" :key="index" class="feature-card">
-                            <h3 class="font-bold text-lg mb-4">{{ feature.title }}</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">{{ feature.desc }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Architecture Section -->
-        <section class="py-32 px-6 bg-gray-50">
-            <div class="container mx-auto max-w-6xl">
-                <div class="fade-in-section space-y-16">
-                    <div class="max-w-3xl">
-                        <h2 class="section-title">{{ t.architecture.title }}</h2>
-                        <p class="section-desc mt-6">{{ t.architecture.subtitle }}</p>
-                    </div>
-
-                    <div class="arch-card">
-                        <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8">
-                            <p class="text-gray-400 text-sm">{{ t.architecture.placeholder }}</p>
-                        </div>
-                        <div class="flex flex-wrap gap-3 justify-center">
-                            <span class="tech-badge">FastAPI</span>
-                            <span class="tech-badge">PostgreSQL 16</span>
-                            <span class="tech-badge">Vue.js 3</span>
-                            <span class="tech-badge">Tailwind CSS</span>
-                            <span class="tech-badge">MQTT</span>
-                            <span class="tech-badge">Docker</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screenshots Section -->
-        <section class="py-32 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <div class="fade-in-section space-y-16">
-                    <div class="max-w-3xl">
-                        <h2 class="section-title">{{ t.screenshots.title }}</h2>
-                        <p class="section-desc mt-6">{{ t.screenshots.subtitle }}</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-12">
-                        <div v-for="(screenshot, index) in t.screenshots.items" :key="index" class="screenshot-card">
-                            <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-6"></div>
-                            <h3 class="font-bold text-lg mb-2">{{ screenshot.title }}</h3>
-                            <p class="text-gray-600 text-sm">{{ screenshot.desc }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Start Section -->
-        <section class="py-32 px-6 bg-primary text-white">
-            <div class="container mx-auto max-w-5xl">
-                <div class="fade-in-section space-y-16">
-                    <div class="max-w-3xl">
-                        <h2 class="text-5xl font-bold mb-6">{{ t.quickstart.title }}</h2>
-                        <p class="text-xl text-gray-300">{{ t.quickstart.subtitle }}</p>
-                    </div>
-
-                    <div class="space-y-8">
-                        <div v-for="(step, index) in t.quickstart.steps" :key="index" class="quickstart-step">
-                            <div class="flex items-start gap-6">
-                                <span class="step-number">{{ index + 1 }}</span>
-                                <div class="flex-1">
-                                    <h3 class="font-bold text-xl mb-2">{{ step.title }}</h3>
-                                    <p class="text-gray-400 mb-4">{{ step.desc }}</p>
-                                    <pre v-if="step.code" class="code-block"><code>{{ step.code }}</code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-8 border-t border-white/10">
-                        <p class="text-gray-400">
-                            {{ t.quickstart.more }}
-                            <a href="https://github.com/taqq505/mmam-docker#readme" target="_blank" class="text-secondary hover:underline font-semibold">GitHub README</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Use Cases Section -->
-        <section class="py-32 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <div class="fade-in-section space-y-16">
-                    <div class="max-w-3xl">
-                        <h2 class="section-title">{{ t.usecases.title }}</h2>
-                        <p class="section-desc mt-6">{{ t.usecases.subtitle }}</p>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div v-for="(usecase, index) in t.usecases.items" :key="index" class="usecase-card">
-                            <h3 class="font-bold text-lg mb-3">{{ usecase.title }}</h3>
-                            <p class="text-gray-600 text-sm leading-relaxed">{{ usecase.desc }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Community Section -->
-        <section class="py-32 px-6 bg-gray-50">
-            <div class="container mx-auto max-w-4xl text-center">
-                <div class="fade-in-section space-y-12">
+            <section id="cta" class="cta reveal">
+                <div class="shell cta__inner">
                     <div>
-                        <h2 class="section-title">{{ t.community.title }}</h2>
-                        <p class="section-desc mt-6 mx-auto">{{ t.community.subtitle }}</p>
+                        <p class="kicker">{{ t.cta.kicker }}</p>
+                        <h2>{{ t.cta.title }}</h2>
+                        <p>{{ t.cta.desc }}</p>
                     </div>
-
-                    <div class="community-card">
-                        <p class="text-gray-700 text-lg mb-8">{{ t.community.desc }}</p>
-                        <div class="flex flex-wrap gap-4 justify-center">
-                            <a href="https://github.com/taqq505/mmam-docker/issues" target="_blank" class="btn-primary">
-                                {{ t.community.reportIssue }}
-                            </a>
-                            <a href="https://github.com/taqq505/mmam-docker/pulls" target="_blank" class="btn-secondary">
-                                {{ t.community.contributePR }}
-                            </a>
-                        </div>
-                        <p class="mt-8 text-sm text-gray-500">{{ t.community.license }}</p>
+                    <div class="hero__actions">
+                        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="btn btn--primary">{{ t.cta.primary }}</a>
+                        <a href="https://github.com/taqq505/mmam-docker/issues" target="_blank" class="btn btn--quiet">{{ t.cta.secondary }}</a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
 
-        <!-- Footer -->
-        <footer class="py-16 px-6 bg-primary text-white">
-            <div class="container mx-auto max-w-6xl">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p class="text-gray-400 text-sm">&copy; 2025 MMAM Project. {{ t.footer.rights }}</p>
-                    <div class="flex gap-8">
-                        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="footer-link">GitHub</a>
-                        <a href="https://github.com/taqq505/mmam-docker/blob/main/LICENSE" target="_blank" class="footer-link">{{ t.footer.license }}</a>
-                    </div>
+        <footer class="site-footer">
+            <div class="shell footer__inner">
+                <div>
+                    <p class="logo">MMAM</p>
+                    <p>{{ t.footer.tagline }}</p>
                 </div>
+                <div class="footer__meta">
+                    <a href="https://github.com/taqq505/mmam-docker" target="_blank">{{ t.nav.openRepo }}</a>
+                    <a href="https://github.com/taqq505/mmam-docker/blob/main/LICENSE" target="_blank">{{ t.footer.license }}</a>
+                </div>
+                <p class="footer__copy">&copy; 2025 MMAM. {{ t.footer.rights }}</p>
             </div>
         </footer>
     </div>
 
-    <!-- Vue 3 CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
-    <!-- App Script -->
     <script src="js/app.js"></script>
-
-    <!-- Scroll Effects -->
     <script src="js/scroll.js"></script>
 </body>
 </html>
