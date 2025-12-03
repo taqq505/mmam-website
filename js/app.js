@@ -17,9 +17,9 @@ const translations = {
             primary: 'Open GitHub repo',
             secondary: 'View quick start',
             metrics: [
-                { value: '65K+', label: 'Addresses modeled', detail: 'Dual-site reference plan included' },
-                { value: '24/7', label: 'Operational visibility', detail: 'REST + MQTT streaming feeds' },
-                { value: '<5 min', label: 'Fresh deployments', detail: 'Docker compose bootstrap workflow' }
+                { value: 'Message hub', label: 'Keyed annotations', detail: 'Share text threads per address or flow ID for BCC-style workflows' },
+                { value: 'Multi-site', label: 'Address planning', detail: 'Document production + DR fabrics with S/G/Port tracking' },
+                { value: 'REST PATCH', label: 'Programmable', detail: 'Update existing flows and share keyed notes via API' }
             ],
             highlights: [
                 { eyebrow: 'Operations', title: 'Live status snapshots', desc: 'See multicast usage per service group with enforced A/B legs and validation.' },
@@ -176,9 +176,9 @@ const translations = {
             primary: 'GitHubを開く',
             secondary: 'クイックスタートを見る',
             metrics: [
-                { value: '65K+', label: 'モデリング済みアドレス', detail: '2サイト構成のリファレンスプラン付属' },
-                { value: '24/7', label: '可視化', detail: 'RESTとMQTTでリアルタイム配信' },
-                { value: '<5分', label: '初回起動', detail: 'docker composeだけで完了' }
+                { value: 'テキストハブ', label: 'キー付きメモ共有', detail: 'アドレスやフローIDごとにBCC的なメッセージスレッドを共有' },
+                { value: 'マルチサイト', label: 'アドレス計画', detail: '本番とDRをS/G/Portで一元管理' },
+                { value: 'REST PATCH', label: '自動化', detail: '既存フローをAPIで更新し、キー付きメモを共有' }
             ],
             highlights: [
                 { eyebrow: '運用', title: 'ライブ状況スナップショット', desc: 'サービスグループごとの使用状況とA/B系統を検証しながら把握できます。' },
