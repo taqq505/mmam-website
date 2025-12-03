@@ -22,9 +22,9 @@ const translations = {
                 { value: 'REST PATCH', label: 'Programmable', detail: 'Update existing flows and share keyed notes via API' }
             ],
             highlights: [
-                { eyebrow: 'Operations', title: 'Live status snapshots', desc: 'See multicast usage per service group with enforced A/B legs and validation.' },
-                { eyebrow: 'Integrations', title: 'NMOS aware', desc: 'Sync IS-04/05 controllers, parse SDP payloads, and auto-populate flow metadata.' },
-                { eyebrow: 'Governance', title: 'Change tracking', desc: 'Every import, edit, and API call is logged for audits and rollbacks.' }
+                { eyebrow: 'Text hub', title: 'Shared annotations', desc: 'Alias and user-defined fields become keyed threads per multicast slot so BCC, ops, and monitoring share the same log.' },
+                { eyebrow: 'NMOS onboarding', title: 'Register faster', desc: 'Discover IS-04/05 endpoints, compare device data, and apply patches without retyping addresses.' },
+                { eyebrow: 'Automation', title: 'Continuous checks', desc: 'Scheduler jobs watch for multicast collisions or NMOS drift and publish alerts via REST and MQTT.' }
             ],
             panel: {
                 title: 'Included services',
@@ -40,54 +40,54 @@ const translations = {
         },
         vision: {
             kicker: 'Why teams adopt MMAM',
-            title: 'Purpose-built for broadcast scale IP operations',
-            lead: 'Stop patching spreadsheets. Model your network once, share a living address book, and let MMAM guard every change.',
+            title: 'Multicast-specific IPAM backed by PostgreSQL, REST, and Vue UI',
+            lead: 'MMAM keeps address planning, NMOS integration, and audit history in one source of truth so ST 2110 systems stay aligned.',
             cards: [
-                { title: 'Human-friendly planning', desc: 'Block out source/group/port definitions while checking against reserved pools in real time.' },
-                { title: 'Eliminate spreadsheet debt', desc: 'Template address books and distribute them as API-first artifacts controlled by roles.' },
-                { title: 'Confident migrations', desc: 'Mirror legacy control systems, compare deltas, and validate before you flip program feeds.' }
+                { title: 'Authoritative address map', desc: 'Planner buckets and the address map explorer document every S/G/Port block for production and DR fabrics.' },
+                { title: 'API-first coordination', desc: 'REST PATCH endpoints update existing flows and share keyed notes instead of emailing spreadsheets.' },
+                { title: 'Operational assurance', desc: 'Collision and NMOS drift checks run on the same stack, logging every detection for later review.' }
             ],
             blueprint: {
                 title: 'Playbook',
-                headline: 'Operational blueprint',
-                desc: 'Use MMAM as the living record of your ST 2110 environment.',
+                headline: 'Day-to-day workflow',
+                desc: 'Blend the UI and API to keep multicast plans and downstream systems in sync.',
                 items: [
-                    'Map NMOS resources to multicast slots with annotations',
-                    'Run collision checks before on-air maintenance',
-                    'Schedule JSON exports for orchestration tools'
+                    'Annotate flows with alias/user fields and expose them as the shared text hub',
+                    'Pull NMOS data, review differences, and apply patches back to devices directly from MMAM',
+                    'Schedule collision and NMOS jobs so deviations are reported automatically'
                 ]
             }
         },
         capabilities: {
             kicker: 'Capabilities',
-            title: 'Automatic guardrails for every flow',
-            lead: 'Design, audit, and publish multicast data without leaving the browser.',
+            title: 'Multicast IPAM, API, and UI working together',
+            lead: 'Use the PostgreSQL database, FastAPI services, and Vue UI as one toolkit for ST 2110 operations.',
             columns: [
                 {
-                    eyebrow: 'Address intelligence',
-                    title: 'Plan with intent',
+                    eyebrow: 'Address map',
+                    title: 'Purpose-built planning',
                     items: [
-                        'Reserve ranges per production, lab, or event',
-                        'Automatic collision flagging with context',
-                        'Multi-site A/B legs aware of SMPTE 2022-7'
+                        'Planner buckets and views for each site, service, or DR fabric',
+                        'Address map explorer visualizes S/G/Port blocks and occupancy',
+                        'Collision checker surfaces duplicate multicast or port usage before it hits the air'
                     ]
                 },
                 {
-                    eyebrow: 'Automation',
-                    title: 'Instrument everything',
+                    eyebrow: 'Integrations',
+                    title: 'REST + text hub',
                     items: [
-                        'REST patch endpoints to update existing flow records from automation',
-                        'Address/flow-ID keyed text hub enabling BCC-style cross-system message sharing',
-                        'SDP ingest with schema validation'
+                        'PATCH endpoints update existing flows without re-importing spreadsheets',
+                        'Alias and user fields act as keyed text channels shared between BCC and monitoring systems',
+                        'MQTT feed broadcasts flow updates for downstream automation'
                     ]
                 },
                 {
-                    eyebrow: 'Operations',
-                    title: 'Support the floor',
+                    eyebrow: 'NMOS & automation',
+                    title: 'Connect to devices',
                     items: [
-                        'Search flows by source, group, or port',
-                        'Change log with diffs and attribution',
-                        'Export documentation packs instantly'
+                        'Discover IS-04/05 nodes and import flow definitions directly into MMAM',
+                        'Apply NMOS parameters back to devices to avoid retyping addresses',
+                        'Scheduler runs collision and NMOS drift jobs and records every alert'
                     ]
                 }
             ],
@@ -95,43 +95,43 @@ const translations = {
         },
         stack: {
             kicker: 'Architecture',
-            title: 'Composable stack tuned for broadcast',
-            lead: 'Delivered as docker compose with sane defaults and observability hooks already wired.',
+            title: 'Database + REST API + UI delivered together',
+            lead: 'MMAM ships as docker compose with FastAPI services, PostgreSQL 16, and a Vue 3 console.',
             tiers: [
                 {
-                    label: 'Control plane',
-                    name: 'FastAPI services',
-                    desc: 'Manages address lifecycle, rules, and APIs.',
-                    items: ['Token-secured REST endpoints', 'Workers for imports + validation', 'Auditable change queue']
+                    label: 'FastAPI layer',
+                    name: 'Control + automation',
+                    desc: 'Handles REST endpoints, NMOS tooling, and scheduler workers.',
+                    items: ['PATCH + checker routers', 'NMOS discovery and apply helpers', 'Scheduler with detailed audit logging']
                 },
                 {
-                    label: 'Data layer',
-                    name: 'PostgreSQL 16',
-                    desc: 'Schema optimized for multicast reservations and history.',
-                    items: ['Immutable audit tables', 'JSONB metadata for custom tags', 'Scheduler-driven periodic checks']
+                    label: 'PostgreSQL',
+                    name: 'Data + text hub',
+                    desc: 'Stores flows, planner buckets, and keyed annotations shared across systems.',
+                    items: ['Normalized multicast and planner tables', 'Alias/user fields for text hub content', 'Scheduler + checker history tables']
                 },
                 {
-                    label: 'Interfaces',
-                    name: 'Vue 3 / Vite UI',
-                    desc: 'Dark themed console with shortcuts for power users.',
-                    items: ['Flow table with deep filters', 'Inline NMOS discovery results', 'Diff review before publishing']
+                    label: 'Vue 3 UI',
+                    name: 'Operations console',
+                    desc: 'Planner, explorer, NMOS tools, and checker dashboards bundled offline.',
+                    items: ['Planner and address map explorer', 'Flow editor with keyed text hub panel', 'Checker dashboard with automation status']
                 }
             ],
             notes: [
-                { title: 'Deployment', desc: 'Run `docker compose up --build` and the stack configures itself.' },
-                { title: 'Extensibility', desc: 'Extend the FastAPI routers or drop in webhook consumers tailored to your plant.' },
-                { title: 'Security', desc: 'Sample HTTPS reverse proxy and secret rotation guidance included.' }
+                { title: 'Deployment', desc: 'Run `docker compose up --build` to seed the DB and UI with ready-to-use defaults.' },
+                { title: 'Offline ready', desc: 'Vue, Tailwind, and MQTT vendor files are bundled locally for air-gapped labs.' },
+                { title: 'REST + MQTT outputs', desc: 'Flow updates and checker alerts can be consumed over REST, MQTT, or both.' }
             ]
         },
         showcase: {
             kicker: 'Snapshots',
             title: 'Interface glimpses',
-            lead: 'Placeholder mockups showing how MMAM surfaces the right information.',
+            lead: 'Preview how the UI exposes the planner, flows, and automation tools.',
             cards: [
-                { title: 'Flow matrix', desc: 'At-a-glance availability for every multicast block across sites.' },
-                { title: 'Change proposals', desc: 'Stage edits, compare, then publish to NMOS controllers once approved.' },
-                { title: 'Audit timeline', desc: 'Track who touched what, including API callers and webhook deliveries.' },
-                { title: 'Capacity planning', desc: 'Visualize reserved vs. free ranges to prep new productions.' }
+                { title: 'Flow explorer', desc: 'Filter by S/G/Port, edit flows in place, and view keyed annotations.' },
+                { title: 'Text hub panel', desc: 'Alias and user-defined fields show the shared message thread per flow.' },
+                { title: 'Address map planner', desc: 'Planner and explorer views illustrate reserved vs. free multicast blocks.' },
+                { title: 'Checker dashboard', desc: 'Collision and NMOS automation runs with last status and history.' }
             ]
         },
         quickstart: {
@@ -162,7 +162,7 @@ const translations = {
     },
     ja: {
         nav: {
-            vision: 'MMAMが選ばれる理由',
+            vision: 'WHY MMAM',
             capabilities: '機能',
             stack: 'スタック',
             starter: 'クイックスタート',
@@ -181,9 +181,9 @@ const translations = {
                 { value: 'REST PATCH', label: '自動化', detail: '既存フローをAPIで更新し、キー付きメモを共有' }
             ],
             highlights: [
-                { eyebrow: '運用', title: 'ライブ状況スナップショット', desc: 'サービスグループごとの使用状況とA/B系統を検証しながら把握できます。' },
-                { eyebrow: '連携', title: 'NMOSネイティブ', desc: 'IS-04/05と同期し、SDP情報を自動解析してメタデータを生成します。' },
-                { eyebrow: 'ガバナンス', title: '変更トラッキング', desc: '取り込み・編集・API呼び出しをすべて記録し、監査と差分確認を簡単にします。' }
+                { eyebrow: 'テキストハブ', title: '共有メモ', desc: 'エイリアスやユーザー項目をマルチキャスト単位のスレッドにし、BCCや運用チームが同じ記録を参照。' },
+                { eyebrow: 'NMOS連携', title: '登録作業を短縮', desc: 'IS-04/05から機器情報を取得して差分を確認し、そのままフローに適用。' },
+                { eyebrow: '自動チェック', title: 'ズレを即検知', desc: 'スケジューラが衝突とNMOS差分チェックを回し、RESTやMQTTで通知。' }
             ],
             panel: {
                 title: '同梱サービス',
@@ -198,55 +198,55 @@ const translations = {
             }
         },
         vision: {
-            kicker: '導入理由',
-            title: '放送規模のIP運用に最適化',
-            lead: 'スプレッドシートをつぎはぎする時代は終わりです。MMAMでライブなアドレス帳を共有し、すべての変更を保護します。',
+            kicker: 'WHY MMAM',
+            title: 'マルチキャスト専用IPAMをワンスタックで提供',
+            lead: 'PostgreSQL + REST API + Vue UIでアドレス計画とNMOS連携、監査履歴を一箇所に集約し、ST 2110運用の整合性を守ります。',
             cards: [
-                { title: '現場目線の計画', desc: 'ソース/グループ/ポートを定義しながら予約済みプールを即時チェック。' },
-                { title: 'スプレッドシートから脱却', desc: 'テンプレート化したアドレス帳をAPIファーストで配布し、権限ごとに管理。' },
-                { title: '安心の移行', desc: '既存制御システムを写し取り、差分を比較してから本番切替へ進めます。' }
+                { title: '信頼できるアドレスマップ', desc: 'PlannerとAddress Mapで本番/DRのS/G/Portを可視化し、予約状況を共有。' },
+                { title: 'APIファースト連携', desc: 'REST PATCHで既存フローを更新し、キー付きメモを他システムへ配信。' },
+                { title: '運用保証', desc: 'コリジョンとNMOS差分チェックが同じ基盤で動作し、検出履歴を蓄積。' }
             ],
             blueprint: {
                 title: 'プレイブック',
-                headline: '運用の設計図',
-                desc: 'MMAMをST 2110ネットワークの生きた記録として活用します。',
+                headline: '日常運用の型',
+                desc: 'UIとAPIを組み合わせ、常に最新のマルチキャスト計画を維持します。',
                 items: [
-                    'NMOSリソースを注釈付きでマルチキャストに紐づけ',
-                    'オンエア保守前に衝突チェックを実行',
-                    'オーケストレーション向けJSONエクスポートをスケジュール'
+                    'フローごとにエイリアス/ユーザー項目で共有メモを残しテキストハブとして公開',
+                    'NMOS情報を取り込み差分を確認し、そのままデバイスへ反映',
+                    '衝突検出とNMOSチェックをスケジューラで回し、逸脱を自動通知'
                 ]
             }
         },
         capabilities: {
             kicker: '主要機能',
-            title: 'すべてのフローに自動ガードレール',
-            lead: 'ブラウザだけで設計・監査・公開まで完結します。',
+            title: 'マルチキャストIPAM・API・UIを一体で提供',
+            lead: 'PostgreSQL + FastAPI + Vue UIを使い、ST 2110向けの計画と運用を一つのツールで完結させます。',
             columns: [
                 {
-                    eyebrow: 'アドレスインテリジェンス',
-                    title: '意図を持って計画',
+                    eyebrow: 'アドレスマップ',
+                    title: '計画の見える化',
                     items: [
-                        '番組・ラボ・イベントごとにレンジを予約',
-                        '背景情報付きの自動衝突アラート',
-                        'SMPTE 2022-7対応のマルチサイトA/B管理'
+                        'サイトや番組ごとに使えるPlannerフォルダとビュー',
+                        'Address MapでS/G/Portの割り当てと空き状況を一目で確認',
+                        '衝突チェッカーで重複マルチキャストやポート使用を事前に検知'
                     ]
                 },
                 {
-                    eyebrow: '自動化',
-                    title: 'すべてを計測',
+                    eyebrow: '連携',
+                    title: 'REST + テキストハブ',
                     items: [
-                        'RESTパッチエンドポイントで既存フローを自動更新',
-                        'アドレス/フローIDをキーとしたテキストメッセージハブでBCC的にシステム間共有',
-                        'SDP取り込みとスキーマ検証'
+                        'REST PATCHで既存フローを再インポートせずに更新',
+                        'エイリアス/ユーザー項目をキー付きテキストチャンネルとしてBCCや監視系へ共有',
+                        'MQTT配信でフロー更新を自動化先へ通知'
                     ]
                 },
                 {
-                    eyebrow: '運用支援',
-                    title: 'フロアをサポート',
+                    eyebrow: 'NMOSと自動化',
+                    title: 'デバイスとつながる',
                     items: [
-                        'ソース・グループ・ポートで高速検索',
-                        '差分付き変更ログと担当者追跡',
-                        'ドキュメントパックを即時エクスポート'
+                        'IS-04/05ノードを検出してフロー定義を取り込み',
+                        'MMAMからNMOSパラメータを適用し、二重入力を排除',
+                        'スケジューラで衝突/NMOS差分チェックを回し、アラートと履歴を記録'
                     ]
                 }
             ],
@@ -254,43 +254,43 @@ const translations = {
         },
         stack: {
             kicker: 'アーキテクチャ',
-            title: '放送向けに調整されたコンポーザブルスタック',
-            lead: '標準のdocker composeでデフォルト設定と監視フックまで提供します。',
+            title: 'DB + REST API + UIをまとめて提供',
+            lead: 'docker composeひとつでFastAPIサービス、PostgreSQL 16、Vue 3 UIが立ち上がります。',
             tiers: [
                 {
-                    label: '制御プレーン',
-                    name: 'FastAPIサービス群',
-                    desc: 'アドレスライフサイクルとルール、APIを統括。',
-                    items: ['トークン保護されたRESTエンドポイント', '取り込みと検証のワーカー', '監査可能な変更キュー']
+                    label: 'FastAPIレイヤー',
+                    name: '制御と自動化',
+                    desc: 'RESTエンドポイントやNMOSツール、スケジューラのワーカーを担当。',
+                    items: ['PATCH/チェッカー用ルーター', 'NMOS検出・適用ヘルパー', 'スケジューラと監査ログ']
                 },
                 {
-                    label: 'データ層',
-                    name: 'PostgreSQL 16',
-                    desc: 'マルチキャスト予約と履歴に最適化したスキーマ。',
-                    items: ['改ざん不可の監査テーブル', 'タグ用JSONBメタデータ', 'スケジューラで定期チェック']
+                    label: 'PostgreSQL',
+                    name: 'データ + テキストハブ',
+                    desc: 'フロー、Planner、共有メモを保存しシステム間で参照可能に。',
+                    items: ['マルチキャスト/Plannerスキーマ', 'エイリアス・ユーザー項目にテキストハブを格納', 'スケジューラ/チェッカー履歴テーブル']
                 },
                 {
-                    label: 'インターフェース',
-                    name: 'Vue 3 / Vite UI',
-                    desc: 'キーボードショートカットを備えたダークテーマコンソール。',
-                    items: ['高度なフィルタを備えたフロー表', 'NMOSディスカバリ結果をインライン表示', '公開前の差分チェック']
+                    label: 'Vue 3 UI',
+                    name: '運用コンソール',
+                    desc: 'Planner・Explorer・NMOS・チェッカー画面をオフライン同梱。',
+                    items: ['PlannerとAddress Map', 'テキストハブ付きフロー編集', '自動チェック結果ダッシュボード']
                 }
             ],
             notes: [
-                { title: 'デプロイ', desc: '`docker compose up --build`だけで自動構成されます。' },
-                { title: '拡張性', desc: 'FastAPIルーターの拡張やWebhookコンシューマーの追加も容易。' },
-                { title: 'セキュリティ', desc: 'HTTPSリバースプロキシのサンプルとシークレット更新手順を同梱。' }
+                { title: 'デプロイ', desc: '`docker compose up --build`でDBとUIが初期化され、そのまま利用可能。' },
+                { title: 'オフライン対応', desc: 'Vue/Tailwind/MQTTのベンダーファイルを同梱し、閉域環境でも動作。' },
+                { title: '通知', desc: 'フロー更新やチェッカー結果をRESTやMQTTで取得可能。' }
             ]
         },
         showcase: {
             kicker: 'スナップショット',
             title: 'UIイメージ',
-            lead: 'プレースホルダーでも画面構成のニュアンスを感じ取れます。',
+            lead: 'Planner/Flow/Checker機能をどのように見せるかをイメージできます。',
             cards: [
-                { title: 'フローマトリクス', desc: 'サイトを跨いだマルチキャストブロックの空き状況を即確認。' },
-                { title: '変更提案', desc: 'NMOS配信前に編集内容をステージングして比較。' },
-                { title: '監査タイムライン', desc: 'API呼び出しやWebhook配信も含めて誰が何をしたか追跡。' },
-                { title: 'キャパシティ計画', desc: '予約済みと空きレンジをビジュアルで把握。' }
+                { title: 'フローエクスプローラ', desc: 'S/G/Portで絞り込み、フローと共有メモをその場で編集。' },
+                { title: 'テキストハブパネル', desc: 'エイリアス/ユーザー項目に蓄積したメッセージを一覧。' },
+                { title: 'アドレスマップ', desc: 'PlannerとExplorerで予約済み/空きブロックを視覚化。' },
+                { title: 'チェッカーダッシュボード', desc: '衝突とNMOS自動チェックの最新結果と履歴を表示。' }
             ]
         },
         quickstart: {
