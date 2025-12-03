@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MMAM HOW TO USE - setup">
+    <title>MMAM Guide / setup</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans" data-guide-page="setup">
+    <div class="lg:flex">
+
+<aside id="guide-sidebar" class="bg-slate-900 text-white w-72 min-h-screen flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 lg:translate-x-0 -translate-x-full">
+    <div class="px-6 py-5 border-b border-white/10 flex items-center gap-3">
+        <svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+            <rect x="4" y="4" width="56" height="56" rx="14" fill="#1e293b"/>
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="32" cy="28" r="8" stroke="#60a5fa" stroke-width="3"/>
+                <path d="M20 44 A16 16 0 0 1 44 44" stroke="#3b82f6" stroke-width="3"/>
+                <circle cx="20" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+                <circle cx="32" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+                <circle cx="44" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+            </g>
+        </svg>
+        <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-slate-300">HOW TO USE</p>
+            <h1 class="text-xl font-semibold">MMAM Guide</h1>
+        </div>
+    </div>
+    <nav class="flex-1 px-4 py-6 overflow-y-auto text-sm space-y-1">
+        <a href="index.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="overview">概要</a>
+        <a href="stack.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="stack">スタック構成</a>
+        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flow-hub">フローとテキストハブ</a>
+        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / Address Map</a>
+        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS連携</a>
+        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker & 自動化</a>
+        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST API / MQTT</a>
+        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
+    </nav>
+    <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
+        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">Landingへ戻る</a>
+        <div class="border border-dashed border-white/30 rounded-xl px-3 py-4 text-center text-slate-300">
+            アフィリエイト枠（300x250）
+        </div>
+    </div>
+</aside>
+
+        <div class="flex-1 lg:ml-72 min-h-screen bg-slate-50">
+            <header class="sticky top-0 z-30 bg-slate-50/95 backdrop-blur border-b border-slate-200 flex items-center justify-between px-4 py-3 lg:hidden">
+                <button id="guide-sidebar-toggle" class="px-3 py-2 rounded border border-slate-300 text-sm font-medium">メニュー</button>
+                <a href="../index.html" class="text-sm text-slate-500 underline">Landing</a>
+            </header>
+            <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
+    <p class="text-xs uppercase tracking-[0.4em] text-slate-400">setup</p>
+    <h2 class="text-3xl font-semibold">セットアップ手順</h2>
+    <p class="text-slate-600">READMEのQuick Startと同じ流れです。</p>
+</section>
+<ol class="list-decimal ml-6 text-slate-600 space-y-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+    <li>リポジトリをクローンし <code>.env</code> を準備（<code>cp .env.example .env</code>）</li>
+    <li>PostgreSQLやMQTTのホスト名を環境に合わせる</li>
+    <li><code>docker compose up --build</code> で起動</li>
+    <li>UI (HTTP 4173 / HTTPS 4174) にアクセスし <code>admin / admin</code> でログイン</li>
+    <li>Flows / Planner / NMOS / Checker に必要な情報を投入</li>
+</ol>
+<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">ホスティング/サポート広告枠</div>
+            </main>
+        </div>
+    </div>
+    <script src="../js/guide.js"></script>
+</body>
+</html>

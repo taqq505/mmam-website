@@ -26,7 +26,7 @@
                     <a href="#stack" @click="menuOpen = false">{{ t.nav.stack }}</a>
                     <a href="#starter" @click="menuOpen = false">{{ t.nav.starter }}</a>
                     <a href="#showcase" @click="menuOpen = false">{{ t.nav.showcase }}</a>
-                    <a href="guide.html" @click="menuOpen = false">{{ t.nav.guide }}</a>
+                    <a href="guide/index.html" @click="menuOpen = false">{{ t.nav.guide }}</a>
                 </nav>
                 <div class="header__actions">
                     <button @click="toggleLanguage" class="lang-switch">
@@ -47,7 +47,7 @@
                         <div class="hero__actions">
                             <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="btn btn--primary">{{ t.hero.primary }}</a>
                             <a href="#starter" class="btn btn--quiet">{{ t.hero.secondary }}</a>
-                            <a href="guide.html" class="btn btn--ghost">{{ t.hero.guide }}</a>
+                            <a href="guide/index.html" class="btn btn--ghost">{{ t.hero.guide }}</a>
                         </div>
                         <ul class="metrics">
                             <li v-for="(metric, index) in t.hero.metrics" :key="'metric-'+index">
