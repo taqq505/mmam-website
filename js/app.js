@@ -76,9 +76,9 @@ const translations = {
                     eyebrow: 'Automation',
                     title: 'Instrument everything',
                     items: [
-                        'REST + MQTT streaming for external tooling',
-                        'SDP ingest with schema validation',
-                        'Role-based UI powered by Vue 3'
+                        'REST patch endpoints to update existing flow records from automation',
+                        'Address/flow-ID keyed text hub enabling BCC-style cross-system message sharing',
+                        'SDP ingest with schema validation'
                     ]
                 },
                 {
@@ -108,7 +108,7 @@ const translations = {
                     label: 'Data layer',
                     name: 'PostgreSQL 16',
                     desc: 'Schema optimized for multicast reservations and history.',
-                    items: ['Immutable audit tables', 'JSONB metadata for custom tags', 'Snapshot jobs via cron container']
+                    items: ['Immutable audit tables', 'JSONB metadata for custom tags', 'Scheduler-driven periodic checks']
                 },
                 {
                     label: 'Interfaces',
@@ -235,9 +235,9 @@ const translations = {
                     eyebrow: '自動化',
                     title: 'すべてを計測',
                     items: [
-                        '外部ツール向けREST + MQTT配信',
-                        'SDP取り込みとスキーマ検証',
-                        'Vue 3ベースのロール管理UI'
+                        'RESTパッチエンドポイントで既存フローを自動更新',
+                        'アドレス/フローIDをキーとしたテキストメッセージハブでBCC的にシステム間共有',
+                        'SDP取り込みとスキーマ検証'
                     ]
                 },
                 {
@@ -267,7 +267,7 @@ const translations = {
                     label: 'データ層',
                     name: 'PostgreSQL 16',
                     desc: 'マルチキャスト予約と履歴に最適化したスキーマ。',
-                    items: ['改ざん不可の監査テーブル', 'タグ用JSONBメタデータ', 'cronコンテナによるスナップショット']
+                    items: ['改ざん不可の監査テーブル', 'タグ用JSONBメタデータ', 'スケジューラで定期チェック']
                 },
                 {
                     label: 'インターフェース',
