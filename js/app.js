@@ -8,6 +8,7 @@ const translations = {
             stack: 'Stack',
             starter: 'Quick Start',
             showcase: 'Screens',
+            guide: 'How to Use',
             openRepo: 'GitHub'
         },
         hero: {
@@ -16,6 +17,7 @@ const translations = {
             subtitle: 'MMAM is a multicast-first IP address manager that unifies planning, NMOS integrations, and audit history to support ST 2110 operations.',
             primary: 'Open GitHub repo',
             secondary: 'View quick start',
+            guide: 'Read HOW TO USE',
             metrics: [
                 { value: 'Message hub', label: 'Keyed annotations', detail: 'Share text threads per address or flow ID for BCC-style workflows' },
                 { value: 'Multi-site', label: 'Address planning', detail: 'Document production + DR fabrics with S/G/Port tracking' },
@@ -167,6 +169,7 @@ const translations = {
             stack: 'スタック',
             starter: 'クイックスタート',
             showcase: '画面',
+            guide: 'HOW TO USE',
             openRepo: 'GitHub'
         },
         hero: {
@@ -175,6 +178,7 @@ const translations = {
             subtitle: 'MMAMはマルチキャストに特化したIPアドレスマネージャーです。アドレス計画、NMOS連携、監査ログを一元化し、ST2110システムの運用を支援します。',
             primary: 'GitHubを開く',
             secondary: 'クイックスタートを見る',
+            guide: 'HOW TO USEを見る',
             metrics: [
                 { value: 'テキストハブ', label: 'キー付きメモ共有', detail: 'アドレスやフローIDごとにBCC的なメッセージスレッドを共有' },
                 { value: 'マルチサイト', label: 'アドレス計画', detail: '本番とDRをS/G/Portで一元管理' },

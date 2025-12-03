@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MMAM HOW TO USE ガイド">
+    <title>MMAM Guide - How to Use</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            925: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans">
+    <div class="lg:flex">
+        <aside id="guide-sidebar" class="bg-slate-900 text-white w-72 min-h-screen flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 lg:translate-x-0 -translate-x-full">
+            <div class="px-6 py-5 border-b border-white/10 flex items-center gap-3">
+                <svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+                    <rect x="4" y="4" width="56" height="56" rx="14" fill="#1e293b"/>
+                    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="32" cy="28" r="8" stroke="#60a5fa" stroke-width="3"/>
+                        <path d="M20 44 A16 16 0 0 1 44 44" stroke="#3b82f6" stroke-width="3"/>
+                        <circle cx="20" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+                        <circle cx="32" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+                        <circle cx="44" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+                    </g>
+                </svg>
+                <div>
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-300">HOW TO USE</p>
+                    <h1 class="text-xl font-semibold">MMAM Guide</h1>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 overflow-y-auto text-sm space-y-1">
+                <a href="#overview" class="guide-link block px-3 py-2 rounded hover:bg-white/10">概要</a>
+                <a href="#stack" class="guide-link block px-3 py-2 rounded hover:bg-white/10">スタック構成</a>
+                <a href="#flow-hub" class="guide-link block px-3 py-2 rounded hover:bg-white/10">フローとテキストハブ</a>
+                <a href="#planner" class="guide-link block px-3 py-2 rounded hover:bg-white/10">Planner / Address Map</a>
+                <a href="#nmos" class="guide-link block px-3 py-2 rounded hover:bg-white/10">NMOS連携</a>
+                <a href="#checker" class="guide-link block px-3 py-2 rounded hover:bg-white/10">Checker & 自動化</a>
+                <a href="#api" class="guide-link block px-3 py-2 rounded hover:bg-white/10">REST API / MQTT</a>
+                <a href="#setup" class="guide-link block px-3 py-2 rounded hover:bg-white/10">セットアップ</a>
+            </nav>
+            <div class="px-4 py-4 border-t border-white/10 text-xs space-y-2">
+                <a href="index.html" class="block bg-white/10 rounded px-3 py-2 text-center">Landingへ戻る</a>
+                <p class="text-slate-300">mmam-docker READMEとアプリUIに基づくハウツー。</p>
+            </div>
+        </aside>
+
+        <div class="flex-1 lg:ml-72 min-h-screen bg-slate-50">
+            <header class="sticky top-0 z-30 bg-slate-50/95 backdrop-blur border-b border-slate-200 flex items-center justify-between px-4 py-3 lg:hidden">
+                <button id="guide-sidebar-toggle" class="px-3 py-2 rounded border border-slate-300 text-sm font-medium">メニュー</button>
+                <a href="index.html" class="text-sm text-slate-500 underline">Landing</a>
+            </header>
+
+            <main class="px-6 py-10 max-w-5xl mx-auto space-y-16">
+                <section id="overview" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+                    <p class="text-xs uppercase tracking-[0.4em] text-slate-400 mb-3">overview</p>
+                    <h2 class="text-3xl font-semibold mb-4">MMAMはマルチキャスト専用IPアドレスマネージャー</h2>
+                    <p class="text-slate-600 leading-relaxed">PostgreSQLに蓄積されたフロー/PlannerデータとFastAPIベースのREST API、Vue 3 UIを同梱し、ST 2110ネットワークのアドレス計画・デバイス登録・監査ログを単一のスタックで扱えます。このページでは、mmam-dockerのREADMEとUIで触れられている各機能の使い方をまとめていきます。</p>
+                </section>
+
+                <section id="stack" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">スタック構成</h3>
+                        <p class="text-slate-600">docker composeでFastAPIサービス、PostgreSQL 16、MQTTブローカー、Vue 3 UIが立ち上がります。UIはvendorフォルダに同梱され、閉域環境でもそのまま利用可能です。</p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-4 text-sm text-slate-600">
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">FastAPI</p>
+                            <p class="font-semibold mt-2">REST / NMOS / Scheduler</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li>PATCH /flows/{id} による既存フロー更新</li>
+                                <li>NMOS差分検知・適用エンドポイント</li>
+                                <li>Automation APIによる定期ジョブ管理</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">PostgreSQL</p>
+                            <p class="font-semibold mt-2">Flows / Planner / Text Hub</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li>flows, planner_buckets, address_map テーブル</li>
+                                <li>alias_1-8, user_field_1-8 をテキスト共有に活用</li>
+                                <li>checker結果やジョブ履歴を蓄積</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-200 bg-slate-50">
+                            <p class="text-xs uppercase tracking-[0.2em] text-slate-400">Vue 3 UI</p>
+                            <p class="font-semibold mt-2">Planner / Explorer / Checker</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li>左サイドバーで各ツールを切り替え</li>
+                                <li>フロー編集時にテキストハブを閲覧</li>
+                                <li>Checkerタブで自動チェック結果を表示</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="flow-hub" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">フロー管理とテキストハブ</h3>
+                        <p class="text-slate-600">flowsテーブルの各レコードはUUIDのflow_idで参照し、REST PATCHで部分更新できます。alias_1-8とuser_field_1-8を組み合わせれば、S/G/Portやflow_idをキーにしたメッセージ共有ハブとして機能します。</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-600">
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold text-slate-800">基本操作</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li>UIのFlowsビューでS/G/Port検索、フィルタリング</li>
+                                <li><code>POST /api/flows</code>で作成、<code>PATCH /api/flows/{id}</code>で更新</li>
+                                <li>ロックAPIでフローを編集中に保護</li>
+                            </ul>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold text-slate-800">テキストハブ例</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li>alias_1: BCC伝票番号、alias_2: 運行ID</li>
+                                <li>user_field_Xに監視メモを格納しRESTで共有</li>
+                                <li>MQTTトピック <code>mmam/flows/events</code> で更新通知</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="planner" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">Planner / Address Map</h3>
+                        <p class="text-slate-600">Plannerはフォルダ(親)とビュー(子)で構成され、Address Map Explorerで各ブロックの占有状況を視覚化します。<code>GET /api/address-map</code>を利用すれば外部ツールからも同じ情報を再利用できます。</p>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-600">
+                        <p class="font-semibold">API抜粋</p>
+                        <ul class="list-disc ml-5 space-y-1">
+                            <li><code>GET /api/address/buckets/privileged</code> : ルート一覧</li>
+                            <li><code>POST /api/address/buckets/child</code> : ビュー作成</li>
+                            <li><code>GET /api/address-map</code> : Explorer表示用データ</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="nmos" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">NMOS連携</h3>
+                        <p class="text-slate-600">NMOS WizardではIS-04ノードの自動検出、IS-05エンドポイントとの差分チェック、データの適用まで一連の作業をワンストップで行えます。REST APIも同構成です。</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-600">
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold">主なAPI</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li><code>POST /api/nmos/discover</code> : IS-04探索</li>
+                                <li><code>GET /api/flows/{id}/nmos/check</code> : デバイスとの差分確認</li>
+                                <li><code>POST /api/flows/{id}/nmos/apply</code> : フロー設定をデバイスへ反映</li>
+                            </ul>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold">UIワークフロー</p>
+                            <ol class="list-decimal ml-4 mt-2 space-y-1">
+                                <li>NMOS Wizardタブでノードを選択</li>
+                                <li>FlowとNMOSの差分を比較</li>
+                                <li>Applyを押してMMAM/機器へ反映</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="checker" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">Checkerと自動チェック</h3>
+                        <p class="text-slate-600">Checkerタブではマルチキャスト衝突検出とNMOS差分検出をオンデマンド実行できます。Automation設定でinterval/cronベースの定期ジョブを登録すれば、UIダッシュボードやREST/MQTT通知に結果が自動配信されます。</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-600">
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold">Checker API</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li><code>GET /api/checker/collisions</code></li>
+                                <li><code>GET /api/checker/nmos?timeout=5</code></li>
+                                <li><code>GET /api/checker/latest?kind=collisions|nmos</code></li>
+                            </ul>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold">Automation API</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li><code>GET /api/automation/jobs</code> : ジョブ一覧</li>
+                                <li><code>PUT /api/automation/jobs/{job_id}</code> : 設定変更</li>
+                                <li><code>POST /api/automation/jobs/{job_id}/enable</code> : 有効化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="api" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">REST API / MQTT</h3>
+                        <p class="text-slate-600">全機能はRESTで操作でき、JWT認証を利用します。MQTTを有効化すると <code>mmam/flows/events</code> などのトピックでフロー更新やチェック結果を購読できます。</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-600">
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold">主要エンドポイント</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li><code>POST /api/login</code> でJWT取得</li>
+                                <li><code>GET /api/flows/export</code> / <code>POST /api/flows/import</code></li>
+                                <li><code>GET /api/logs?kind=api|audit</code></li>
+                            </ul>
+                        </div>
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50">
+                            <p class="font-semibold">連携ヒント</p>
+                            <ul class="list-disc ml-4 mt-2 space-y-1">
+                                <li>REST PATCH + alias/user fieldsでシステム間メモ共有</li>
+                                <li>MQTTを監視してBPM/監視ツールへ転送</li>
+                                <li>Automation結果を外部Issueトラッカーへ反映</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="setup" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">セットアップ</h3>
+                        <p class="text-slate-600">mmam-dockerリポジトリを利用した標準手順です。READMEのQuick Startと同じ流れを図表化しています。</p>
+                    </div>
+                    <ol class="list-decimal ml-6 text-slate-600 space-y-2">
+                        <li>リポジトリをクローンし <code>.env</code> を準備 (<code>cp .env.example .env</code>)</li>
+                        <li>PostgreSQLやMQTTのホスト名を環境に合わせて調整</li>
+                        <li><code>docker compose up --build</code> でサービスを起動</li>
+                        <li>UIにアクセス (HTTP 4173 / HTTPS 4174) し、<code>admin / admin</code>でログイン</li>
+                        <li>Flows / Planner / NMOS / Checkerへ必要な情報を投入</li>
+                    </ol>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/guide.js"></script>
+</body>
+</html>
