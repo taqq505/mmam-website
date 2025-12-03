@@ -130,10 +130,12 @@ const translations = {
             title: 'Interface glimpses',
             lead: 'Preview how the UI exposes the planner, flows, and automation tools.',
             cards: [
-                { title: 'Flow explorer', desc: 'Filter by S/G/Port, edit flows in place, and view keyed annotations.' },
-                { title: 'Text hub panel', desc: 'Alias and user-defined fields show the shared message thread per flow.' },
-                { title: 'Address map planner', desc: 'Planner and explorer views illustrate reserved vs. free multicast blocks.' },
-                { title: 'Checker dashboard', desc: 'Collision and NMOS automation runs with last status and history.' }
+                { title: 'Dashboard', preview: 'Open preview', desc: 'Watcher cards summarise checker alerts, MQTT status, and automation jobs.' },
+                { title: 'Search', preview: 'Open preview', desc: 'Search flows across multicast, labels, or NMOS identifiers with instant filters.' },
+                { title: 'Manual flow entry', preview: 'Open preview', desc: 'Create or edit flows with S/G/Port, redundancy legs, and keyed annotations.' },
+                { title: 'NMOS wizard', preview: 'Open preview', desc: 'Discover IS-04/05 nodes, compare device data, and apply patched settings.' },
+                { title: 'Planner visualizer', preview: 'Open preview', desc: 'Address map explorer highlights reserved vs. free multicast blocks per site.' },
+                { title: 'Checker dashboard', preview: 'Open preview', desc: 'Collision and NMOS drift runs with latest status, history, and job controls.' }
             ]
         },
         quickstart: {
@@ -291,10 +293,12 @@ const translations = {
             title: 'UIイメージ',
             lead: 'Planner/Flow/Checker機能をどのように見せるかをイメージできます。',
             cards: [
-                { title: 'フローエクスプローラ', desc: 'S/G/Portで絞り込み、フローと共有メモをその場で編集。' },
-                { title: 'テキストハブパネル', desc: 'エイリアス/ユーザー項目に蓄積したメッセージを一覧。' },
-                { title: 'アドレスマップ', desc: 'PlannerとExplorerで予約済み/空きブロックを視覚化。' },
-                { title: 'チェッカーダッシュボード', desc: '衝突とNMOS自動チェックの最新結果と履歴を表示。' }
+                { title: 'ダッシュボード', preview: 'クリックで拡大', desc: 'チェッカーアラートやMQTT状態、Automationジョブのサマリを表示。' },
+                { title: '検索', preview: 'クリックで拡大', desc: 'マルチキャストやラベル、NMOS IDで即座にフローを検索。' },
+                { title: '手動フロー登録', preview: 'クリックで拡大', desc: 'S/G/Portと冗長系、共有メモを入力してフローを作成・編集。' },
+                { title: 'NMOS登録ウィザード', preview: 'クリックで拡大', desc: 'IS-04/05ノードを検出し、差分比較から適用までウィザード化。' },
+                { title: '可視化 (Address Map)', preview: 'クリックで拡大', desc: 'Planner/Explorerで予約済みと空きアドレスブロックを視覚化。' },
+                { title: 'チェッカーダッシュボード', preview: 'クリックで拡大', desc: '衝突とNMOS自動チェックの最新結果と履歴をモニタリング。' }
             ]
         },
         quickstart: {

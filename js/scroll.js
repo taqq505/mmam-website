@@ -70,4 +70,48 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('%cMMAM', styles);
     console.log('Media Multicast Address Manager');
     console.log('https://github.com/taqq505/mmam-docker');
+
+    const modal = document.getElementById('mockup-modal');
+    const titleEl = document.getElementById('mockup-modal-title');
+    const descEl = document.getElementById('mockup-modal-desc');
+    const previewEl = modal ? modal.querySelector('.mockup-modal__preview') : null;
+    const triggers = document.querySelectorAll('.mockup-trigger');
+
+    const closeModal = () => {
+        if (modal) {
+            modal.classList.remove('is-visible');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+    };
+
+    const openModal = (title, desc) => {
+        if (!modal) return;
+        if (titleEl) titleEl.textContent = title;
+        if (descEl) descEl.textContent = desc;
+        if (previewEl) {
+            previewEl.style.background = 'linear-gradient(125deg, rgba(110,231,183,0.16), rgba(59,130,246,0.25))';
+        }
+        modal.classList.add('is-visible');
+        modal.setAttribute('aria-hidden', 'false');
+    };
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            openModal(trigger.dataset.title, trigger.dataset.desc);
+        });
+    });
+
+    if (modal) {
+        modal.addEventListener('click', event => {
+            if (event.target.closest('[data-close-modal]')) {
+                closeModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
 });

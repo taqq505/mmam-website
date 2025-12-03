@@ -164,9 +164,14 @@
                         <h2>{{ t.showcase.title }}</h2>
                         <p>{{ t.showcase.lead }}</p>
                     </div>
-                    <div class="showcase__grid">
-                        <article v-for="(item, index) in t.showcase.cards" :key="'show-'+index">
-                            <div class="mockup"></div>
+                    <div class="showcase__track">
+                        <article v-for="(item, index) in t.showcase.cards" :key="'show-'+index" class="showcase__card">
+                            <button type="button"
+                                    class="mockup mockup-trigger"
+                                    :data-title="item.title"
+                                    :data-desc="item.desc">
+                                <span>{{ item.preview }}</span>
+                            </button>
                             <h3>{{ item.title }}</h3>
                             <p>{{ item.desc }}</p>
                         </article>
@@ -212,6 +217,17 @@
                 </div>
             </section>
         </main>
+
+        <div id="mockup-modal" class="mockup-modal" aria-hidden="true">
+            <div class="mockup-modal__backdrop" data-close-modal></div>
+            <div class="mockup-modal__content" role="dialog" aria-modal="true" aria-labelledby="mockup-modal-title">
+                <button type="button" class="mockup-modal__close" data-close-modal>&times;</button>
+                <div class="mockup-modal__preview"></div>
+                <h3 id="mockup-modal-title"></h3>
+                <p id="mockup-modal-desc"></p>
+            </div>
+        </div>
+
 
         <footer class="site-footer">
             <div class="shell footer__inner">
