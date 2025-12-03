@@ -1,4 +1,4 @@
-/* MMAM Website Custom Styles */
+/* MMAM Website Custom Styles with Parallax Effects */
 
 * {
     scroll-behavior: smooth;
@@ -10,51 +10,88 @@ body {
 
 /* Navigation Links */
 .nav-link {
-    @apply text-gray-700 hover:text-primary-600 transition font-medium text-sm;
+    @apply text-gray-700 hover:text-primary-600 transition-all duration-300 font-medium text-sm relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
 }
 
 /* Buttons */
 .btn-primary {
-    @apply inline-flex items-center px-6 py-3 bg-white text-primary-700 rounded-lg font-semibold hover:bg-gray-50 transition shadow-lg hover:shadow-xl;
+    @apply inline-flex items-center px-6 py-3 bg-white text-primary-700 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105;
 }
 
 .btn-secondary {
-    @apply inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition;
+    @apply inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg font-semibold transition-all duration-300 hover:bg-primary-700 hover:shadow-xl hover:scale-105;
 }
 
 /* Badges */
 .badge {
-    @apply inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-sm font-medium rounded-full border border-white/20;
+    @apply inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-sm font-medium rounded-full border border-white/20 transition-all duration-300 hover:bg-white/20 hover:scale-110;
 }
 
 .tech-badge {
-    @apply px-4 py-2 bg-primary-50 text-primary-700 text-sm font-semibold rounded-lg;
+    @apply px-4 py-2 bg-primary-50 text-primary-700 text-sm font-semibold rounded-lg transition-all duration-300 hover:bg-primary-100 hover:shadow-md hover:scale-105;
 }
 
 /* Section Titles */
 .section-title {
     @apply text-4xl font-bold text-center mb-4;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .section-subtitle {
     @apply text-xl text-gray-600 text-center max-w-3xl mx-auto;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 /* Feature Cards */
 .feature-card {
-    @apply bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition;
+    @apply bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-primary-300;
+    opacity: 0;
+    transform: translateY(40px);
 }
+
+.feature-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s forwards; }
+.feature-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s forwards; }
+.feature-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s forwards; }
+.feature-card:nth-child(4) { animation: fadeInUp 0.6s ease-out 0.4s forwards; }
+.feature-card:nth-child(5) { animation: fadeInUp 0.6s ease-out 0.5s forwards; }
+.feature-card:nth-child(6) { animation: fadeInUp 0.6s ease-out 0.6s forwards; }
 
 /* Screenshot Cards */
 .screenshot-card {
-    @apply bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition;
+    @apply bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2;
+    opacity: 0;
+    transform: translateY(40px);
 }
 
-/* Smooth Fade-in Animation */
+.screenshot-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s forwards; }
+.screenshot-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.3s forwards; }
+.screenshot-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.5s forwards; }
+.screenshot-card:nth-child(4) { animation: fadeInUp 0.6s ease-out 0.7s forwards; }
+
+/* Fade-in Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -62,13 +99,132 @@ body {
     }
 }
 
-.fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hero Section Parallax Background */
+#home {
+    position: relative;
+    overflow: hidden;
+}
+
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    animation: floating 20s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+/* Parallax Scroll Effect for Sections */
+.parallax-section {
+    transform-style: preserve-3d;
+}
+
+/* Problem Section Cards Animation */
+#problem .space-y-6 > div {
+    opacity: 0;
+    transform: translateX(-50px);
+}
+
+#problem .space-y-6 > div:nth-child(1) { animation: slideInLeft 0.6s ease-out 0.1s forwards; }
+#problem .space-y-6 > div:nth-child(2) { animation: slideInLeft 0.6s ease-out 0.3s forwards; }
+#problem .space-y-6 > div:nth-child(3) { animation: slideInLeft 0.6s ease-out 0.5s forwards; }
+#problem .space-y-6 > div:nth-child(4) { animation: slideInLeft 0.6s ease-out 0.7s forwards; }
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Solution Box Animation */
+#problem .bg-white {
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideInRight 0.8s ease-out 0.3s forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Use Case Cards */
+#usecases .bg-white {
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+#usecases .bg-white:nth-child(1) { animation: zoomIn 0.6s ease-out 0.1s forwards; }
+#usecases .bg-white:nth-child(2) { animation: zoomIn 0.6s ease-out 0.3s forwards; }
+#usecases .bg-white:nth-child(3) { animation: zoomIn 0.6s ease-out 0.5s forwards; }
+#usecases .bg-white:nth-child(4) { animation: zoomIn 0.6s ease-out 0.7s forwards; }
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Header Background Blur on Scroll */
+header {
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Code Blocks */
 pre {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
+    transition: all 0.3s ease;
+}
+
+pre:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 code {
@@ -83,7 +239,7 @@ section {
 
 /* Language Toggle Button Hover Effect */
 button:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 /* Responsive Adjustments */
@@ -95,17 +251,28 @@ button:hover {
     .section-subtitle {
         @apply text-lg;
     }
+
+    .feature-card,
+    .screenshot-card {
+        animation-delay: 0s !important;
+    }
 }
 
 /* Link Hover Effects */
 a {
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 /* Image Placeholder Styling */
 .aspect-video {
     position: relative;
     overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.aspect-video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .aspect-video p {
@@ -113,4 +280,36 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(135deg, #2563EB 0%, #10B981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Scroll Progress Indicator */
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563EB 0%, #10B981 100%);
+    transform-origin: left;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition-property: transform, opacity, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+/* Override for elements that shouldn't have transitions */
+html, body, section, header, footer {
+    transition: none;
 }

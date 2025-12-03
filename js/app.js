@@ -115,7 +115,7 @@ const translations = {
                 {
                     title: 'Clone the repository',
                     desc: 'Get the latest version from GitHub',
-                    code: 'git clone https://github.com/your-org/mmam-docker.git\ncd mmam-docker'
+                    code: 'git clone https://github.com/taqq505/mmam-docker.git\ncd mmam-docker'
                 },
                 {
                     title: 'Configure environment',
@@ -281,7 +281,7 @@ const translations = {
                 {
                     title: 'リポジトリをクローン',
                     desc: 'GitHubから最新版を取得',
-                    code: 'git clone https://github.com/your-org/mmam-docker.git\ncd mmam-docker'
+                    code: 'git clone https://github.com/taqq505/mmam-docker.git\ncd mmam-docker'
                 },
                 {
                     title: '環境設定',
