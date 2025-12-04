@@ -854,7 +854,36 @@ pre {
     .metrics {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
+
+    .quickstart__steps article {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+
+    .step__body {
+        flex-direction: column;
+    }
+
+    .step__index {
+        width: 48px;
+        height: 48px;
+    }
+
+    .step__code {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .step__code pre {
+        padding-right: 2.5rem;
+    }
+
+    .step__copy {
+        top: 0.75rem;
+        right: 0.75rem;
+    }
 }
+
 .showcase__wrapper {
     position: relative;
 }
