@@ -574,6 +574,13 @@ footer {
 
 .step__body {
     flex: 1;
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.step__text {
+    flex: 1;
 }
 
 .step__body h3 {
@@ -582,12 +589,20 @@ footer {
 
 .step__code {
     position: relative;
-    margin-top: 1rem;
+    flex: 1;
+    min-width: 280px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(135deg, rgba(13, 22, 40, 0.9), rgba(6, 11, 20, 0.85));
+    padding: 1rem 1rem 1rem 1.25rem;
 }
 
 .step__code pre {
     margin: 0;
+    padding: 0;
     padding-right: 3.5rem;
+    background: transparent;
+    border: none;
 }
 
 .step__copy {
@@ -870,11 +885,28 @@ pre {
     padding: 1.5rem;
 }
 
+.quickstart__steps article {
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.step__body {
+    flex-direction: column;
+}
+
 .step__index {
     width: 48px;
     height: 48px;
 }
 
+.step__code {
+    width: 100%;
+    margin-top: 1rem;
+}
+
 .step__code pre {
     padding-right: 2.5rem;
 }
+.step__copy {
+    top: 0.75rem;
+    right: 0.75rem;

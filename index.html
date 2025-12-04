@@ -191,8 +191,10 @@
                         <article v-for="(step, index) in t.quickstart.steps" :key="'step-'+index">
                             <div class="step__index">{{ index + 1 }}</div>
                             <div class="step__body">
-                                <h3>{{ step.title }}</h3>
-                                <p>{{ step.desc }}</p>
+                                <div class="step__text">
+                                    <h3>{{ step.title }}</h3>
+                                    <p>{{ step.desc }}</p>
+                                </div>
                                 <div class="step__code" v-if="step.code">
                                     <button type="button"
                                             class="step__copy"
