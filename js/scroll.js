@@ -139,22 +139,45 @@ document.addEventListener('DOMContentLoaded', function() {
     const parallaxPanel = document.querySelector('[data-parallax-panel]');
     if (parallaxPanel) {
         const heroSection = document.querySelector('#home');
-        const visionSection = document.querySelector('#vision');
+        const stopSelector = parallaxPanel.getAttribute('data-parallax-stop');
+        const stopSection = stopSelector ? document.querySelector(stopSelector) : document.querySelector('#capabilities');
         let current = 20;
         const minOffset = 20;
-        const maxOffset = 260;
-        const ease = 0.08;
+        let maxOffset = minOffset + 320;
+        const ease = 0.18;
+
+        const computeMaxOffset = () => {
+            if (!heroSection) return minOffset + 320;
+            const heroHeight = heroSection.offsetHeight;
+            const panelHeight = parallaxPanel.offsetHeight;
+            const available = Math.max(heroHeight - panelHeight - 60, 160);
+            return minOffset + available;
+        };
+
+        const updateMaxOffset = () => {
+            maxOffset = computeMaxOffset();
+        };
+
+        const getStopTop = () => {
+            if (stopSection) return stopSection.offsetTop;
+            if (heroSection) return heroSection.offsetTop + heroSection.offsetHeight;
+            return 0;
+        };
+
+        window.addEventListener('resize', updateMaxOffset);
+        window.addEventListener('load', updateMaxOffset);
+        updateMaxOffset();
 
         const updateParallax = () => {
-            if (!heroSection || !visionSection) return;
+            if (!heroSection) return;
             const heroTop = heroSection.offsetTop;
-            const visionTop = visionSection.offsetTop;
+            const stopTop = getStopTop();
+            const range = Math.max(stopTop - heroTop, 1);
             const scrollY = window.scrollY;
-            const withinRange = scrollY >= heroTop && scrollY < visionTop;
-            const clampedScroll = Math.min(Math.max(scrollY - heroTop, 0), visionTop - heroTop);
-            const target = withinRange ? minOffset + (clampedScroll / (visionTop - heroTop)) * (maxOffset - minOffset) : (scrollY >= visionTop ? maxOffset : minOffset);
+            const clampedScroll = Math.min(Math.max(scrollY - heroTop, 0), range);
+            const target = minOffset + (clampedScroll / range) * (maxOffset - minOffset);
             current += (target - current) * ease;
-            parallaxPanel.style.transform = `translate(20px, ${current}px)`;
+            parallaxPanel.style.transform = `translate3d(20px, ${current}px, 0)`;
             requestAnimationFrame(updateParallax);
         };
 
