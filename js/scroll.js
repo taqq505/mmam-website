@@ -144,6 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
             (stopSelector && document.querySelector(stopSelector)) ||
             document.querySelector('#capabilities .capabilities__grid') ||
             document.querySelector('#capabilities');
+        const fadeStartSelector = parallaxPanel.getAttribute('data-parallax-fade');
+        const fadeEndSelector = parallaxPanel.getAttribute('data-parallax-fade-end');
+        const fadeStartSection = fadeStartSelector ? document.querySelector(fadeStartSelector) : null;
+        const fadeEndSection = fadeEndSelector ? document.querySelector(fadeEndSelector) : null;
         let current = 20;
         const minOffset = 20;
         const ease = 0.18;
@@ -168,6 +172,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const target = minOffset + clampedScroll;
             current += (target - current) * ease;
             parallaxPanel.style.transform = `translate3d(20px, ${current}px, 0)`;
+            if (fadeStartSection || fadeEndSection) {
+                const fadeStartTop = fadeStartSection ? fadeStartSection.offsetTop : heroTop;
+                const fadeEndTop = fadeEndSection ? fadeEndSection.offsetTop : fadeStartTop + 400;
+                const fadeRange = Math.max(fadeEndTop - fadeStartTop, 1);
+                const fadeProgress = Math.min(Math.max(scrollY - fadeStartTop, 0), fadeRange);
+                const opacity = Math.max(0, 1 - (fadeProgress / fadeRange));
+                parallaxPanel.style.opacity = opacity;
+            } else {
+                parallaxPanel.style.opacity = '';
+            }
             requestAnimationFrame(updateParallax);
         };
 
