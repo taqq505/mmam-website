@@ -133,8 +133,8 @@ const translations = {
                 { title: 'Dashboard', preview: 'Open preview', image: 'images/dashboard.png', desc: 'Watcher cards summarise checker alerts, MQTT status, and automation jobs.' },
                 { title: 'Search', preview: 'Open preview', desc: 'Search flows across multicast, labels, or NMOS identifiers with instant filters.' },
                 { title: 'Manual flow entry', preview: 'Open preview', desc: 'Create or edit flows with S/G/Port, redundancy legs, and keyed annotations.' },
-                { title: 'NMOS wizard', preview: 'Open preview', desc: 'Discover IS-04/05 nodes, compare device data, and apply patched settings.' },
-                { title: 'Planner visualizer', preview: 'Open preview', desc: 'Address map explorer highlights reserved vs. free multicast blocks per site.' },
+                { title: 'NMOS wizard', preview: 'Open preview', image: 'images/NMOS_wizard.png', desc: 'Discover IS-04/05 nodes, compare device data, and apply patched settings.' },
+                { title: 'Planner visualizer', preview: 'Open preview', image: 'images/Planner.png', desc: 'Address map explorer highlights reserved vs. free multicast blocks per site.' },
                 { title: 'Checker dashboard', preview: 'Open preview', desc: 'Collision and NMOS drift runs with latest status, history, and job controls.' }
             ]
         },
@@ -296,8 +296,8 @@ const translations = {
                 { title: 'ダッシュボード', preview: 'クリックで拡大', image: 'images/dashboard.png', desc: 'チェッカーアラートやMQTT状態、Automationジョブのサマリを表示。' },
                 { title: '検索', preview: 'クリックで拡大', desc: 'マルチキャストやラベル、NMOS IDで即座にフローを検索。' },
                 { title: '手動フロー登録', preview: 'クリックで拡大', desc: 'S/G/Portと冗長系、共有メモを入力してフローを作成・編集。' },
-                { title: 'NMOS登録ウィザード', preview: 'クリックで拡大', desc: 'IS-04/05ノードを検出し、差分比較から適用までウィザード化。' },
-                { title: '可視化 (Address Map)', preview: 'クリックで拡大', desc: 'Planner/Explorerで予約済みと空きアドレスブロックを視覚化。' },
+                { title: 'NMOS登録ウィザード', preview: 'クリックで拡大', image: 'images/NMOS_wizard.png', desc: 'IS-04/05ノードを検出し、差分比較から適用までウィザード化。' },
+                { title: '可視化 (Address Map)', preview: 'クリックで拡大', image: 'images/Planner.png', desc: 'Planner/Explorerで予約済みと空きアドレスブロックを視覚化。' },
                 { title: 'チェッカーダッシュボード', preview: 'クリックで拡大', desc: '衝突とNMOS自動チェックの最新結果と履歴をモニタリング。' }
             ]
         },
