@@ -137,18 +137,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const parallaxPanel = document.querySelector('[data-parallax-panel]');
-    let parallaxOffset = 0;
-    const parallax = () => {
-        if (!parallaxPanel) return;
-        const rect = parallaxPanel.getBoundingClientRect();
-        const triggerPoint = window.innerHeight * 0.3;
-        if (rect.top < triggerPoint) {
-            parallaxOffset += (triggerPoint - rect.top) * 0.05;
-            parallaxPanel.style.transform = `translate(20px, ${20 + parallaxOffset}px)`;
-        }
-    };
+    if (parallaxPanel) {
+        const heroSection = document.querySelector('#home');
+        let current = 20;
+        const maxOffset = 120;
+        const minOffset = 20;
+        const ease = 0.08;
 
-    window.addEventListener('scroll', () => {
-        window.requestAnimationFrame(parallax);
-    }, { passive: true });
+        const updateParallax = () => {
+            if (!heroSection) return;
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            const scrollY = window.scrollY;
+            const target = scrollY < heroBottom ? Math.min(minOffset + scrollY * 0.15, maxOffset) : maxOffset;
+            current += (target - current) * ease;
+            parallaxPanel.style.transform = `translate(20px, ${current}px)`;
+            requestAnimationFrame(updateParallax);
+        };
+
+        requestAnimationFrame(updateParallax);
+    }
 });
