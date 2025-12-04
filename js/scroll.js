@@ -90,12 +90,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (descEl) descEl.textContent = desc;
         if (previewEl) {
             if (image) {
-                previewEl.style.backgroundImage = `url(${image})`;
-                previewEl.style.backgroundColor = '#0e1525';
+                previewEl.innerHTML = `<img src="${image}" alt="${title} preview">`;
                 previewEl.classList.add('has-image');
             } else {
-                previewEl.style.backgroundImage = 'linear-gradient(125deg, rgba(110,231,183,0.16), rgba(59,130,246,0.25))';
-                previewEl.style.backgroundColor = 'transparent';
+                previewEl.innerHTML = '';
                 previewEl.classList.remove('has-image');
             }
         }
