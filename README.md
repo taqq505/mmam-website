@@ -52,6 +52,11 @@ mmam-website/
 └── README.md
 ```
 
+### Guide
+
+`guide/` は mmam のマニュアル兼技術仕様書です。  
+Git clone や docker compose を初めて触るところから、REST API / MQTT 連携、NMOS ワークフロー、Automation 設定までをページ別に整理しています。各ページにはトップバナーを設置し、いつでも Landing へ戻れる導線も確保しています。
+
 ## 🖼️ Adding Screenshots
 
 Replace placeholder images by adding screenshots to `images/screenshots/`:

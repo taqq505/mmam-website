@@ -14,7 +14,7 @@ const translations = {
         },
         hero: {
             badge: 'Open source IPAM for SMPTE ST 2110',
-            title: 'Reclaim control of every multicast slot',
+            title: 'Media Multicast Address Manager',
             subtitle: 'MMAM is a multicast-first IP address manager that unifies planning, NMOS integrations, and audit history to support ST 2110 operations.',
             primary: 'Open GitHub repo',
             secondary: 'View quick start',
