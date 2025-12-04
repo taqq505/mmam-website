@@ -175,25 +175,13 @@ footer {
 }
 
 .hero__screenshot {
-    border-radius: 32px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow);
-    background: #050910;
+    box-shadow: 0 40px 80px rgba(5, 9, 16, 0.6);
 }
 
 .hero__screenshot img {
     width: 100%;
     display: block;
-}
-
-.hero__caption {
-    padding: 1rem 1.5rem;
-    font-size: 0.85rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--fg-soft);
-    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0;
 }
 
 .hero h1 {
