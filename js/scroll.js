@@ -187,4 +187,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
         requestAnimationFrame(updateParallax);
     }
+
+    document.addEventListener('click', async event => {
+        const button = event.target.closest('.step__copy');
+        if (!button) return;
+        const text = button.dataset.copy || '';
+        if (!text) return;
+        const copyLabel = button.dataset.copyLabel || 'Copy';
+        const copiedLabel = button.dataset.copiedLabel || 'Copied';
+        try {
+            await navigator.clipboard.writeText(text);
+            button.classList.add('copied');
+            button.textContent = copiedLabel;
+            setTimeout(() => {
+                button.classList.remove('copied');
+                button.textContent = copyLabel;
+            }, 1800);
+        } catch (err) {
+            console.warn('Clipboard unavailable', err);
+            button.textContent = 'Manual copy';
+            setTimeout(() => {
+                button.textContent = copyLabel;
+            }, 2000);
+        }
+    });
 });

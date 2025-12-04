@@ -352,8 +352,7 @@ footer {
 
 .vision__grid,
 .capabilities__grid,
-.stack__tiers,
-.quickstart__steps {
+.stack__tiers {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
@@ -361,8 +360,7 @@ footer {
 
 .vision__grid article,
 .capabilities__grid article,
-.stack__tiers article,
-.quickstart__steps article {
+.stack__tiers article {
     padding: 1.75rem;
     border-radius: 22px;
     border: 1px solid var(--border);
@@ -543,21 +541,73 @@ footer {
     border: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
+.quickstart__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
 .quickstart__steps article {
     display: flex;
-    gap: 1rem;
-    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.75rem 2rem;
+    border-radius: 28px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
 }
 
 .step__index {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.08);
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: rgba(68, 240, 192, 0.12);
+    border: 1px solid rgba(68, 240, 192, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--highlight);
+}
+
+.step__body {
+    flex: 1;
+}
+
+.step__body h3 {
+    margin-bottom: 0.3rem;
+}
+
+.step__code {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.step__code pre {
+    margin: 0;
+    padding-right: 3.5rem;
+}
+
+.step__copy {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    padding: 0.35rem 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--fg-base);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.step__copy.copied {
+    background: var(--highlight);
+    color: #02121f;
+    border-color: transparent;
 }
 
 pre {
@@ -781,7 +831,6 @@ pre {
     .capabilities__grid article,
     .stack__tiers article,
     .showcase__card,
-    .quickstart__steps article,
     .blueprint,
     .cta__inner {
         padding: 1.5rem;
@@ -815,4 +864,17 @@ pre {
 
 .showcase__nav--next {
     right: 0;
+}
+.quickstart__steps article {
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.step__index {
+    width: 48px;
+    height: 48px;
+}
+
+.step__code pre {
+    padding-right: 2.5rem;
 }

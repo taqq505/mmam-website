@@ -149,6 +149,8 @@ const translations = {
                 { title: 'Build and start', desc: 'Run docker compose to build the images and boot services.', code: 'docker compose up --build' },
                 { title: 'Sign in', desc: 'Open the UI and use the default admin credentials.', code: '# http://localhost:4173\n# https://localhost:4174\n# admin / admin' }
             ],
+            copy: 'Copy command',
+            copied: 'Copied!',
             note: 'Need more context? Review the',
             noteLink: 'GitHub README'
         },
@@ -313,6 +315,8 @@ const translations = {
                 { title: 'ビルドして起動', desc: 'docker composeでビルド・起動。', code: 'docker compose up --build' },
                 { title: 'サインイン', desc: 'UIを開き、既定の管理者アカウントでログイン。', code: '# http://localhost:4173\n# https://localhost:4174\n# admin / admin' }
             ],
+            copy: 'コピー',
+            copied: 'コピー済み',
             note: '詳しくは',
             noteLink: 'GitHub README'
         },
