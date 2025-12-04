@@ -170,7 +170,7 @@ footer {
 .hero__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
+    gap: 1.5rem;
     align-items: start;
 }
 
@@ -279,10 +279,12 @@ footer {
 .hero__panel--image {
     padding: 0;
     overflow: hidden;
+    margin-top: 1rem;
+    transform: translate(-20px, 10px);
 }
 
 .hero__panel--image img {
-    width: 100%;
+    width: 110%;
     display: block;
     border-radius: 28px;
 }
