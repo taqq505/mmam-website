@@ -147,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let current = 20;
         const minOffset = 20;
         const ease = 0.18;
+        const maxTravel = Number(parallaxPanel.getAttribute('data-parallax-max') || 380);
 
         const getStopBoundary = () => {
             if (!heroSection) return 0;
@@ -161,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const heroTop = heroSection.offsetTop;
             const stopBoundary = getStopBoundary();
             const panelHeight = parallaxPanel.offsetHeight;
-            const available = Math.max(stopBoundary - heroTop - panelHeight - 40, 0);
+            const available = Math.min(Math.max(stopBoundary - heroTop - panelHeight - 40, 0), maxTravel);
             const scrollY = window.scrollY;
             const clampedScroll = Math.min(Math.max(scrollY - heroTop, 0), available);
             const target = minOffset + clampedScroll;
