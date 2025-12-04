@@ -135,4 +135,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    const parallaxPanel = document.querySelector('[data-parallax-panel]');
+    let parallaxOffset = 0;
+    const parallax = () => {
+        if (!parallaxPanel) return;
+        const rect = parallaxPanel.getBoundingClientRect();
+        const triggerPoint = window.innerHeight * 0.3;
+        if (rect.top < triggerPoint) {
+            parallaxOffset += (triggerPoint - rect.top) * 0.05;
+            parallaxPanel.style.transform = `translate(20px, ${20 + parallaxOffset}px)`;
+        }
+    };
+
+    window.addEventListener('scroll', () => {
+        window.requestAnimationFrame(parallax);
+    }, { passive: true });
 });

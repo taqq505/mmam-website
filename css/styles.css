@@ -279,8 +279,9 @@ footer {
 .hero__panel--image {
     padding: 0;
     overflow: hidden;
-    margin-top: 1rem;
-    transform: translate(-20px, 10px);
+    margin-top: 2rem;
+    transform: translate(20px, 20px);
+    will-change: transform;
 }
 
 .hero__panel--image img {
