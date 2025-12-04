@@ -171,32 +171,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2.5rem;
-    align-items: center;
-}
-
-.hero__screenshot {
-    position: relative;
-    height: clamp(280px, 40vw, 460px);
-    box-shadow: 0 50px 100px rgba(5, 9, 16, 0.65);
-    overflow: hidden;
-}
-
-.hero__screenshot::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 60% 45%, rgba(4, 7, 15, 0) 30%, rgba(4, 7, 15, 0.3) 65%, rgba(4, 7, 15, 0.7) 90%);
-    pointer-events: none;
-}
-
-.hero__screenshot img {
-    width: 130%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transform: translate(-8%, -4%);
-    filter: saturate(1.05) brightness(0.9);
-    opacity: 0.85;
+    align-items: start;
 }
 
 .hero h1 {
@@ -300,6 +275,7 @@ footer {
     font-size: 0.9rem;
     color: var(--fg-muted);
 }
+
 
 .hero-highlights {
     margin-top: 3rem;
