@@ -54,30 +54,66 @@
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
-<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
-    <p class="text-xs uppercase tracking-[0.4em] text-slate-400">api</p>
-    <h2 class="text-3xl font-semibold">REST API / MQTT</h2>
-    <p class="text-slate-600">全機能はRESTで操作でき、JWT認証を利用します。MQTTを有効化すると <code>mmam/flows/events</code> などのトピックで更新を購読できます。</p>
+<section class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800 rounded-3xl text-white p-8 shadow-xl border border-blue-900 space-y-4">
+    <div>
+        <p class="text-xs uppercase tracking-[0.6em] text-white/60">api</p>
+        <h2 class="text-3xl font-semibold">REST API / MQTT リファレンス</h2>
+        <p class="text-white/80">JWT認証の流れから PATCH 実装、MQTT 購読例まで、初めての方にも分かりやすくまとめました。Landingへのリンクも常に表示します。</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">Landingへ戻る</a>
+        <a href="https://github.com/taqq505/mmam-docker/tree/main/src/app/routers" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">APIソース</a>
+    </div>
 </section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">認証と基本リクエスト</h3>
+    <ol class="list-decimal ml-5 text-slate-700 space-y-2">
+        <li><code>POST /login</code> にユーザー名/パスワードを送信し、JWTを取得。</li>
+        <li>以降のRESTリクエストでは <code>Authorization: Bearer &lt;token&gt;</code> を付与。</li>
+        <li>トークンは1時間有効。自動スクリプトは期限切れ前にリフレッシュするか再ログイン。</li>
+    </ol>
+    <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>curl -X POST https://localhost:8443/login \\
+  -H \"Content-Type: application/json\" \\
+  -d '{\"username\":\"admin\",\"password\":\"admin\"}'</code></pre>
+</section>
+
 <section class="grid md:grid-cols-2 gap-6">
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">主要エンドポイント</h3>
+        <h3 class="text-xl font-semibold">主要RESTエンドポイント</h3>
         <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li><code>POST /api/login</code></li>
-            <li><code>GET /api/flows/export</code> / <code>POST /api/flows/import</code></li>
-            <li><code>GET /api/logs?kind=api|audit</code></li>
+            <li><code>GET /flows</code>, <code>POST /flows</code>, <code>PATCH /flows/{id}</code></li>
+            <li><code>GET /address/buckets/overview</code>, <code>POST /address/buckets/child</code></li>
+            <li><code>GET /checker/latest</code>, <code>POST /automation/jobs/{id}/enable</code></li>
+            <li><code>GET /logs?kind=api|audit</code></li>
         </ul>
     </article>
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">連携ヒント</h3>
+        <h3 class="text-xl font-semibold">MQTTトピック</h3>
         <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li>REST PATCH + alias/user fieldsでメモ共有</li>
-            <li>MQTTを監視してBPM/監視システムへ転送</li>
-            <li>Automation結果をIssue Trackerに登録</li>
+            <li><code>mmam/flows/events</code> — Flow作成/更新/削除。</li>
+            <li><code>mmam/checker/events</code> — 自動検証の結果。</li>
+            <li><code>mmam/automation/jobs/&lt;id&gt;</code> — ジョブ状態の推移。</li>
         </ul>
+        <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>// MQTT.js例
+client.subscribe('mmam/flows/events');
+client.on('message', (_, payload) =&gt; {
+  const event = JSON.parse(payload.toString());
+  console.log(event.flow_id, event.event);
+});</code></pre>
     </article>
 </section>
-<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">API連携広告枠</div>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">システム連携Tips</h3>
+    <ul class="list-disc ml-5 text-slate-700 space-y-2">
+        <li>REST PATCH を利用すると既存Flowを壊さず差分更新できます。外部システムのキーと <code>flow_id</code> を紐付けておくと便利。</li>
+        <li>Automation結果をIssue Trackerに上げたい場合は、MQTTイベントをWebhookへ転送するだけでOK。</li>
+        <li>Flow Export/Import APIを使えば環境間の同期が容易。CIで <code>GET /flows/export</code> を取得→Gitに保存する運用も可能です。</li>
+    </ul>
+</section>
+
+<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">API連携・SIパートナー広告枠</div>
             </main>
         </div>
     </div>

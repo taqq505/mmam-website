@@ -54,18 +54,45 @@
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
-<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
-    <p class="text-xs uppercase tracking-[0.4em] text-slate-400">setup</p>
-    <h2 class="text-3xl font-semibold">セットアップ手順</h2>
-    <p class="text-slate-600">READMEのQuick Startと同じ流れです。</p>
+<section class="bg-gradient-to-r from-emerald-900 via-slate-900 to-emerald-700 rounded-3xl text-white p-8 shadow-xl border border-emerald-900 space-y-4">
+    <div>
+        <p class="text-xs uppercase tracking-[0.6em] text-white/60">setup</p>
+        <h2 class="text-3xl font-semibold">初めてでもできるセットアップ</h2>
+        <p class="text-white/80">GitやDockerを初めて触る方に向けて、コマンドと画面操作を丁寧に解説します。Landingへ戻るリンクも常に表示します。</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">Landingへ戻る</a>
+        <a href="https://github.com/taqq505/mmam-docker#readme" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">READMEを見る</a>
+    </div>
 </section>
-<ol class="list-decimal ml-6 text-slate-600 space-y-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
-    <li>リポジトリをクローンし <code>.env</code> を準備（<code>cp .env.example .env</code>）</li>
-    <li>PostgreSQLやMQTTのホスト名を環境に合わせる</li>
-    <li><code>docker compose up --build</code> で起動</li>
-    <li>UI (HTTP 4173 / HTTPS 4174) にアクセスし <code>admin / admin</code> でログイン</li>
-    <li>Flows / Planner / NMOS / Checker に必要な情報を投入</li>
-</ol>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
+    <h3 class="text-2xl font-semibold">ステップバイステップ</h3>
+    <ol class="list-decimal ml-5 text-slate-700 space-y-2">
+        <li><strong>リポジトリを取得</strong> — <code>git clone https://github.com/taqq505/mmam-docker.git</code></li>
+        <li><strong>.envを作成</strong> — <code>cp .env.example .env</code> 後、<code>POSTGRES_PASSWORD</code> や <code>SECRET_KEY</code> を任意値に変更。</li>
+        <li><strong>Dockerを起動</strong> — <code>docker compose up --build</code>。初回は依存イメージの取得で数分かかります。</li>
+        <li><strong>ブラウザで確認</strong> — <code>http://localhost:4173</code> または <code>https://localhost:4174</code> にアクセスし、<code>admin / admin</code> でログイン。</li>
+        <li><strong>初期データ投入</strong> — Flow/Planner/NMOSのテストデータを登録して操作を慣らします。</li>
+    </ol>
+    <p class="text-sm text-slate-500">WindowsでPowerShellを使う場合は <code>./docker-compose.ps1</code> のようにパスを調整してください。</p>
+</section>
+
+<section class="grid md:grid-cols-2 gap-6">
+    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
+        <h3 class="text-xl font-semibold">トラブルシューティング</h3>
+        <ul class="list-disc ml-5 text-slate-600 space-y-1">
+            <li>ポート競合 → <code>.env</code> の <code>APP_PORT</code>, <code>UI_PORT</code> を変更。</li>
+            <li>権限エラー → Linuxでは <code>sudo chown -R $USER:$USER certs pgdata</code>。</li>
+            <li>HTTPS証明書 → <code>certs/server.crt</code> と <code>server.key</code> を社内CAに差し替え。</li>
+        </ul>
+    </article>
+    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
+        <h3 class="text-xl font-semibold">次のステップ</h3>
+        <p class="text-slate-600">セットアップが完了したら、Flows→Planner→Checkerの順に触ってみると操作体系が理解しやすいです。APIページのコピーコマンドも合わせて参照してください。</p>
+    </article>
+</section>
+
 <div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">ホスティング/サポート広告枠</div>
             </main>
         </div>

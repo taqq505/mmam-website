@@ -54,27 +54,68 @@
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
-<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
-    <p class="text-xs uppercase tracking-[0.4em] text-slate-400">overview</p>
-    <h2 class="text-3xl font-semibold">MMAMはマルチキャスト専用IPAM</h2>
-    <p class="text-slate-600 leading-relaxed">FastAPI・PostgreSQL・Vue 3 UIが一体化した mmam-docker を用いることで、ST 2110 ネットワークのアドレス計画、NMOS連携、監査ログ、衝突チェックを同じスタックで扱えます。</p>
+<section class="bg-gradient-to-r from-slate-900 via-indigo-900 to-slate-800 rounded-3xl text-white p-8 shadow-xl border border-slate-800 flex flex-col gap-4">
+    <div class="space-y-2">
+        <p class="text-xs uppercase tracking-[0.6em] text-white/60">MMAM guide</p>
+        <h2 class="text-3xl font-semibold leading-tight">最初に読むスターターガイド</h2>
+        <p class="text-white/80">このページから読み始めるだけで、Git clone や docker compose といった初歩作業から、REST API やシステム間連携の詳細まで順を追って学べます。</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">Landingへ戻る</a>
+        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="px-4 py-2 rounded-full border border-white/40 text-sm">GitHubでソースを見る</a>
+    </div>
+    <p class="text-xs text-white/60">読了後に感じたことや広告枠のご相談があれば、LandingページのIssueリンクからフィードバックしてください。</p>
 </section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <header>
+        <p class="text-xs uppercase tracking-[0.4em] text-slate-400">read first</p>
+        <h3 class="text-2xl font-semibold">誰のためのドキュメントか</h3>
+        <p class="text-slate-600 mt-2 leading-relaxed">想定読者を明確にし、読み進める優先順位を示します。未経験者でも Docker を怖がらずに触れられるよう、すべてのページで端末操作例とスクリーンショットの位置合わせを心掛けています。</p>
+    </header>
+    <div class="grid md:grid-cols-3 gap-5">
+        <article class="border border-slate-200 rounded-2xl p-5 space-y-2">
+            <h4 class="font-semibold text-slate-800">初めて Git / Docker を触る方</h4>
+            <p class="text-sm text-slate-600">Setup ページに沿って <code>git clone</code>、<code>docker compose up</code> を実行し、UIへログインするまでを10分で完走できます。</p>
+        </article>
+        <article class="border border-slate-200 rounded-2xl p-5 space-y-2">
+            <h4 class="font-semibold text-slate-800">映像システム運用チーム</h4>
+            <p class="text-sm text-slate-600">Flows / Planner ページでテキストハブやアドレスマップの運用ルールを確認し、既存のExcel台帳からの移行を段階的に進められます。</p>
+        </article>
+        <article class="border border-slate-200 rounded-2xl p-5 space-y-2">
+            <h4 class="font-semibold text-slate-800">連携アプリを開発するプログラマー</h4>
+            <p class="text-sm text-slate-600">API ページでREST・MQTTエンドポイントのパラメータ、差分PATCH例、認証情報の扱いを網羅。Checkerページでは自動化のAPIを詳解しています。</p>
+        </article>
+    </div>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
+    <p class="text-xs uppercase tracking-[0.4em] text-slate-400">learning path</p>
+    <h3 class="text-2xl font-semibold">推奨の読み進め順</h3>
+    <ol class="space-y-3 text-slate-700 list-decimal ml-6">
+        <li><strong>Setup</strong> — 開発環境の前提知識と docker compose の初回起動。</li>
+        <li><strong>Stack</strong> — FastAPI/DB/UIの関係を押さえ、どの設定がどこに保存されるかを理解。</li>
+        <li><strong>Flows / Planner</strong> — 実際のアドレス計画とテキスト共有を UI と API の両面で把握。</li>
+        <li><strong>NMOS / Checker</strong> — デバイス登録や自動検証を用いて、運用の再現性を確保。</li>
+        <li><strong>API</strong> — 既存システムや社内スクリプトから呼び出すための詳細リファレンス。</li>
+    </ol>
+    <p class="text-sm text-slate-500">気になるページだけを参照しても構いません。各ページ末尾には関連ページへの導線や広告枠を用意しています。</p>
+</section>
+
 <section class="grid md:grid-cols-2 gap-6">
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">このガイドについて</h3>
-        <p class="text-slate-600">左メニューの各ページで、UI/REST APIの具体的な操作とベストプラクティスを説明します。</p>
+        <h3 class="text-xl font-semibold">このガイドで得られること</h3>
         <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li>スタック構成と依存関係</li>
-            <li>Flows + テキストハブの活用</li>
-            <li>Planner/Address Mapの可視化</li>
-            <li>NMOS連携・Checker・Automation</li>
+            <li>ST2110向けのマルチキャストアドレス設計ノウハウ</li>
+            <li>REST API / MQTT / Scheduler をまたいだ実装例</li>
+            <li>障害調査時に頼れるテキストハブ化のポイント</li>
         </ul>
     </article>
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">再利用できるポイント</h3>
-        <p class="text-slate-600">REST PATCHとMQTT配信を組み合わせることで、既存システムへの組み込みや自動帳票への反映も容易です。</p>
+        <h3 class="text-xl font-semibold">広告・連携のご提案</h3>
+        <p class="text-slate-600">本ガイドでは、長期的に参照される文脈に合わせたツール広告や周辺サービス紹介枠をご用意できます。問い合わせは Landing ページの GitHub Issue から。</p>
         <div class="border border-dashed border-slate-300 rounded-xl px-4 py-6 text-center text-slate-500">
-            広告／CTA枠をここに差し替え可能
+            300x250 / 300x600 広告を掲載可能
         </div>
     </article>
 </section>

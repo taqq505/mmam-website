@@ -9,6 +9,7 @@ const translations = {
             starter: 'Quick Start',
             showcase: 'Screens',
             guide: 'How to Use',
+            demo: 'Live Demo',
             openRepo: 'GitHub'
         },
         hero: {
@@ -17,6 +18,7 @@ const translations = {
             subtitle: 'MMAM is a multicast-first IP address manager that unifies planning, NMOS integrations, and audit history to support ST 2110 operations.',
             primary: 'Open GitHub repo',
             secondary: 'View quick start',
+            demo: 'Try live demo',
             guide: 'Read HOW TO USE',
             screenshot: 'Planner Explorer highlighting reserved S/G/Port blocks',
             metrics: [
@@ -175,6 +177,7 @@ const translations = {
             starter: 'クイックスタート',
             showcase: '画面',
             guide: 'HOW TO USE',
+            demo: 'デモ',
             openRepo: 'GitHub'
         },
         hero: {
@@ -183,6 +186,7 @@ const translations = {
             subtitle: 'MMAMはマルチキャストに特化したIPアドレスマネージャーです。アドレス計画、NMOS連携、監査ログを一元化し、ST2110システムの運用を支援します。',
             primary: 'GitHubを開く',
             secondary: 'クイックスタートを見る',
+            demo: 'ライブデモを試す',
             guide: 'HOW TO USEを見る',
             screenshot: 'Planner / Address Mapの画面イメージ',
             metrics: [

@@ -54,30 +54,90 @@
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
-<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
-    <p class="text-xs uppercase tracking-[0.4em] text-slate-400">flows</p>
-    <h2 class="text-3xl font-semibold">フロー管理とテキストハブ</h2>
-    <p class="text-slate-600">flowsテーブルの各レコードはUUIDのflow_idで参照し、REST PATCHで部分更新できます。alias_1-8とuser_field_1-8をキー付きメモとして共有できます。</p>
+<section class="bg-gradient-to-r from-emerald-900 via-slate-900 to-emerald-800 rounded-3xl text-white p-8 shadow-xl border border-emerald-900 space-y-4">
+    <div>
+        <p class="text-xs uppercase tracking-[0.6em] text-white/60">flows</p>
+        <h2 class="text-3xl font-semibold">フロー管理とテキストハブを極める</h2>
+        <p class="text-white/80">UI初心者が迷わないクリック順と、プログラマー向けAPI仕様を1ページで俯瞰。Landingへのショートカットも常に表示します。</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">Landingへ戻る</a>
+        <a href="https://github.com/taqq505/mmam-docker/blob/main/src/app/routers/flows.py" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">flows API コード</a>
+    </div>
 </section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">UIの歩き方</h3>
+    <ol class="list-decimal ml-5 text-slate-700 space-y-2">
+        <li>左メニュー「Flows」を開き、上部の <strong>Quick Search</strong> でS/G/Portを即時フィルタ。初心者は <code>239.1.</code> のように一部入力してみる。</li>
+        <li>右上の <strong>Manual Flow Entry</strong> を押すとフォームが開き、S/G/Port・冗長系・ラベル・テキストハブ欄が現れます。空欄には入力例のヒントが表示されます。</li>
+        <li>編集中は <strong>Lock Flow</strong> を押して予約状態に。別ユーザーが上書きしようとすると HTTP 423 が返り、UIには「Locked by userX」と表示。</li>
+    </ol>
+    <p class="text-sm text-slate-500">UIでは保存前にバリデーション結果がリアルタイム表示されるため、Docker初心者でも安心して入力できます。</p>
+</section>
+
 <section class="grid md:grid-cols-2 gap-6">
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">基本操作</h3>
+        <h3 class="text-xl font-semibold">テキストハブ設計のヒント</h3>
         <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li>Flows画面でS/G/Port検索・フィルタ</li>
-            <li><code>POST /api/flows</code>と<code>PATCH /api/flows/{id}</code></li>
-            <li>ロックAPIで編集中のフローを保護</li>
+            <li><code>alias_1</code>: BCC伝票番号 / <code>alias_2</code>: 制作タイトル</li>
+            <li><code>user_field_1</code>: 監視担当コメント（MQTTで共有）</li>
+            <li><code>user_field_5</code>: Slack / Teams のスレッドIDを保存し、相互リンクに活用</li>
         </ul>
+        <p class="text-sm text-slate-500">各フィールドの用途は運用ルールとして Planner のノート欄や Confluence にメモしておくと迷いません。</p>
     </article>
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">テキストハブ</h3>
+        <h3 class="text-xl font-semibold">REST API チートシート</h3>
+        <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code># 一覧
+curl -H "Authorization: Bearer &lt;token&gt;" \
+  'https://localhost:8443/flows?q=studio-a&amp;limit=50'
+
+# 新規登録
+curl -X POST https://localhost:8443/flows \
+  -H "Content-Type: application/json" \
+  -d '{ "flow_name": "Studio-A PRG", "src_ip": "239.1.1.10" }'
+
+# テキストハブをPATCH
+curl -X PATCH https://localhost:8443/flows/&lt;flow_id&gt; \
+  -H "Content-Type: application/json" \
+  -d '{ "alias_1": "B001-2024", "user_field_1": "Switch済み" }'</code></pre>
+    </article>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">データモデル要点</h3>
+    <ul class="list-disc ml-5 text-slate-700 space-y-2">
+        <li><code>flow_id (UUID)</code> — UI/REST/MQTT 全ての共通キー。既存システムとの連携もこのキーを保持すればOK。</li>
+        <li><code>sdp_template</code> — IS-05から取り込んだパラメータをJSONで保持。NMOSページで詳しく説明。</li>
+        <li><code>locked_by</code> と <code>locked_at</code> — Flow lock API で保護。UIは自動的に解放ボタンを表示。</li>
+    </ul>
+    <p class="text-sm text-slate-500">DBを直接触らずとも、REST PATCH でフィールドごとに更新できるため、簡単なワークフローはシェルスクリプトでも自動化できます。</p>
+</section>
+
+<section class="grid md:grid-cols-2 gap-6">
+    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
+        <h3 class="text-xl font-semibold">MQTTの通知例</h3>
+        <p class="text-slate-600">Flowが更新されると以下のようなペイロードが publish されます。</p>
+        <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>{
+  "flow_id": "92c0-...",
+  "event": "flow.updated",
+  "changed_fields": ["alias_1", "user_field_1"],
+  "updated_by": "admin",
+  "timestamp": "2025-01-12T10:22:11Z"
+}</code></pre>
+        <p class="text-sm text-slate-500">番組進行アプリや簡易BOTがこれを購読することで、BCC情報を最新化できます。</p>
+    </article>
+    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
+        <h3 class="text-xl font-semibold">チェックリスト</h3>
         <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li>alias_1: BCC伝票番号、alias_2: 運行ID</li>
-            <li>user_field_x に監視メモを保存</li>
-            <li>MQTT <code>mmam/flows/events</code> で共有</li>
+            <li>flowを削除する前に必ず Planner で予約ブロックを解放したか確認</li>
+            <li>alias/userフィールドへ機密情報を書かない（MQTTで配信されるため）</li>
+            <li>Automationで Flow Export をスケジュールし、Gitへ履歴管理するのも有効</li>
         </ul>
     </article>
 </section>
-<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">テキストハブ連携広告枠</div>
+
+<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">テキストハブ連携（チャットボット等）の広告をここに配置できます</div>
             </main>
         </div>
     </div>
