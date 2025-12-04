@@ -189,22 +189,22 @@
                     </div>
                     <div class="quickstart__steps">
                         <article v-for="(step, index) in t.quickstart.steps" :key="'step-'+index">
-                            <div class="step__index">{{ index + 1 }}</div>
-                            <div class="step__body">
+                            <div class="step__header">
+                                <div class="step__index">{{ index + 1 }}</div>
                                 <div class="step__text">
                                     <h3>{{ step.title }}</h3>
                                     <p>{{ step.desc }}</p>
                                 </div>
-                                <div class="step__code" v-if="step.code">
-                                    <button type="button"
-                                            class="step__copy"
-                                            :data-copy="step.code"
-                                            :data-copy-label="t.quickstart.copy"
-                                            :data-copied-label="t.quickstart.copied">
-                                        {{ t.quickstart.copy }}
-                                    </button>
-                                    <pre><code>{{ step.code }}</code></pre>
-                                </div>
+                            </div>
+                            <div class="step__code" v-if="step.code">
+                                <button type="button"
+                                        class="step__copy"
+                                        :data-copy="step.code"
+                                        :data-copy-label="t.quickstart.copy"
+                                        :data-copied-label="t.quickstart.copied">
+                                    {{ t.quickstart.copy }}
+                                </button>
+                                <pre><code>{{ step.code }}</code></pre>
                             </div>
                         </article>
                     </div>
