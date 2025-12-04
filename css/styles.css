@@ -360,6 +360,7 @@ footer {
     overflow-x: auto;
     padding-bottom: 1rem;
     scroll-snap-type: x proximity;
+    padding-inline: 2.5rem;
 }
 
 .showcase__track::-webkit-scrollbar {
@@ -372,7 +373,8 @@ footer {
 }
 
 .showcase__card {
-    min-width: 240px;
+    min-width: 280px;
+    width: 280px;
     flex: 0 0 auto;
     padding: 1.75rem;
     border-radius: 22px;
@@ -411,6 +413,7 @@ footer {
 
 .mockup span {
     opacity: 0.8;
+    color: var(--fg-soft);
 }
 
 .mockup:hover {
@@ -755,4 +758,29 @@ pre {
     .metrics {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
+}
+.showcase__wrapper {
+    position: relative;
+}
+
+.showcase__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--fg-soft);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.showcase__nav--prev {
+    left: 0;
+}
+
+.showcase__nav--next {
+    right: 0;
 }

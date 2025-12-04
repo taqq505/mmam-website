@@ -114,4 +114,19 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     });
+
+    const showcaseTrack = document.querySelector('[data-showcase-track]');
+    const showcaseNavs = document.querySelectorAll('.showcase__nav');
+    showcaseNavs.forEach(button => {
+        button.addEventListener('click', () => {
+            if (!showcaseTrack) return;
+            const card = showcaseTrack.querySelector('.showcase__card');
+            const offset = card ? card.offsetWidth + 24 : 320;
+            const direction = Number(button.dataset.direction || 1);
+            showcaseTrack.scrollBy({
+                left: offset * direction,
+                behavior: 'smooth'
+            });
+        });
+    });
 });

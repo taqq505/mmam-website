@@ -164,17 +164,21 @@
                         <h2>{{ t.showcase.title }}</h2>
                         <p>{{ t.showcase.lead }}</p>
                     </div>
-                    <div class="showcase__track">
-                        <article v-for="(item, index) in t.showcase.cards" :key="'show-'+index" class="showcase__card">
-                            <button type="button"
-                                    class="mockup mockup-trigger"
-                                    :data-title="item.title"
-                                    :data-desc="item.desc">
-                                <span>{{ item.preview }}</span>
-                            </button>
-                            <h3>{{ item.title }}</h3>
-                            <p>{{ item.desc }}</p>
-                        </article>
+                    <div class="showcase__wrapper">
+                        <button class="showcase__nav showcase__nav--prev" data-direction="-1" aria-label="Previous showcases">‹</button>
+                        <div class="showcase__track" data-showcase-track>
+                            <article v-for="(item, index) in t.showcase.cards" :key="'show-'+index" class="showcase__card">
+                                <button type="button"
+                                        class="mockup mockup-trigger"
+                                        :data-title="item.title"
+                                        :data-desc="item.desc">
+                                    <span>{{ item.preview }}</span>
+                                </button>
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.desc }}</p>
+                            </article>
+                        </div>
+                        <button class="showcase__nav showcase__nav--next" data-direction="1" aria-label="Next showcases">›</button>
                     </div>
                 </div>
             </section>
