@@ -139,16 +139,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const parallaxPanel = document.querySelector('[data-parallax-panel]');
     if (parallaxPanel) {
         const heroSection = document.querySelector('#home');
+        const capabilities = document.querySelector('#capabilities');
         let current = 20;
-        const maxOffset = 120;
         const minOffset = 20;
-        const ease = 0.08;
+        const maxOffset = 160;
+        const ease = 0.05;
 
         const updateParallax = () => {
-            if (!heroSection) return;
-            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            if (!heroSection || !capabilities) return;
+            const heroTop = heroSection.offsetTop;
+            const capTop = capabilities.offsetTop;
             const scrollY = window.scrollY;
-            const target = scrollY < heroBottom ? Math.min(minOffset + scrollY * 0.15, maxOffset) : maxOffset;
+            const withinRange = scrollY >= heroTop && scrollY < capTop;
+            const clampedScroll = Math.min(Math.max(scrollY - heroTop, 0), capTop - heroTop);
+            const target = withinRange ? minOffset + (clampedScroll / (capTop - heroTop)) * (maxOffset - minOffset) : (scrollY >= capTop ? maxOffset : minOffset);
             current += (target - current) * ease;
             parallaxPanel.style.transform = `translate(20px, ${current}px)`;
             requestAnimationFrame(updateParallax);
