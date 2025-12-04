@@ -57,17 +57,9 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="hero__panel">
-                        <div class="panel__header">
-                            <p class="panel__title">{{ t.hero.panel.title }}</p>
-                            <p class="panel__desc">{{ t.hero.panel.desc }}</p>
-                        </div>
-                        <ul class="panel__list">
-                            <li v-for="(item, index) in t.hero.panel.items" :key="'panel-'+index">{{ item }}</li>
-                        </ul>
-                        <div class="panel__footer">
-                            <p>{{ t.hero.panel.footer }}</p>
-                        </div>
+                    <div class="hero__screenshot">
+                        <img src="images/Planner.png" alt="Planner Explorer preview">
+                        <p class="hero__caption">{{ t.hero.screenshot }}</p>
                     </div>
                 </div>
                 <div class="shell hero-highlights">

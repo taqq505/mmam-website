@@ -18,6 +18,7 @@ const translations = {
             primary: 'Open GitHub repo',
             secondary: 'View quick start',
             guide: 'Read HOW TO USE',
+            screenshot: 'Planner Explorer highlighting reserved S/G/Port blocks',
             metrics: [
                 { value: 'Message hub', label: 'Keyed annotations', detail: 'Share text threads per address or flow ID for BCC-style workflows' },
                 { value: 'Multi-site', label: 'Address planning', detail: 'Document production + DR fabrics with S/G/Port tracking' },
@@ -181,6 +182,7 @@ const translations = {
             primary: 'GitHubを開く',
             secondary: 'クイックスタートを見る',
             guide: 'HOW TO USEを見る',
+            screenshot: 'Planner / Address Mapの画面イメージ',
             metrics: [
                 { value: 'テキストハブ', label: 'キー付きメモ共有', detail: 'アドレスやフローIDごとにBCC的なメッセージスレッドを共有' },
                 { value: 'マルチサイト', label: 'アドレス計画', detail: '本番とDRをS/G/Portで一元管理' },
