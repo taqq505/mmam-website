@@ -171,7 +171,8 @@
                                 <button type="button"
                                         class="mockup mockup-trigger"
                                         :data-title="item.title"
-                                        :data-desc="item.desc">
+                                        :data-desc="item.desc"
+                                        :data-image="item.image || ''">
                                     <img v-if="item.image" :src="item.image" :alt="item.title + ' preview'">
                                     <span v-else>{{ item.preview }}</span>
                                 </button>

@@ -84,12 +84,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    const openModal = (title, desc) => {
+    const openModal = (title, desc, image) => {
         if (!modal) return;
         if (titleEl) titleEl.textContent = title;
         if (descEl) descEl.textContent = desc;
         if (previewEl) {
-            previewEl.style.background = 'linear-gradient(125deg, rgba(110,231,183,0.16), rgba(59,130,246,0.25))';
+            if (image) {
+                previewEl.style.backgroundImage = `url(${image})`;
+                previewEl.style.backgroundColor = '#0e1525';
+                previewEl.classList.add('has-image');
+            } else {
+                previewEl.style.backgroundImage = 'linear-gradient(125deg, rgba(110,231,183,0.16), rgba(59,130,246,0.25))';
+                previewEl.style.backgroundColor = 'transparent';
+                previewEl.classList.remove('has-image');
+            }
         }
         modal.classList.add('is-visible');
         modal.setAttribute('aria-hidden', 'false');
@@ -97,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     triggers.forEach(trigger => {
         trigger.addEventListener('click', () => {
-            openModal(trigger.dataset.title, trigger.dataset.desc);
+            openModal(trigger.dataset.title, trigger.dataset.desc, trigger.dataset.image);
         });
     });
 

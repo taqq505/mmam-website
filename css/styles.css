@@ -623,6 +623,8 @@ pre {
     background: linear-gradient(125deg, rgba(110, 231, 183, 0.16), rgba(59, 130, 246, 0.25));
     margin-bottom: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    background-size: cover;
+    background-position: center;
 }
 
 .mockup-modal__close {
