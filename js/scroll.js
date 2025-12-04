@@ -140,42 +140,31 @@ document.addEventListener('DOMContentLoaded', function() {
     if (parallaxPanel) {
         const heroSection = document.querySelector('#home');
         const stopSelector = parallaxPanel.getAttribute('data-parallax-stop');
-        const stopSection = stopSelector ? document.querySelector(stopSelector) : document.querySelector('#capabilities');
+        const stopSection =
+            (stopSelector && document.querySelector(stopSelector)) ||
+            document.querySelector('#capabilities .capabilities__grid') ||
+            document.querySelector('#capabilities');
         let current = 20;
         const minOffset = 20;
-        let maxOffset = minOffset + 320;
         const ease = 0.18;
 
-        const computeMaxOffset = () => {
-            if (!heroSection) return minOffset + 320;
-            const heroHeight = heroSection.offsetHeight;
-            const panelHeight = parallaxPanel.offsetHeight;
-            const available = Math.max(heroHeight - panelHeight - 60, 160);
-            return minOffset + available;
+        const getStopBoundary = () => {
+            if (!heroSection) return 0;
+            if (stopSection) {
+                return stopSection.offsetTop + stopSection.offsetHeight;
+            }
+            return heroSection.offsetTop + heroSection.offsetHeight;
         };
-
-        const updateMaxOffset = () => {
-            maxOffset = computeMaxOffset();
-        };
-
-        const getStopTop = () => {
-            if (stopSection) return stopSection.offsetTop;
-            if (heroSection) return heroSection.offsetTop + heroSection.offsetHeight;
-            return 0;
-        };
-
-        window.addEventListener('resize', updateMaxOffset);
-        window.addEventListener('load', updateMaxOffset);
-        updateMaxOffset();
 
         const updateParallax = () => {
             if (!heroSection) return;
             const heroTop = heroSection.offsetTop;
-            const stopTop = getStopTop();
-            const range = Math.max(stopTop - heroTop, 1);
+            const stopBoundary = getStopBoundary();
+            const panelHeight = parallaxPanel.offsetHeight;
+            const available = Math.max(stopBoundary - heroTop - panelHeight - 40, 0);
             const scrollY = window.scrollY;
-            const clampedScroll = Math.min(Math.max(scrollY - heroTop, 0), range);
-            const target = minOffset + (clampedScroll / range) * (maxOffset - minOffset);
+            const clampedScroll = Math.min(Math.max(scrollY - heroTop, 0), available);
+            const target = minOffset + clampedScroll;
             current += (target - current) * ease;
             parallaxPanel.style.transform = `translate3d(20px, ${current}px, 0)`;
             requestAnimationFrame(updateParallax);

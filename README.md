@@ -41,16 +41,22 @@ Language is auto-detected from browser settings and saved to localStorage.
 
 ```
 mmam-website/
-├── index.html          # Main HTML file
+├── index.html          # Main landing page
 ├── css/
-│   └── styles.css      # Custom CSS styles
+│   └── styles.css      # Shared styles for index.html
 ├── js/
-│   └── app.js          # Vue.js app with i18n
-├── images/
-│   ├── placeholder.svg # Placeholder for screenshots
-│   └── screenshots/    # Actual screenshots (to be added)
+│   ├── app.js          # Vue.js app with i18n + content
+│   └── scroll.js       # UI effects (parallax, modal, slider)
+├── guide/              # HOW TO USE multi-page guide (sidebar layout)
+├── mock/               # 新規: バックエンド無しのデモ/モックサイト
+├── images/             # Landing page + mock用スクリーンショット
 └── README.md
 ```
+
+### Mock demo
+
+`mock/` ディレクトリ以下に、API呼び出しやUIスクリーンショットを一覧化した静的ページ（`mock/index.html`）を追加しました。  
+バックエンドを持たない「受け渡し用デモ」として単独配布でき、curlサンプルをコピーするための`mock/mock.js`と専用スタイルを含みます。
 
 ## 🖼️ Adding Screenshots
 

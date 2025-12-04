@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMAM Mock Demo</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="mock-header">
+        <div class="shell mock-header__inner">
+            <a href="../index.html" class="logo">MMAM</a>
+            <nav>
+                <a href="#overview">概要</a>
+                <a href="#modules">モジュール</a>
+                <a href="#api">API</a>
+                <a href="#distribution">配布</a>
+            </nav>
+            <div class="mock-header__actions">
+                <a href="../index.html" class="btn btn--ghost">本サイトへ</a>
+                <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="btn btn--primary">GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="overview" class="section hero-panel">
+            <div class="shell hero-panel__grid">
+                <div class="hero-panel__body">
+                    <p class="kicker">Mock UI</p>
+                    <h1>MMAMデモビュー</h1>
+                    <p class="lead">バックエンドを持たない静的モックです。mmam-docker本体で利用しているAPIをそのまま記載し、どの画面で何を呼び出すのかを可視化します。</p>
+                    <ul class="hero-panel__list">
+                        <li>REST API / MQTT / PostgreSQL の呼び出しを全て文書化</li>
+                        <li>UIスクリーンショットを参照しながら説明</li>
+                        <li>curlサンプルとレスポンス例をコピー可能</li>
+                    </ul>
+                    <div class="hero-panel__actions">
+                        <a href="../guide/index.html" class="btn btn--quiet">How to Use</a>
+                        <a href="#modules" class="btn btn--ghost">モジュールを見る</a>
+                    </div>
+                </div>
+                <div class="hero-panel__media">
+                    <img src="../images/Planner.png" alt="Planner screenshot mock">
+                </div>
+            </div>
+        </section>
+
+        <section id="modules" class="section">
+            <div class="shell">
+                <div class="section__header">
+                    <p class="kicker">UI × API</p>
+                    <h2>モジュール別モック</h2>
+                    <p>各画面が参照するエンドポイントをまとめています。実際のバックエンドは同梱しないため、APIを叩かずに運用設計やレビューを行う用途に向きます。</p>
+                </div>
+                <div class="module-grid">
+                    <article class="module-card">
+                        <div class="module-card__media"><img src="../images/dashboard.png" alt="Dashboard"></div>
+                        <div class="module-card__body">
+                            <h3>Dashboard</h3>
+                            <p>チェック結果・MQTT状態・Automationジョブの要約を静的サマリとして表示します。</p>
+                            <ul class="api-list">
+                                <li><code>GET /flows/summary</code> – フロー総数と状態</li>
+                                <li><code>GET /automation/summary</code> – スケジューラ状況</li>
+                                <li><code>GET /checker/latest</code> – 直近の衝突/NMOS差分</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="module-card">
+                        <div class="module-card__media"><img src="../images/Search.png" alt="Search"></div>
+                        <div class="module-card__body">
+                            <h3>Search</h3>
+                            <p>Quick/Advanced検索フォームの構造とフィルターを確認できます。入力はAPIパラメータに変換されます。</p>
+                            <ul class="api-list">
+                                <li><code>GET /flows</code> – クエリ/limitオプション</li>
+                                <li><code>GET /flows/{flow_id}</code> – 詳細モーダル</li>
+                                <li><code>GET /flows/export</code> – CSV/JSON出力</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="module-card">
+                        <div class="module-card__media"><img src="../images/Manual_flow_entry.png" alt="Manual flow entry"></div>
+                        <div class="module-card__body">
+                            <h3>Manual Flow Entry</h3>
+                            <p>フォームの各フィールドとバリデーションをモック上で示し、REST PATCH/POSTを想定したワークフローを確認できます。</p>
+                            <ul class="api-list">
+                                <li><code>POST /flows</code> – 新規作成</li>
+                                <li><code>PATCH /flows/{flow_id}</code> – 編集</li>
+                                <li><code>POST /flows/{flow_id}/lock</code> – 予約ロック</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="module-card">
+                        <div class="module-card__media"><img src="../images/NMOS_wizard.png" alt="NMOS wizard"></div>
+                        <div class="module-card__body">
+                            <h3>NMOS Wizard</h3>
+                            <p>IS-04/05ベースURL入力から差分チェック/適用までのフェーズを分割表示。各ステップがどのAPIを叩くかを明示します。</p>
+                            <ul class="api-list">
+                                <li><code>POST /nmos/discover</code> – ノード探索</li>
+                                <li><code>POST /nmos/detect-is05</code> – デバイス差分</li>
+                                <li><code>POST /flows/{flow_id}/nmos/apply</code> – 反映</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="module-card">
+                        <div class="module-card__media"><img src="../images/Planner.png" alt="Planner"></div>
+                        <div class="module-card__body">
+                            <h3>Planner Visualizer</h3>
+                            <p>アドレスマップの階層構造を静的に展開し、ビュー切替時のAPIを注釈で示します。</p>
+                            <ul class="api-list">
+                                <li><code>GET /address/buckets/overview</code> – 上位フォルダ</li>
+                                <li><code>GET /address/buckets/{bucket_id}/children</code> – 子ビュー</li>
+                                <li><code>GET /address/buckets/export</code> – Backup</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="module-card">
+                        <div class="module-card__media"><img src="../images/Checker.png" alt="Checker"></div>
+                        <div class="module-card__body">
+                            <h3>Checker Dashboard</h3>
+                            <p>衝突/NMOS検査の履歴タイムラインと、ジョブ制御ボタンが参照するエンドポイントを整理しています。</p>
+                            <ul class="api-list">
+                                <li><code>GET /checker/collisions</code> – 衝突レポート</li>
+                                <li><code>GET /checker/nmos</code> – NMOS差分</li>
+                                <li><code>POST /automation/jobs/{id}/enable</code> – スケジュール</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="api" class="section section--alt">
+            <div class="shell">
+                <div class="section__header">
+                    <p class="kicker">Passive API Scripts</p>
+                    <h2>サンプルリクエスト</h2>
+                    <p>curlコマンドをコピーすると、実環境に接続した際にそのままテストできます（UIは実データを呼びません）。</p>
+                </div>
+                <div class="api-call-grid">
+                    <article class="api-call" data-call="flows">
+                        <header>
+                            <h3>Flows一覧</h3>
+                            <button type="button" class="copy-btn" data-copy="curl -X GET https://localhost:8443/flows?limit=50 -H 'Authorization: Bearer <token>'">コピー</button>
+                        </header>
+                        <pre><code>GET /flows?limit=50
+Authorization: Bearer &lt;token&gt;</code></pre>
+                        <p>Search/Explorerが利用するベースエンドポイント。`q` や `site` パラメータを付与できます。</p>
+                    </article>
+                    <article class="api-call" data-call="patch">
+                        <header>
+                            <h3>REST PATCH</h3>
+                            <button type="button" class="copy-btn" data-copy='curl -X PATCH https://localhost:8443/flows/uuid -H "Content-Type: application/json" -d "{\"alias1\":\"Studio-A\"}"'>コピー</button>
+                        </header>
+                        <pre><code>PATCH /flows/{flow_id}
+Content-Type: application/json</code></pre>
+                        <p>テキストハブのキー付きメモや各カスタムフィールドを更新。UIの手動更新と同じ構造です。</p>
+                    </article>
+                    <article class="api-call" data-call="planner">
+                        <header>
+                            <h3>Planner Export</h3>
+                            <button type="button" class="copy-btn" data-copy="curl -X GET https://localhost:8443/address/buckets/export -o planner.json">コピー</button>
+                        </header>
+                        <pre><code>GET /address/buckets/export</code></pre>
+                        <p>Explorer/Manage/Backupが共通利用するJSON。モックではレスポンス例を固定表示しています。</p>
+                    </article>
+                    <article class="api-call" data-call="checker">
+                        <header>
+                            <h3>Automation</h3>
+                            <button type="button" class="copy-btn" data-copy="curl -X POST https://localhost:8443/automation/jobs/collision/enable">コピー</button>
+                        </header>
+                        <pre><code>POST /automation/jobs/{job_id}/enable</code></pre>
+                        <p>Checkerタブの自動化トグルに紐づく呼び出し。`disable`/`PUT /automation/jobs/{id}` も同様に記載。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="distribution" class="section">
+            <div class="shell">
+                <div class="section__header">
+                    <p class="kicker">Distribution</p>
+                    <h2>配布とホスティング</h2>
+                </div>
+                <div class="distribution">
+                    <article>
+                        <h3>静的ホスト</h3>
+                        <p>`mock/` ディレクトリを任意のWebサーバに置くだけで動作します。バックエンドを同梱していないため、ネットワーク分離環境でUIレビューや教育資料として配布可能です。</p>
+                    </article>
+                    <article>
+                        <h3>拡張ヒント</h3>
+                        <ul>
+                            <li>必要に応じて `data/` 以下にJSONを配置し、`fetch()`でモックレスポンスを読み込む</li>
+                            <li>実APIを叩く場合は `.env` でCORSを許可し、`mock.js` 内の`API_BASE`を書き換え</li>
+                            <li>画面キャプチャを差し替える場合は `../images/` に配置してパスを変更</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mock-footer">
+        <div class="shell mock-footer__inner">
+            <p>© 2025 MMAM Mock Demo. このページはドキュメント/教育目的のみに使用してください。</p>
+            <a href="../index.html">トップへ戻る</a>
+        </div>
+    </footer>
+
+    <script src="mock.js" defer></script>
+</body>
+</html>
