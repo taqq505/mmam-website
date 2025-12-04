@@ -40,67 +40,161 @@
         <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
     </nav>
     <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
-        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">Landingへ戻る</a>
-        <div class="border border-dashed border-white/30 rounded-xl px-3 py-4 text-center text-slate-300">
-            アフィリエイト枠（300x250）
-        </div>
+        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
     </div>
 </aside>
 
         <div class="flex-1 lg:ml-72 min-h-screen bg-slate-50">
             <header class="sticky top-0 z-30 bg-slate-50/95 backdrop-blur border-b border-slate-200 flex items-center justify-between px-4 py-3 lg:hidden">
                 <button id="guide-sidebar-toggle" class="px-3 py-2 rounded border border-slate-300 text-sm font-medium">メニュー</button>
-                <a href="../index.html" class="text-sm text-slate-500 underline">Landing</a>
+                <a href="../index.html" class="text-sm text-slate-500 underline">トップページ</a>
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
 <section class="bg-gradient-to-r from-rose-900 via-slate-900 to-orange-800 rounded-3xl text-white p-8 shadow-xl border border-rose-900 space-y-4">
     <div>
         <p class="text-xs uppercase tracking-[0.6em] text-white/60">checker</p>
-        <h2 class="text-3xl font-semibold">Checker & 自動化の使い方</h2>
-        <p class="text-white/80">衝突検出とNMOS差分チェックを24/7で回すための設定手順とAPIを紹介します。Landingへのショートカットもこちらに。</p>
+        <h2 class="text-3xl font-semibold">Checker と自動化の活用</h2>
+        <p class="text-white/80">衝突検出と NMOS 差分チェックを自動化し、24時間体制で運用を監視するための設定手順と API を解説します。</p>
     </div>
     <div class="flex flex-wrap gap-3">
-        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">Landingへ戻る</a>
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">トップページへ</a>
         <a href="https://github.com/taqq505/mmam-docker/blob/main/src/app/routers/automation.py" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">Automationコード</a>
     </div>
 </section>
 
 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
-    <h3 class="text-2xl font-semibold">UIでの進め方</h3>
-    <ol class="list-decimal ml-5 text-slate-700 space-y-2">
-        <li>Checkerタブで「Collision」「NMOS」の Run Now を実行して現状を確認。</li>
-        <li>「Enable Automation」を押し、Interval（例: 10分）または Cron（例: <code>0 * * * *</code>）を設定。</li>
-        <li>RESTだけで運用したい場合は <code>MQTT_ENABLED=false</code> にし、外部システムが <code>/checker/latest</code> をポーリング。</li>
+    <h3 class="text-2xl font-semibold">UI での操作手順</h3>
+    <p class="text-slate-700 leading-relaxed">
+        Checker 機能を使って、アドレス衝突や NMOS デバイスとの差分を自動検出できます。
+    </p>
+    <ol class="list-decimal ml-5 text-slate-700 space-y-3">
+        <li>
+            <strong>手動実行で現状を確認</strong><br>
+            <span class="text-sm text-slate-600">Checker タブで「Run Now (Collision)」または「Run Now (NMOS)」をクリックし、現在の状態を確認します。</span>
+        </li>
+        <li>
+            <strong>自動化を有効にする</strong><br>
+            <span class="text-sm text-slate-600">「Enable Automation」ボタンを押し、実行間隔を設定します。Interval（例: 10分ごと）または Cron（例: <code>0 * * * *</code> で毎時0分）を選択できます。</span>
+        </li>
+        <li>
+            <strong>結果を確認する</strong><br>
+            <span class="text-sm text-slate-600">検出結果は UI の Checker タブに表示され、MQTT が有効な場合は <code>mmam/checker/events</code> トピックにも配信されます。</span>
+        </li>
+        <li>
+            <strong>外部システムと連携</strong><br>
+            <span class="text-sm text-slate-600">REST API だけで運用したい場合は <code>MQTT_ENABLED=false</code> に設定し、外部システムから <code>GET /api/checker/latest</code> を定期的にポーリングします。</span>
+        </li>
     </ol>
-    <p class="text-sm text-slate-500">結果は Automation history と Audit ログに記録され、誰が設定したか追跡できます。</p>
+    <p class="text-sm text-slate-500 mt-4">実行履歴は Automation history と Audit ログに記録され、誰がいつ設定を変更したか追跡できます。</p>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">実践シナリオ: 衝突検出の自動化</h3>
+    <p class="text-slate-700 leading-relaxed">
+        アドレス衝突を自動で検出し、Slack に通知するまでの流れを実装します。
+    </p>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+        <h4 class="font-semibold text-lg">ステップ1: 手動で衝突チェック</h4>
+        <p class="text-sm text-slate-600">まず、現在の衝突状況を確認します。</p>
+        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -H "Authorization: Bearer YOUR_TOKEN" \
+  https://localhost:8443/api/checker/collisions</code></pre>
+        <p class="text-xs text-slate-500 mt-2">→ 重複している Source/Group/Port の組み合わせが JSON で返ってきます。</p>
+    </div>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+        <h4 class="font-semibold text-lg">ステップ2: 自動実行を設定</h4>
+        <p class="text-sm text-slate-600">10分ごとに自動実行するように設定します。</p>
+        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -X PUT https://localhost:8443/api/automation/jobs/collision-checker \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "schedule_type": "interval",
+    "interval_minutes": 10,
+    "enabled": true
+  }'</code></pre>
+        <p class="text-xs text-slate-500 mt-2">→ ジョブが有効化され、10分ごとに衝突チェックが実行されます。</p>
+    </div>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+        <h4 class="font-semibold text-lg">ステップ3: MQTT で結果を購読</h4>
+        <p class="text-sm text-slate-600">検出結果を MQTT で受け取り、Slack に通知します。</p>
+        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>const mqtt = require('mqtt');
+const axios = require('axios');
+
+const client = mqtt.connect('mqtt://localhost:1883', {
+  username: 'mmam',
+  password: 'your-mqtt-password'
+});
+
+client.on('connect', () => {
+  client.subscribe('mmam/checker/events');
+});
+
+client.on('message', async (topic, payload) => {
+  const event = JSON.parse(payload.toString());
+
+  if (event.kind === 'collision' && event.status === 'error') {
+    // 衝突が検出された場合、Slack に通知
+    await axios.post(SLACK_WEBHOOK_URL, {
+      text: `⚠️ アドレス衝突を検出しました: ${event.message}`,
+      attachments: [{
+        color: 'danger',
+        fields: event.collisions.map(c => ({
+          title: c.key,
+          value: `Flow IDs: ${c.flow_ids.join(', ')}`,
+          short: false
+        }))
+      }]
+    });
+  }
+});</code></pre>
+    </div>
 </section>
 
 <section class="grid md:grid-cols-2 gap-6">
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
         <h3 class="text-xl font-semibold">Checker API</h3>
-        <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li><code>GET /checker/collisions</code> — 重複S/G/Portをリスト表示。</li>
-            <li><code>GET /checker/nmos?timeout=5</code> — NMOS差分を取得。</li>
-            <li><code>GET /checker/latest?kind=collisions</code> — 直近実行の要約。</li>
+        <ul class="list-disc ml-5 text-sm text-slate-600 space-y-1">
+            <li><code>GET /api/checker/collisions</code> — 重複 S/G/Port をリスト取得</li>
+            <li><code>GET /api/checker/nmos</code> — NMOS 差分を取得</li>
+            <li><code>GET /api/checker/latest?kind=collisions</code> — 直近実行結果の要約</li>
+            <li><code>POST /api/checker/run</code> — 手動で即時実行</li>
         </ul>
-        <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>curl https://localhost:8443/checker/latest?kind=collisions \\
-  -H \"Authorization: Bearer &lt;token&gt;\"</code></pre>
     </article>
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
         <h3 class="text-xl font-semibold">Automation API</h3>
-        <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li><code>GET /automation/jobs</code> — すべてのジョブを取得。</li>
-            <li><code>PUT /automation/jobs/{job_id}</code> — Interval/Cron設定を更新。</li>
-            <li><code>POST /automation/jobs/{job_id}/enable</code> — ジョブを有効化/無効化。</li>
+        <ul class="list-disc ml-5 text-sm text-slate-600 space-y-1">
+            <li><code>GET /api/automation/jobs</code> — 全ジョブの一覧取得</li>
+            <li><code>PUT /api/automation/jobs/{id}</code> — スケジュール設定を更新</li>
+            <li><code>POST /api/automation/jobs/{id}/enable</code> — ジョブの有効化/無効化</li>
+            <li><code>GET /api/automation/history</code> — 実行履歴の取得</li>
         </ul>
-        <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>curl -X PUT https://localhost:8443/automation/jobs/collision \\
-  -H \"Content-Type: application/json\" \\
-  -d '{\"schedule_type\":\"cron\",\"cron\":\"0 * * * *\"}'</code></pre>
     </article>
 </section>
 
-<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">監視・自動化サービス紹介枠</div>
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">運用のヒント</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="font-semibold text-sm text-slate-800">検出タイミングの設定</h4>
+            <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
+                <li><strong>Interval</strong>: 5分、10分、30分など定期実行に最適</li>
+                <li><strong>Cron</strong>: 毎時0分など特定時刻の実行に最適</li>
+                <li>初期設定は10分間隔がおすすめ</li>
+            </ul>
+        </div>
+        <div class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="font-semibold text-sm text-slate-800">通知連携の例</h4>
+            <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
+                <li>MQTT → Webhook で Slack/Teams に通知</li>
+                <li>REST API をポーリングしてメール送信</li>
+                <li>エラー時のみアラート、正常時はログのみ</li>
+            </ul>
+        </div>
+    </div>
+</section>
             </main>
         </div>
     </div>

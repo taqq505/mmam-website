@@ -40,66 +40,117 @@
         <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
     </nav>
     <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
-        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">Landingへ戻る</a>
-        <div class="border border-dashed border-white/30 rounded-xl px-3 py-4 text-center text-slate-300">
-            アフィリエイト枠（300x250）
-        </div>
+        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
     </div>
 </aside>
 
         <div class="flex-1 lg:ml-72 min-h-screen bg-slate-50">
             <header class="sticky top-0 z-30 bg-slate-50/95 backdrop-blur border-b border-slate-200 flex items-center justify-between px-4 py-3 lg:hidden">
                 <button id="guide-sidebar-toggle" class="px-3 py-2 rounded border border-slate-300 text-sm font-medium">メニュー</button>
-                <a href="../index.html" class="text-sm text-slate-500 underline">Landing</a>
+                <a href="../index.html" class="text-sm text-slate-500 underline">トップページ</a>
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
 <section class="bg-gradient-to-r from-purple-900 via-slate-900 to-purple-700 rounded-3xl text-white p-8 shadow-xl border border-purple-900 space-y-4">
     <div>
         <p class="text-xs uppercase tracking-[0.6em] text-white/60">nmos</p>
-        <h2 class="text-3xl font-semibold">NMOS連携のフルワークフロー</h2>
-        <p class="text-white/80">IS-04/05に不慣れな方でも、Wizardのボタンに沿って進めるだけで差分確認と適用ができます。Landingリンクも忘れずに。</p>
+        <h2 class="text-3xl font-semibold">NMOS 連携のワークフロー</h2>
+        <p class="text-white/80">IS-04/IS-05 に不慣れな方でも、Wizard の画面に沿って進めるだけで NMOS デバイスとの差分確認・設定適用ができます。</p>
     </div>
     <div class="flex flex-wrap gap-3">
-        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">Landingへ戻る</a>
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">トップページへ</a>
         <a href="https://specs.amwa.tv/is-04/releases/v1.3.1/" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">AMWA IS-04 Spec</a>
     </div>
 </section>
 
 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
-    <h3 class="text-2xl font-semibold">UIワークフロー（Wizard）</h3>
-    <ol class="list-decimal ml-5 text-slate-700 space-y-2">
-        <li><strong>Discover</strong> — ベースURLとAPIバージョン(IS-04/05)を入力し、ノードを探索。</li>
-        <li><strong>Select Devices</strong> — Flowと紐付けたいSender/Receiverをチェック。既存Flowがあれば自動マッピング。</li>
-        <li><strong>Diff</strong> — IS-05のtransport_paramsとMMAM側のFlow定義を比較し、差分を色付きで表示。</li>
-        <li><strong>Apply</strong> — 必要に応じて個別/一括適用。IS-05 PATCHが実行され、結果はAuditログに残ります。</li>
+    <h3 class="text-2xl font-semibold">UI Wizard での操作手順</h3>
+    <p class="text-slate-700 leading-relaxed">
+        NMOS 連携は、UI の Wizard 画面から4つのステップで完了します。
+    </p>
+    <ol class="list-decimal ml-5 text-slate-700 space-y-3">
+        <li>
+            <strong>Discover（デバイス探索）</strong><br>
+            <span class="text-sm text-slate-600">NMOS ノードのベース URL と API バージョン（IS-04/IS-05）を入力してデバイスを探索します。検出されたノード一覧が表示されます。</span>
+        </li>
+        <li>
+            <strong>Select Devices（デバイス選択）</strong><br>
+            <span class="text-sm text-slate-600">Flow と紐付けたい Sender/Receiver をチェックします。既存の Flow がある場合は自動的にマッピングされます。</span>
+        </li>
+        <li>
+            <strong>Diff（差分確認）</strong><br>
+            <span class="text-sm text-slate-600">IS-05 の transport_params と MMAM 側の Flow 定義を比較し、差分を色付きで表示します。適用前に変更内容を確認できます。</span>
+        </li>
+        <li>
+            <strong>Apply（設定適用）</strong><br>
+            <span class="text-sm text-slate-600">必要に応じて個別または一括で設定を適用します。IS-05 PATCH が実行され、結果は Audit ログに記録されます。</span>
+        </li>
     </ol>
-    <p class="text-sm text-slate-500">Wizardのどのステップでもスクリーンショットを取得しやすいようUIが段階表示されています。</p>
+    <p class="text-sm text-slate-500 mt-4">各ステップは視覚的に分かりやすく表示され、いつでも前のステップに戻ることができます。</p>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">NMOS API の使い方</h3>
+    <p class="text-slate-700 leading-relaxed">
+        REST API を使って NMOS 連携を自動化することもできます。
+    </p>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+        <h4 class="font-semibold text-lg">ステップ1: NMOS ノードを探索</h4>
+        <p class="text-sm text-slate-600">NMOS ノードのベース URL を指定してデバイス情報を取得します。</p>
+        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -X POST https://localhost:8443/api/nmos/discover \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "base_url": "http://192.168.1.100:3000",
+    "version": "v1.3"
+  }'</code></pre>
+        <p class="text-xs text-slate-500 mt-2">→ 検出された Node、Sender、Receiver の一覧が返ってきます。</p>
+    </div>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+        <h4 class="font-semibold text-lg">ステップ2: Flow と NMOS の差分を確認</h4>
+        <p class="text-sm text-slate-600">既存の Flow と NMOS デバイスの設定を比較します。</p>
+        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -H "Authorization: Bearer YOUR_TOKEN" \
+  https://localhost:8443/api/flows/f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6/nmos/check</code></pre>
+        <p class="text-xs text-slate-500 mt-2">→ transport_params の差分が JSON で返ってきます。</p>
+    </div>
+
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+        <h4 class="font-semibold text-lg">ステップ3: 設定を適用</h4>
+        <p class="text-sm text-slate-600">差分を確認後、NMOS デバイスへ設定を反映します。</p>
+        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -X POST https://localhost:8443/api/flows/f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6/nmos/apply \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "target": "sender",
+    "apply_all": false
+  }'</code></pre>
+        <p class="text-xs text-slate-500 mt-2">→ IS-05 PATCH が実行され、結果が返ってきます。</p>
+    </div>
 </section>
 
 <section class="grid md:grid-cols-2 gap-6">
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">主要API</h3>
-        <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li><code>POST /nmos/discover</code> — ベースURLを入力するとNode/Sender情報を収集。</li>
-            <li><code>GET /flows/{id}/nmos/check</code> — Flow vs NMOSの差分をJSONで取得。</li>
-            <li><code>POST /flows/{id}/nmos/apply</code> — 差分をIS-05へ反映。</li>
+        <h3 class="text-xl font-semibold">NMOS について</h3>
+        <p class="text-sm text-slate-600">NMOS（Networked Media Open Specifications）は、AMWA が策定した IP メディアネットワークの標準規格です。</p>
+        <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
+            <li><strong>IS-04</strong>: デバイスの Discovery と Registration</li>
+            <li><strong>IS-05</strong>: Connection Management（接続制御）</li>
+            <li><strong>IS-08</strong>: Channel Mapping（チャンネルマッピング）</li>
+            <li><strong>IS-09</strong>: System Parameters（システムパラメータ）</li>
         </ul>
-        <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>curl -X POST https://localhost:8443/nmos/discover \ 
-  -H \"Content-Type: application/json\" \
-  -d '{\"base_url\": \"http://node01:3205\", \"version\": \"v1.3\" }'</code></pre>
     </article>
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
         <h3 class="text-xl font-semibold">トラブルシューティング</h3>
-        <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li>SSLが必要なNMOSシステムは <code>NMOS_TLS_VERIFY=false</code> で検証を一時的に無効化。</li>
-            <li>差分が大きすぎる場合は <code>flows/{id}/export</code> でJSONを出力し、手動で確認。</li>
-            <li>Apply失敗時はHTTPレスポンスにデバイス側のエラーが含まれるため、ログを参照。</li>
+        <ul class="list-disc ml-5 text-sm text-slate-600 space-y-1">
+            <li><strong>SSL エラー</strong> — <code>NMOS_TLS_VERIFY=false</code> で証明書検証を無効化（開発環境のみ）</li>
+            <li><strong>タイムアウト</strong> — NMOS ノードの URL とネットワーク疎通を確認</li>
+            <li><strong>差分適用失敗</strong> — ログに表示されるデバイス側のエラーメッセージを確認</li>
+            <li><strong>バージョン不一致</strong> — NMOS API のバージョン（v1.2, v1.3 等）を正しく指定</li>
         </ul>
     </article>
 </section>
-
-<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">NMOS対応機器・サービス紹介枠</div>
             </main>
         </div>
     </div>

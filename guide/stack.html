@@ -40,28 +40,25 @@
         <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
     </nav>
     <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
-        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">Landingへ戻る</a>
-        <div class="border border-dashed border-white/30 rounded-xl px-3 py-4 text-center text-slate-300">
-            アフィリエイト枠（300x250）
-        </div>
+        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
     </div>
 </aside>
 
         <div class="flex-1 lg:ml-72 min-h-screen bg-slate-50">
             <header class="sticky top-0 z-30 bg-slate-50/95 backdrop-blur border-b border-slate-200 flex items-center justify-between px-4 py-3 lg:hidden">
                 <button id="guide-sidebar-toggle" class="px-3 py-2 rounded border border-slate-300 text-sm font-medium">メニュー</button>
-                <a href="../index.html" class="text-sm text-slate-500 underline">Landing</a>
+                <a href="../index.html" class="text-sm text-slate-500 underline">トップページ</a>
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
 <section class="bg-gradient-to-r from-indigo-900 via-slate-900 to-slate-800 rounded-3xl text-white p-8 shadow-xl border border-slate-800 space-y-4">
     <div>
         <p class="text-xs uppercase tracking-[0.6em] text-white/60">stack</p>
-        <h2 class="text-3xl font-semibold">MMAMスタックを理解する</h2>
-        <p class="text-white/80">Docker Compose が起動する各サービスの役割・接続経路・設定ファイルを一気に把握できます。迷ったらいつでも Landing へ戻れるリンクを添えました。</p>
+        <h2 class="text-3xl font-semibold">MMAM のスタック構成</h2>
+        <p class="text-white/80">Docker Compose が起動する各サービスの役割・接続経路・設定ファイルを理解できます。トラブル時の調査にも役立つ情報を含んでいます。</p>
     </div>
     <div class="flex flex-wrap gap-3">
-        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">Landingへ戻る</a>
+        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">トップページへ</a>
         <a href="https://github.com/taqq505/mmam-docker/blob/main/docker-compose.yml" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">compose.yml を開く</a>
     </div>
 </section>
@@ -69,7 +66,7 @@
 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
     <header>
         <h3 class="text-2xl font-semibold">サービス一覧と代表ポート</h3>
-        <p class="text-slate-600 mt-2">Git や Docker に不慣れな方でも混乱しないよう表形式でまとめました。</p>
+        <p class="text-slate-600 mt-2">MMAM は4つのコンテナで構成されています。各サービスの役割と設定場所を表にまとめました。</p>
     </header>
     <div class="overflow-x-auto">
         <table class="min-w-full text-sm">
@@ -128,17 +125,56 @@
 </section>
 
 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
-    <h3 class="text-2xl font-semibold">通信フロー（文章による図解）</h3>
-    <ol class="list-decimal ml-5 text-slate-700 space-y-2">
-        <li>ブラウザは <code>https://localhost:4174</code>（または4173）へアクセス。UIがAPIベースURLを自動計算。</li>
-        <li>ユーザー操作 → UIがREST API(8443)へPOST/PATCH。TLS証明書は <code>certs/</code> で差し替え可能。</li>
-        <li>FastAPIはPostgreSQLへSQLを投げ、結果をレスポンスとして返す。同時に変更イベントをMQTTへpublish。</li>
-        <li>CheckerやNMOSジョブはFastAPI内部でスケジュールされ、結果をDB + MQTTに書き戻す。</li>
+    <h3 class="text-2xl font-semibold">通信フローの全体像</h3>
+    <p class="text-slate-700 leading-relaxed">
+        各サービスがどのように連携して動作するかを順を追って説明します。
+    </p>
+    <ol class="list-decimal ml-5 text-slate-700 space-y-3">
+        <li>
+            <strong>ブラウザからUIへアクセス</strong><br>
+            <span class="text-sm text-slate-600"><code>https://localhost:4174</code>（または 4173）にアクセスすると、Vue 3 で構築された UI が表示されます。UI は API ベース URL を自動的に判別します。</span>
+        </li>
+        <li>
+            <strong>UI から REST API へリクエスト</strong><br>
+            <span class="text-sm text-slate-600">ユーザーがフローを作成・更新すると、UI は FastAPI（8443）へ POST/PATCH リクエストを送信します。TLS 証明書は <code>certs/</code> ディレクトリで管理されています。</span>
+        </li>
+        <li>
+            <strong>FastAPI が PostgreSQL を操作</strong><br>
+            <span class="text-sm text-slate-600">FastAPI は PostgreSQL へクエリを発行し、フローやバケット情報を保存・取得します。変更があった場合は同時に MQTT へイベントを配信します。</span>
+        </li>
+        <li>
+            <strong>バックグラウンドジョブの実行</strong><br>
+            <span class="text-sm text-slate-600">Checker や NMOS 連携ジョブは APScheduler によってスケジュールされ、定期的に実行されます。実行結果は DB と MQTT の両方に記録されます。</span>
+        </li>
     </ol>
-    <p class="text-sm text-slate-500">ゼロトラスト環境では UI→API を社内CAで暗号化し、API→DB は Docker ネットワーク内に閉じていることを確認してください。</p>
+    <p class="text-sm text-slate-500 mt-4">
+        <strong>セキュリティのヒント:</strong> 本番環境では、UI→API 間を社内 CA の証明書で暗号化し、API→DB 間は Docker の内部ネットワークに閉じて外部からアクセスできないようにしてください。
+    </p>
 </section>
 
-<div class="border border-dashed border-slate-300 rounded-2xl px-4 py-8 text-center text-slate-500">広告枠（例: Docker研修サービス／監視SaaS）</div>
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">トラブルシューティングのヒント</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="font-semibold text-sm text-slate-800">ログの確認方法</h4>
+            <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
+                <li><code>docker compose logs mmam</code> — FastAPI のログ</li>
+                <li><code>docker compose logs db</code> — PostgreSQL のログ</li>
+                <li><code>docker compose logs mqtt</code> — MQTT ブローカーのログ</li>
+                <li><code>docker exec mmam cat /var/log/mmam/app.log</code> — アプリケーションログ</li>
+            </ul>
+        </div>
+        <div class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="font-semibold text-sm text-slate-800">よくある問題</h4>
+            <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
+                <li><strong>DB 接続エラー</strong> — <code>.env</code> の DB 設定を確認</li>
+                <li><strong>MQTT 接続失敗</strong> — <code>MQTT_ENABLED=false</code> で無効化可能</li>
+                <li><strong>証明書エラー</strong> — <code>certs/</code> のファイルパーミッションを確認</li>
+                <li><strong>ポート競合</strong> — <code>.env</code> でポート番号を変更</li>
+            </ul>
+        </div>
+    </div>
+</section>
             </main>
         </div>
     </div>
