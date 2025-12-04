@@ -276,6 +276,17 @@ footer {
     color: var(--fg-muted);
 }
 
+.hero__panel--image {
+    padding: 0;
+    overflow: hidden;
+}
+
+.hero__panel--image img {
+    width: 100%;
+    display: block;
+    border-radius: 28px;
+}
+
 
 .hero-highlights {
     margin-top: 3rem;
