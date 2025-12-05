@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MMAM HOW TO USE - dashboard">
+    <title>MMAM Guide / dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans" data-guide-page="dashboard">
+    <div class="lg:flex">
+
+<aside id="guide-sidebar" class="bg-slate-900 text-white w-72 min-h-screen flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 lg:translate-x-0 -translate-x-full">
+    <div class="px-6 py-5 border-b border-white/10 flex items-center gap-3">
+        <svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+            <rect x="4" y="4" width="56" height="56" rx="14" fill="#1e293b"/>
+            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="32" cy="28" r="8" stroke="#60a5fa" stroke-width="3"/>
+                <path d="M20 44 A16 16 0 0 1 44 44" stroke="#3b82f6" stroke-width="3"/>
+                <circle cx="20" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+                <circle cx="32" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+                <circle cx="44" cy="44" r="4" fill="#1e293b" stroke="#60a5fa" stroke-width="3"/>
+            </g>
+        </svg>
+        <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-slate-300">HOW TO USE</p>
+            <h1 class="text-xl font-semibold">MMAM Guide</h1>
+        </div>
+    </div>
+    <nav class="flex-1 px-4 py-6 overflow-y-auto text-sm space-y-1">
+        <a href="index.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="overview">概要</a>
+        <a href="stack.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="stack">スタック構成</a>
+        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ＆コンフィグレーション</a>
+        <a href="dashboard.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="dashboard">Dashboard / ダッシュボード</a>
+        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flows">Flows / フロー一覧</a>
+        <a href="search.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="search">Search / 検索</a>
+        <a href="new-flow.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="new-flow">New Flow / 新規フロー</a>
+        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS Wizard / インポート</a>
+        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / プランナー</a>
+        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker / チェック</a>
+        <a href="users.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="users">Users / ユーザー管理</a>
+        <a href="settings.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="settings">Settings / 設定</a>
+        <a href="usecases.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="usecases">ユースケース</a>
+        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST APIまとめ</a>
+    </nav>
+    <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
+        <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
+    </div>
+</aside>
+
+        <div class="flex-1 lg:ml-72 min-h-screen bg-slate-50">
+            <header class="sticky top-0 z-30 bg-slate-50/95 backdrop-blur border-b border-slate-200 flex items-center justify-between px-4 py-3 lg:hidden">
+                <button id="guide-sidebar-toggle" class="px-3 py-2 rounded border border-slate-300 text-sm font-medium">メニュー</button>
+                <a href="../index.html" class="text-sm text-slate-500 underline">トップページ</a>
+            </header>
+            <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
+
+<section class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-800 rounded-3xl text-white p-8 shadow-xl border border-blue-900 space-y-4">
+    <div>
+        <p class="text-xs uppercase tracking-[0.6em] text-white/60">dashboard</p>
+        <h2 class="text-3xl font-semibold">Dashboard / ダッシュボード</h2>
+        <p class="text-white/80">起動直後に運用状況を俯瞰できる画面です。Flow件数、MQTTイベント、Checker実行結果、デバッグログを1画面に集約しています。</p>
+    </div>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">画面構成</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Summary</h4>
+            <p class="text-sm text-slate-600">Flow 総数と Active Count を表示。<code>GET /api/flows?limit=0</code> の結果を使用し、ステータス毎の件数を保持します。</p>
+            <ul class="text-xs text-slate-500 list-disc ml-4 space-y-1">
+                <li>Total Flows: DB 上の <code>flows</code> テーブル全件</li>
+                <li>Active: <code>flow_status=active</code> の件数</li>
+            </ul>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Realtime Updates</h4>
+            <p class="text-sm text-slate-600">MQTT トピック <code>mmam/flows/events</code> を購読して差分を時系列表示。Action（created/updated/deleted）と diffKeys がそのまま UI に出ます。</p>
+            <p class="text-xs text-slate-500">接続状態は <code>realtime.connected</code> に反映され、Mosquitto が停止すると offline 表示になります。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Latest Check Results</h4>
+            <p class="text-sm text-slate-600">Automation API <code>GET /api/automation/summary</code> のレスポンスを表示。総アラート、Collision 件数、NMOS 差分件数が個別カードで出ます。</p>
+            <p class="text-xs text-slate-500">更新ボタンは同APIを再度呼び出し、結果時間を <code>last_updated</code> で表示。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Flow List Snapshot</h4>
+            <p class="text-sm text-slate-600">ダッシュボード内のミニテーブル。フィルタ／ソート／ページングは <code>GET /api/flows</code> パラメータ (<code>limit</code>, <code>offset</code>, <code>sort_by</code>) を UI から直接指定します。</p>
+            <p class="text-xs text-slate-500">Details/Edit ボタンは <code>Flows</code> ビューに遷移せず、その場で詳細モーダル／編集ダイアログを開きます。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Debug Console</h4>
+            <p class="text-sm text-slate-600">API で取得した実行ログを配列 <code>logs</code> に格納し、末尾追記で描画。主に管理者向けの確認用領域です。</p>
+            <p class="text-xs text-slate-500">内容は <code>mmam</code> コンテナの <code>/log/api.log</code> と同期します。</p>
+        </article>
+    </div>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">データ取得とイベント</h3>
+    <div class="grid md:grid-cols-2 gap-5">
+        <article class="border border-slate-200 rounded-xl p-5 space-y-3">
+            <h4 class="font-semibold text-lg">Automation Summary API</h4>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -k https://localhost:8443/api/automation/summary \
+  -H "Authorization: Bearer &lt;token&gt;"</code></pre>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>{
+  "total_alerts": 2,
+  "collision_count": 1,
+  "nmos_difference_count": 1,
+  "last_updated": "2025-01-25T01:20:00Z"
+}</code></pre>
+            <p class="text-xs text-slate-500">結果は UI のカードにそのまま反映され、詳細確認リンクから Checker 画面へ遷移します。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5 space-y-3">
+            <h4 class="font-semibold text-lg">MQTT ペイロード</h4>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>{
+  "event": "updated",
+  "flow_id": "f1a2b3...",
+  "display": "STUDIO-A CAM-01 Video",
+  "diff": {"alias1": {"old": "CAM-01", "new": "CAM-01 MAIN"}},
+  "timestamp": "2025-01-25T01:18:34.000Z"
+}</code></pre>
+            <p class="text-xs text-slate-500">UI は diff キーだけを抽出し、<code>item.diffKeys</code> として表示します。イベント順序は MQTT の到達順です。</p>
+        </article>
+    </div>
+    <div class="border border-slate-200 rounded-xl p-5 space-y-3">
+        <h4 class="font-semibold text-lg">関連 REST エンドポイント一覧</h4>
+        <ul class="list-disc ml-5 text-sm text-slate-600 space-y-1">
+            <li><code>GET /api/flows?limit=&lt;n&gt;&amp;offset=&lt;n&gt;&amp;sort_by=updated_at</code> — Summary と Flow List が利用。</li>
+            <li><code>GET /api/automation/summary</code> — Latest Check Results カードのデータ。</li>
+            <li><code>GET /api/checker/latest?kind=collisions|nmos</code> — チェック結果リンク先で再利用。</li>
+        </ul>
+    </div>
+</section>
+            </main>
+        </div>
+    </div>
+    <script src="../js/guide.js"></script>
+</body>
+</html>

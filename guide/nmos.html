@@ -32,12 +32,18 @@
     <nav class="flex-1 px-4 py-6 overflow-y-auto text-sm space-y-1">
         <a href="index.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="overview">概要</a>
         <a href="stack.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="stack">スタック構成</a>
-        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flow-hub">フローとテキストハブ</a>
-        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / Address Map</a>
-        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS連携</a>
-        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker & 自動化</a>
-        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST API / MQTT</a>
-        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
+        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ＆コンフィグレーション</a>
+        <a href="dashboard.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="dashboard">Dashboard / ダッシュボード</a>
+        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flows">Flows / フロー一覧</a>
+        <a href="search.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="search">Search / 検索</a>
+        <a href="new-flow.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="new-flow">New Flow / 新規フロー</a>
+        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS Wizard / インポート</a>
+        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / プランナー</a>
+        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker / チェック</a>
+        <a href="users.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="users">Users / ユーザー管理</a>
+        <a href="settings.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="settings">Settings / 設定</a>
+        <a href="usecases.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="usecases">ユースケース</a>
+        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST APIまとめ</a>
     </nav>
     <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
         <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
@@ -55,7 +61,7 @@
     <div>
         <p class="text-xs uppercase tracking-[0.6em] text-white/60">nmos</p>
         <h2 class="text-3xl font-semibold">NMOS 連携のワークフロー</h2>
-        <p class="text-white/80">IS-04/IS-05 に不慣れな方でも、Wizard の画面に沿って進めるだけで NMOS デバイスとの差分確認・設定適用ができます。</p>
+        <p class="text-white/80">IS-04/IS-05 に不慣れな方でも、Wizard の画面に沿って進めるだけで NMOS デバイスとの設定差分を確認し、必要なフィールドを MMAM 側へ取り込めます。</p>
     </div>
     <div class="flex flex-wrap gap-3">
         <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">トップページへ</a>
@@ -82,8 +88,8 @@
             <span class="text-sm text-slate-600">IS-05 の transport_params と MMAM 側の Flow 定義を比較し、差分を色付きで表示します。適用前に変更内容を確認できます。</span>
         </li>
         <li>
-            <strong>Apply（設定適用）</strong><br>
-            <span class="text-sm text-slate-600">必要に応じて個別または一括で設定を適用します。IS-05 PATCH が実行され、結果は Audit ログに記録されます。</span>
+            <strong>Apply（MMAMへ取り込み）</strong><br>
+            <span class="text-sm text-slate-600">差分を選択して MMAM の Flow フィールドへ反映します。NMOS デバイス側には変更を加えず、常に Pull（取り込み）のみです。</span>
         </li>
     </ol>
     <p class="text-sm text-slate-500 mt-4">各ステップは視覚的に分かりやすく表示され、いつでも前のステップに戻ることができます。</p>
@@ -117,16 +123,15 @@
     </div>
 
     <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
-        <h4 class="font-semibold text-lg">ステップ3: 設定を適用</h4>
-        <p class="text-sm text-slate-600">差分を確認後、NMOS デバイスへ設定を反映します。</p>
+        <h4 class="font-semibold text-lg">ステップ3: MMAM に取り込む</h4>
+        <p class="text-sm text-slate-600">差分を確認したうえで、NMOS 側の値を MMAM の Flow レコードにコピーします。</p>
         <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -X POST https://localhost:8443/api/flows/f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6/nmos/apply \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "target": "sender",
-    "apply_all": false
+    "fields": ["source_addr_a", "multicast_addr_a", "alias1"]
   }'</code></pre>
-        <p class="text-xs text-slate-500 mt-2">→ IS-05 PATCH が実行され、結果が返ってきます。</p>
+        <p class="text-xs text-slate-500 mt-2">→ 選択したフィールドだけが MMAM に更新され、NMOS デバイスへは書き込みません。</p>
     </div>
 </section>
 

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MMAM HOW TO USE - flow-hub">
-    <title>MMAM Guide / flow-hub</title>
+    <meta name="description" content="MMAM HOW TO USE - flows">
+    <title>MMAM Guide / flows</title>
     <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-100 text-slate-900 font-sans" data-guide-page="flow-hub">
+<body class="bg-slate-100 text-slate-900 font-sans" data-guide-page="flows">
     <div class="lg:flex">
 
 <aside id="guide-sidebar" class="bg-slate-900 text-white w-72 min-h-screen flex flex-col fixed inset-y-0 left-0 z-40 transform transition-transform duration-200 lg:translate-x-0 -translate-x-full">
@@ -32,12 +32,18 @@
     <nav class="flex-1 px-4 py-6 overflow-y-auto text-sm space-y-1">
         <a href="index.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="overview">概要</a>
         <a href="stack.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="stack">スタック構成</a>
-        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flow-hub">フローとテキストハブ</a>
-        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / Address Map</a>
-        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS連携</a>
-        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker & 自動化</a>
-        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST API / MQTT</a>
-        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
+        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ＆コンフィグレーション</a>
+        <a href="dashboard.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="dashboard">Dashboard / ダッシュボード</a>
+        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flows">Flows / フロー一覧</a>
+        <a href="search.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="search">Search / 検索</a>
+        <a href="new-flow.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="new-flow">New Flow / 新規フロー</a>
+        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS Wizard / インポート</a>
+        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / プランナー</a>
+        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker / チェック</a>
+        <a href="users.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="users">Users / ユーザー管理</a>
+        <a href="settings.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="settings">Settings / 設定</a>
+        <a href="usecases.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="usecases">ユースケース</a>
+        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST APIまとめ</a>
     </nav>
     <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
         <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
@@ -54,142 +60,146 @@
 <section class="bg-gradient-to-r from-emerald-900 via-slate-900 to-emerald-800 rounded-3xl text-white p-8 shadow-xl border border-emerald-900 space-y-4">
     <div>
         <p class="text-xs uppercase tracking-[0.6em] text-white/60">flows</p>
-        <h2 class="text-3xl font-semibold">フロー管理とテキストハブの活用</h2>
-        <p class="text-white/80">実際の運用で必要な「フロー検索→情報更新」の流れを、API操作例とともに詳しく解説します。</p>
-    </div>
-    <div class="flex flex-wrap gap-3">
-        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">トップページへ</a>
-        <a href="https://github.com/taqq505/mmam-docker/blob/main/src/app/routers/flows.py" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">flows API コード</a>
+        <h2 class="text-3xl font-semibold">Flows / フロー一覧</h2>
+        <p class="text-white/80">Flow データベースに格納される要素、UI の操作領域、REST での参照方法を網羅的に記載しています。</p>
     </div>
 </section>
 
 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
-    <h3 class="text-2xl font-semibold">実践シナリオ: マルチキャストアドレスからフロー情報を更新</h3>
-    <p class="text-slate-700 leading-relaxed">
-        障害対応中に「Source IP: 192.168.10.101、Multicast IP: 239.100.1.10 のフローの担当者を変更したい」という状況を考えます。
-        この流れを3ステップで実行します。
-    </p>
-
-    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
-        <h4 class="font-semibold text-lg">ステップ1: Source IP と Multicast IP でフローを検索</h4>
-        <p class="text-sm text-slate-600">まず、該当するフローの <code>flow_id</code> を取得します。</p>
-        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code># Source IPとMulticast IPでフローを検索
-curl -H "Authorization: Bearer YOUR_TOKEN" \
-  'https://localhost:8443/api/flows?source_addr_a=192.168.10.101&multicast_addr_a=239.100.1.10'</code></pre>
-        <p class="text-xs text-slate-500 mt-2">→ レスポンス例:</p>
-        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>[
-  {
-    "flow_id": "f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6",
-    "display_name": "STUDIO-A CAM-01 Video",
-    "source_addr_a": "192.168.10.101",
-    "multicast_addr_a": "239.100.1.10",
-    "group_port_a": 5000,
-    "alias1": "Studio A Main Camera",
-    "alias2": "CAM-01-4K",
-    "user_field7": "Operator: John Smith",
-    ...
-  }
-]</code></pre>
-        <p class="text-xs text-slate-500">→ <code>flow_id</code> が <code>f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6</code> と分かりました。</p>
+    <h3 class="text-2xl font-semibold">UI の構成</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">リストパネル</h4>
+            <p class="text-sm text-slate-600">左側の一覧。Quick Search、ブックマーク、フィルタ、ページングを搭載し、<code>GET /api/flows</code> の結果を逐次更新します。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Detail Drawer</h4>
+            <p class="text-sm text-slate-600">リスト項目を選択すると右側に詳細が展開。S/G/Port、マルチキャスト情報、NMOS リンク、Alias、User Field、ロック状態が同一画面で確認できます。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Edit ダイアログ</h4>
+            <p class="text-sm text-slate-600">「Edit」ボタンでモーダルを開き、差分のみ PATCH 送信。ロックが有効な場合は HTTP 423 を返し UI でも警告が表示されます。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-4 space-y-2">
+            <h4 class="text-lg font-semibold">Lock インジケータ</h4>
+            <p class="text-sm text-slate-600">Flow がロック中の場合は鍵アイコン（⚿）を表示。権限は <code>flow_lock_role</code> 設定で制御されます。</p>
+        </article>
     </div>
+</section>
 
-    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
-        <h4 class="font-semibold text-lg">ステップ2: Alias情報を更新（PATCH）</h4>
-        <p class="text-sm text-slate-600">取得した <code>flow_id</code> を使って、テキストハブの情報を更新します。</p>
-        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code># Alias と User Field を更新
-curl -X PATCH https://localhost:8443/api/flows/f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6 \
-  -H "Authorization: Bearer YOUR_TOKEN" \
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">Flow が保持する要素</h3>
+    <div class="grid md:grid-cols-2 gap-5">
+        <article class="border border-slate-200 rounded-xl p-5">
+            <h4 class="text-lg font-semibold mb-3">識別・状態</h4>
+            <dl class="text-sm text-slate-600 space-y-2">
+                <div><dt class="font-semibold">flow_id</dt><dd class="text-slate-500">UUID。UI/REST 共通の主キー。</dd></div>
+                <div><dt class="font-semibold">display_name</dt><dd class="text-slate-500">表示名。例: <code>STUDIO-A CAM-01 Video</code></dd></div>
+                <div><dt class="font-semibold">media_type / format</dt><dd class="text-slate-500">video / audio / ancillary、SDP を参照したフォーマット。</dd></div>
+                <div><dt class="font-semibold">flow_status / availability</dt><dd class="text-slate-500">active / standby / retired など運用状態。</dd></div>
+                <div><dt class="font-semibold">locked</dt><dd class="text-slate-500">排他制御フラグ。true の場合は編集不可。</dd></div>
+                <div><dt class="font-semibold">redundancy_group</dt><dd class="text-slate-500">同一番組・経路内で束ねる識別子。ST2022-7 のペア管理に使用。</dd></div>
+            </dl>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5">
+            <h4 class="text-lg font-semibold mb-3">ネットワーク定義</h4>
+            <dl class="text-sm text-slate-600 space-y-2">
+                <div><dt class="font-semibold">source_addr_a / b</dt><dd class="text-slate-500">送出エンコーダ IP。冗長パスを A/B で保持。</dd></div>
+                <div><dt class="font-semibold">source_port_a / b</dt><dd class="text-slate-500">各パスの送信ポート。Many-to-one 対応を想定。</dd></div>
+                <div><dt class="font-semibold">multicast_addr_a / b</dt><dd class="text-slate-500">239.x.x.x 等の SSM/ASM アドレス。</dd></div>
+                <div><dt class="font-semibold">group_port_a / b</dt><dd class="text-slate-500">UDP ポート。ST2022-7 を想定し左右で値を分ける。</dd></div>
+                <div><dt class="font-semibold">ttl / vlan / bandwidth</dt><dd class="text-slate-500">伝送パラメータ。UI では Additional Params に表示。</dd></div>
+                <div><dt class="font-semibold">transport_protocol</dt><dd class="text-slate-500">例: <code>rtp.mcast</code>。REST から編集可能。</dd></div>
+            </dl>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5">
+            <h4 class="text-lg font-semibold mb-3">SDP / Media / 管理情報</h4>
+            <dl class="text-sm text-slate-600 space-y-2">
+                <div><dt class="font-semibold">sdp_url</dt><dd class="text-slate-500">ソース機器が公開する SDP 取得 URL。</dd></div>
+                <div><dt class="font-semibold">sdp_cache</dt><dd class="text-slate-500">最新取得 SDP の全文。UI Detail で参照。</dd></div>
+                <div><dt class="font-semibold">nmos_label / nmos_description</dt><dd class="text-slate-500">NMOS 由来の名称・説明を保持。</dd></div>
+                <div><dt class="font-semibold">management_url</dt><dd class="text-slate-500">機器管理画面やドキュメントへのリンク。</dd></div>
+                <div><dt class="font-semibold">st2110_format</dt><dd class="text-slate-500">例: <code>2110-20:UHD:RGb</code>。SDP の fmtp から生成。</dd></div>
+            </dl>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5">
+            <h4 class="text-lg font-semibold mb-3">NMOS メタデータ</h4>
+            <dl class="text-sm text-slate-600 space-y-2">
+                <div><dt class="font-semibold">nmos_node_id / label / description</dt><dd class="text-slate-500">探索済みの NODE 情報。</dd></div>
+                <div><dt class="font-semibold">nmos_flow_id / sender_id / device_id</dt><dd class="text-slate-500">IS-04/05 照合に必要な ID 群。</dd></div>
+                <div><dt class="font-semibold">nmos_is04_host / port / base_url / version</dt><dd class="text-slate-500">Query API の接続先。</dd></div>
+                <div><dt class="font-semibold">nmos_is05_host / port / base_url / version</dt><dd class="text-slate-500">Connection API の接続先。Wizard と Checker が参照。</dd></div>
+            </dl>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5">
+            <h4 class="text-lg	font-semibold mb-3">テキストハブ + データソース</h4>
+            <dl class="text-sm text-slate-600 space-y-2">
+                <div><dt class="font-semibold">alias1〜alias8</dt><dd class="text-slate-500">固定情報（正式名称、設備コードなど）を格納。</dd></div>
+                <div><dt class="font-semibold">user_field1〜user_field8</dt><dd class="text-slate-500">運用メモやチケット番号など可変情報。</dd></div>
+                <div><dt class="font-semibold">note</dt><dd class="text-slate-500">長文メモ欄。Markdown なしのプレーンテキスト。</dd></div>
+                <div><dt class="font-semibold">data_source</dt><dd class="text-slate-500">manual / nmos / rds。外部連携元を示す。</dd></div>
+                <div><dt class="font-semibold">rds_address / rds_api_url / rds_version</dt><dd class="text-slate-500">RDS Import を利用する場合の参照情報。</dd></div>
+            </dl>
+        </article>
+    </div>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">詳細ビューで確認できる項目</h3>
+    <ul class="list-disc ml-5 text-sm text-slate-600 space-y-2">
+        <li><strong>Network</strong>: Source / Multicast / Port / TTL を左右ペインで表示。</li>
+        <li><strong>NMOS</strong>: Node / Flow / Sender ID、差分がある場合は Checker タブへジャンプ。</li>
+        <li><strong>SDP</strong>: <code>sdp_url</code> から取得した最新 SDP テキストを全文表示し、ダウンロードも可能。</li>
+        <li><strong>Text Hub</strong>: Alias / User Field をタイル表示し、そのまま編集が開始可能。</li>
+        <li><strong>Source Info</strong>: data_source、rds_address/api_url/version などの取り込み元情報。</li>
+        <li><strong>Audit</strong>: 最終更新者・日時を <code>updated_at</code> から計算して表示。</li>
+    </ul>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">REST での取得と更新</h3>
+    <div class="space-y-4">
+        <article class="border border-slate-200 rounded-xl p-5 space-y-3">
+            <h4 class="text-lg font-semibold">一覧から flow_id を取得</h4>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -k "https://localhost:8443/api/flows?source_addr_a=192.168.10.101&multicast_addr_a=239.100.1.10" \
+  -H "Authorization: Bearer &lt;token&gt;"</code></pre>
+            <p class="text-xs text-slate-500">レスポンス配列の最初の要素から <code>flow_id</code> を取得。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5 space-y-3">
+            <h4 class="text-lg font-semibold">Detail / Edit で参照する JSON</h4>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -k https://localhost:8443/api/flows/f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6 \
+  -H "Authorization: Bearer &lt;token&gt;"</code></pre>
+<pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>{
+  "flow_id": "f1a2...",
+  "display_name": "STUDIO-A CAM-01 Video",
+  "source_addr_a": "192.168.10.101",
+  "source_port_a": 5000,
+  "multicast_addr_a": "239.100.1.10",
+  "group_port_a": 5000,
+  "sdp_url": "http://192.168.10.101/sdp/cam01.sdp",
+  "st2110_format": "2110-20:UHD:YCbCr422",
+  "data_source": "nmos",
+  "alias1": "Studio A Main",
+  "user_field7": "Operator: Sarah",
+  "nmos_flow_id": "9ebe-...",
+  "locked": false,
+  "updated_at": "2025-01-25T01:18:34Z"
+}</code></pre>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5 space-y-3">
+            <h4 class="text-lg font-semibold">テキストハブの更新</h4>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -k -X PATCH https://localhost:8443/api/flows/f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6 \
+  -H "Authorization: Bearer &lt;token&gt;" \
   -H "Content-Type: application/json" \
   -d '{
-    "alias1": "Studio A Main Camera (Updated)",
-    "alias2": "CAM-01-4K-NEW",
-    "user_field7": "Operator: Sarah Martinez (2025-01-20)",
-    "user_field8": "Emergency contact: ext.1234"
+    "alias1": "Studio A Main Camera",
+    "alias2": "CAM-01",
+    "user_field7": "Operator: Sarah Martinez",
+    "user_field8": "Emergency: ext.1234"
   }'</code></pre>
-        <p class="text-xs text-slate-500 mt-2">→ レスポンスで更新後のフロー情報全体が返ってきます。</p>
+            <p class="text-xs text-slate-500">更新後は MQTT イベントでダッシュボードへ通知されます。ロック中は HTTP 423 を返却。</p>
+        </article>
     </div>
-
-    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
-        <h4 class="font-semibold text-lg">ステップ3: 更新内容を確認</h4>
-        <p class="text-sm text-slate-600">念のため、再度GETして更新が反映されているか確認します。</p>
-        <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code># フローIDで取得
-curl -H "Authorization: Bearer YOUR_TOKEN" \
-  https://localhost:8443/api/flows/f1a2b3c4-d5e6-47a8-b9c0-d1e2f3a4b5c6</code></pre>
-        <p class="text-xs text-slate-500 mt-2">→ <code>user_field7</code> と <code>user_field8</code> が更新されていることを確認できます。</p>
-        <p class="text-xs text-slate-500">→ MQTT購読者にも更新通知が送信されます（MQTTが有効な場合）。</p>
-    </div>
-</section>
-
-<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
-    <h3 class="text-2xl font-semibold">UIでの操作フロー</h3>
-    <ol class="list-decimal ml-5 text-slate-700 space-y-3">
-        <li>
-            <strong>Quick Search でフィルタ</strong><br>
-            <span class="text-sm text-slate-600">左メニュー「Flows」を開き、上部の Quick Search に <code>239.100.1.10</code> を入力。該当するフローが即座に絞り込まれます。</span>
-        </li>
-        <li>
-            <strong>フロー詳細を開く</strong><br>
-            <span class="text-sm text-slate-600">リストから該当フローをクリック。右パネルにS/G/Port、冗長系、Alias、User Field、NMOS情報が表示されます。</span>
-        </li>
-        <li>
-            <strong>Alias / User Field を編集</strong><br>
-            <span class="text-sm text-slate-600">「Edit」ボタンをクリックし、<code>alias1</code> や <code>user_field7</code> を直接編集。保存前にバリデーション結果がリアルタイム表示されます。</span>
-        </li>
-        <li>
-            <strong>Lock機能で排他制御</strong><br>
-            <span class="text-sm text-slate-600">重要なフローは「Lock Flow」を有効にし、他のユーザーが誤って上書きしないよう保護できます。ロック中は HTTP 423 が返ります。</span>
-        </li>
-    </ol>
-</section>
-
-<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
-    <h3 class="text-2xl font-semibold">テキストハブの設計例</h3>
-    <p class="text-slate-700">Alias と User Field の使い分けを明確にすると、運用が整理されます。</p>
-    <div class="grid md:grid-cols-2 gap-4 mt-4">
-        <div class="border border-slate-200 rounded-xl p-4 space-y-2">
-            <h4 class="font-semibold text-sm text-slate-800">Alias 1〜8（固定情報）</h4>
-            <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
-                <li><code>alias1</code>: 正式名称</li>
-                <li><code>alias2</code>: 略称コード</li>
-                <li><code>alias3</code>: 機器メーカー・型番</li>
-                <li><code>alias4〜8</code>: 施設コード、用途タグ</li>
-            </ul>
-        </div>
-        <div class="border border-slate-200 rounded-xl p-4 space-y-2">
-            <h4 class="font-semibold text-sm text-slate-800">User Field 1〜8（可変情報）</h4>
-            <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
-                <li><code>user_field1</code>: 監視担当者</li>
-                <li><code>user_field2</code>: 連絡先・内線番号</li>
-                <li><code>user_field3</code>: メンテナンス予定日</li>
-                <li><code>user_field4〜8</code>: Slack/TeamsのスレッドID</li>
-            </ul>
-        </div>
-    </div>
-    <p class="text-xs text-slate-500 mt-3">→ この区分をPlanner のノート欄や Confluence に文書化しておくと、チーム全体で迷わず運用できます。</p>
-</section>
-
-<section class="grid md:grid-cols-2 gap-6">
-    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">検索パラメータ一覧</h3>
-        <p class="text-sm text-slate-600">GET <code>/api/flows</code> で使える主なクエリパラメータ:</p>
-        <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
-            <li><code>display_name</code>: 表示名で部分一致検索</li>
-            <li><code>multicast_addr_a</code>: マルチキャストIP（パスA）</li>
-            <li><code>source_addr_a</code>: ソースIP（パスA）</li>
-            <li><code>flow_status</code>: active / inactive / standby</li>
-            <li><code>media_type</code>: video / audio / ancillary</li>
-            <li><code>limit</code> / <code>offset</code>: ページング</li>
-        </ul>
-    </article>
-    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">API操作の注意点</h3>
-        <ul class="list-disc ml-5 text-sm text-slate-600 space-y-1">
-            <li>PATCH では変更したいフィールドだけ送信（全フィールド不要）</li>
-            <li>ロック中のフローを更新すると HTTP 423 が返る</li>
-            <li>MQTT有効時は更新がリアルタイムでブロードキャスト</li>
-            <li>Checker連携時は衝突検出が自動実行</li>
-        </ul>
-    </article>
 </section>
             </main>
         </div>

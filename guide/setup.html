@@ -32,12 +32,18 @@
     <nav class="flex-1 px-4 py-6 overflow-y-auto text-sm space-y-1">
         <a href="index.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="overview">概要</a>
         <a href="stack.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="stack">スタック構成</a>
-        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flow-hub">フローとテキストハブ</a>
-        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / Address Map</a>
-        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS連携</a>
-        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker & 自動化</a>
-        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST API / MQTT</a>
-        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
+        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ＆コンフィグレーション</a>
+        <a href="dashboard.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="dashboard">Dashboard / ダッシュボード</a>
+        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flows">Flows / フロー一覧</a>
+        <a href="search.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="search">Search / 検索</a>
+        <a href="new-flow.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="new-flow">New Flow / 新規フロー</a>
+        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS Wizard / インポート</a>
+        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / プランナー</a>
+        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker / チェック</a>
+        <a href="users.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="users">Users / ユーザー管理</a>
+        <a href="settings.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="settings">Settings / 設定</a>
+        <a href="usecases.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="usecases">ユースケース</a>
+        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST APIまとめ</a>
     </nav>
     <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
         <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
@@ -51,50 +57,142 @@
             </header>
             <main class="px-6 py-10 max-w-5xl mx-auto space-y-12">
 
-<section class="bg-gradient-to-r from-emerald-900 via-slate-900 to-emerald-700 rounded-3xl text-white p-8 shadow-xl border border-emerald-900 space-y-4">
+<section class="bg-gradient-to-r from-emerald-900 via-slate-900 to-emerald-800 rounded-3xl text-white p-8 shadow-xl border border-emerald-900 space-y-4">
     <div>
-        <p class="text-xs uppercase tracking-[0.6em] text-white/60">setup</p>
-        <h2 class="text-3xl font-semibold">初めてでもできるセットアップ</h2>
-        <p class="text-white/80">Git や Docker を初めて触る方に向けて、コマンドと画面操作を丁寧に解説します。各ステップごとに確認ポイントも記載しています。</p>
+        <p class="text-xs uppercase tracking-[0.6em] text-white/60">setup & config</p>
+        <h2 class="text-3xl font-semibold">セットアップ＆コンフィグレーション</h2>
+        <p class="text-white/80">Git clone と .env 編集、Docker Compose の起動、初期ログイン、REST トークン取得までを手順化しています。不要な手順やヒントは含めず、実施すべき操作だけを掲載しています。</p>
     </div>
     <div class="flex flex-wrap gap-3">
-        <a href="../index.html" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">トップページへ</a>
-        <a href="https://github.com/taqq505/mmam-docker#readme" target="_blank" class="px-4 py-2 rounded-full border border-white/30 text-sm">READMEを見る</a>
+        <a href="https://github.com/taqq505/mmam-docker" target="_blank" class="px-4 py-2 rounded-full bg-white text-slate-900 font-semibold text-sm shadow">GitHub リポジトリ</a>
+        <a href="../index.html" class="px-4 py-2 rounded-full border border-white/30 text-sm">トップページへ戻る</a>
     </div>
 </section>
 
-<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-4">
-    <h3 class="text-2xl font-semibold">ステップバイステップ</h3>
-    <ol class="list-decimal ml-5 text-slate-700 space-y-2">
-        <li><strong>リポジトリを取得</strong> — <code>git clone https://github.com/taqq505/mmam-docker.git</code></li>
-        <li><strong>.envを作成</strong> — <code>cp .env.example .env</code> 後、<code>POSTGRES_PASSWORD</code> や <code>SECRET_KEY</code> を任意値に変更。</li>
-        <li><strong>Dockerを起動</strong> — <code>docker compose up --build</code>。初回は依存イメージの取得で数分かかります。</li>
-        <li><strong>ブラウザで確認</strong> — <code>http://localhost:4173</code> または <code>https://localhost:4174</code> にアクセスし、<code>admin / admin</code> でログイン。</li>
-        <li><strong>初期データ投入</strong> — Flow/Planner/NMOSのテストデータを登録して操作を慣らします。</li>
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">セットアップの流れ</h3>
+    <ol class="list-decimal ml-5 text-slate-700 space-y-4">
+        <li>
+            <strong>リポジトリ取得</strong>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>git clone https://github.com/taqq505/mmam-docker.git
+cd mmam-docker</code></pre>
+        </li>
+        <li>
+            <strong>.env 作成と編集</strong>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>cp .env.example .env
+# POSTGRES_PASSWORD, SECRET_KEY, MQTT, ポート番号などを任意値へ更新</code></pre>
+        </li>
+        <li>
+            <strong>Docker Compose 起動</strong>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>docker compose up --build -d
+# mmam / ui / db / mqtt の4サービスが起動する</code></pre>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>docker compose ps
+# STATUS 列が "Up" であることを確認</code></pre>
+        </li>
+        <li>
+            <strong>ログ確認（任意）</strong>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>docker compose logs -f mmam</code></pre>
+            <p class="text-sm text-slate-600">TLS 証明書が存在しない場合は <code>scripts/entrypoint-mmam.sh</code> が <code>CERT_*</code> で指定した情報を用いて自己署名証明書を生成します。</p>
+        </li>
     </ol>
-    <p class="text-sm text-slate-500">Windows で PowerShell を使う場合、パスの区切り文字は自動的に処理されます。</p>
 </section>
 
-<section class="grid md:grid-cols-2 gap-6">
-    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">トラブルシューティング</h3>
-        <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li><strong>ポート競合</strong> → <code>.env</code> の <code>APP_PORT</code>, <code>UI_PORT</code> を変更してください。</li>
-            <li><strong>権限エラー</strong> → Linux では <code>sudo chown -R $USER:$USER certs pgdata</code> を実行してください。</li>
-            <li><strong>HTTPS証明書</strong> → <code>certs/server.crt</code> と <code>server.key</code> を社内CAの証明書に差し替えることができます。</li>
-            <li><strong>コンテナが起動しない</strong> → <code>docker compose logs</code> でエラーログを確認してください。</li>
-        </ul>
-    </article>
-    <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
-        <h3 class="text-xl font-semibold">次のステップ</h3>
-        <p class="text-slate-600">セットアップが完了したら、以下の順で各機能を触ってみると理解が深まります。</p>
-        <ol class="list-decimal ml-5 text-sm text-slate-600 space-y-1">
-            <li><strong>Flows</strong> — フロー検索と編集の基本操作</li>
-            <li><strong>Planner</strong> — アドレスマップの作成と管理</li>
-            <li><strong>Checker</strong> — 自動検証と衝突検出</li>
-            <li><strong>API</strong> — REST API での操作を試す</li>
-        </ol>
-    </article>
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">.env 設定と意味</h3>
+    <p class="text-sm text-slate-600">以下では <code>.env</code> の主要項目を説明します。値を変更した場合は再起動が必要です。</p>
+    <div class="space-y-5">
+        <div>
+            <h4 class="text-lg font-semibold text-slate-800 mb-2">アプリケーション / DB</h4>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="text-left text-slate-500 uppercase tracking-wide text-xs border-b border-slate-200">
+                            <th class="py-2 pr-4">キー</th>
+                            <th class="py-2 pr-4">既定値</th>
+                            <th class="py-2 pr-4">内容</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr><td class="py-3 pr-4 font-medium">POSTGRES_USER / PASSWORD / DB</td><td class="py-3 pr-4 text-slate-500">mmam / secret / mmam</td><td class="py-3 pr-4 text-slate-600">DB の認証情報です。<code>db</code> コンテナと API が共有します。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">DB_HOST / DB_PORT</td><td class="py-3 pr-4 text-slate-500">db / 5432</td><td class="py-3 pr-4 text-slate-600">FastAPI から PostgreSQL へ接続するホストとポートです。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">SECRET_KEY</td><td class="py-3 pr-4 text-slate-500">supersecret</td><td class="py-3 pr-4 text-slate-600">JWT 署名キーです。<code>login</code> エンドポイントで発行されるトークンが利用します。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">INIT_ADMIN</td><td class="py-3 pr-4 text-slate-500">true</td><td class="py-3 pr-4 text-slate-600">最初の起動時に <code>admin / admin</code> を自動作成します。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">DISABLE_AUTH</td><td class="py-3 pr-4 text-slate-500">false</td><td class="py-3 pr-4 text-slate-600">true にすると REST API の JWT 認証を無効化します。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">LOG_DIR / LOG_LEVEL</td><td class="py-3 pr-4 text-slate-500">/log / INFO</td><td class="py-3 pr-4 text-slate-600">API ログの保存先とレベルを指定します。ディレクトリが無い場合は自動生成します。</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h4 class="text-lg font-semibold text-slate-800 mb-2">ネットワーク / 証明書</h4>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="text-left text-slate-500 uppercase tracking-wide text-xs border-b border-slate-200">
+                            <th class="py-2 pr-4">キー</th>
+                            <th class="py-2 pr-4">既定値</th>
+                            <th class="py-2 pr-4">内容</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr><td class="py-3 pr-4 font-medium">HTTPS_ENABLED</td><td class="py-3 pr-4 text-slate-500">true</td><td class="py-3 pr-4 text-slate-600">API と UI の HTTPS を有効化します。false でも HTTP 8080/4173 は起動します。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">HTTP_PORT / HTTPS_PORT</td><td class="py-3 pr-4 text-slate-500">8080 / 8443</td><td class="py-3 pr-4 text-slate-600">FastAPI の待ち受けポートです。両ポートが同時に開くため、未使用のポートは OS ファイアウォールで閉塞してください。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">UI_HTTP_PORT / UI_HTTPS_PORT</td><td class="py-3 pr-4 text-slate-500">4173 / 4174</td><td class="py-3 pr-4 text-slate-600">Vue UI (nginx) の待ち受けポートです。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">CERT_FILE / KEY_FILE / CA_FILE</td><td class="py-3 pr-4 text-slate-500">/certs/server.crt など</td><td class="py-3 pr-4 text-slate-600">API/UI が読み込む証明書です。存在しない場合は自己署名を生成します。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">CERT_CN / CERT_SANS / CERT_DAYS</td><td class="py-3 pr-4 text-slate-500">localhost / DNS:localhost... / 3650</td><td class="py-3 pr-4 text-slate-600">自己署名証明書を生成するときの情報です。</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <h4 class="text-lg font-semibold text-slate-800 mb-2">MQTT / リアルタイム更新</h4>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead>
+                        <tr class="text-left text-slate-500 uppercase tracking-wide text-xs border-b border-slate-200">
+                            <th class="py-2 pr-4">キー</th>
+                            <th class="py-2 pr-4">既定値</th>
+                            <th class="py-2 pr-4">内容</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr><td class="py-3 pr-4 font-medium">MQTT_ENABLED</td><td class="py-3 pr-4 text-slate-500">true</td><td class="py-3 pr-4 text-slate-600">Flow 更新を <code>mmam/flows/events</code> に publish します。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">MQTT_HOST / MQTT_PORT</td><td class="py-3 pr-4 text-slate-500">mqtt / 1883</td><td class="py-3 pr-4 text-slate-600">API からブローカーに接続する宛先です。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">MQTT_WS_URL</td><td class="py-3 pr-4 text-slate-500">ws://localhost:9001</td><td class="py-3 pr-4 text-slate-600">UI が WebSocket で購読する URL です。</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">MQTT_CLIENT_ID / MQTT_WS_CLIENT_ID</td><td class="py-3 pr-4 text-slate-500">mmam-api / mmam-ui</td><td class="py-3 pr-4 text-slate-600">API と UI 用のクライアント ID です。</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
+    <h3 class="text-2xl font-semibold">起動確認</h3>
+    <div class="grid md:grid-cols-2 gap-6">
+        <article class="border border-slate-200 rounded-xl p-5 space-y-3">
+            <h4 class="text-lg font-semibold">UI ログイン</h4>
+            <ol class="list-decimal ml-5 text-sm text-slate-700 space-y-2">
+                <li>ブラウザで <code>http://localhost:4173</code> もしくは <code>https://localhost:4174</code> へアクセスします。</li>
+                <li>初期ユーザー <code>admin / admin</code> でサインインします。</li>
+                <li>ユーザー設定メニューからパスワードをすぐに変更します。</li>
+            </ol>
+            <p class="text-xs text-slate-500">INIT_ADMIN=false の場合は <code>scripts/create_admin.py</code> などで手動作成してください。</p>
+        </article>
+        <article class="border border-slate-200 rounded-xl p-5 space-y-3">
+            <h4 class="text-lg font-semibold">REST トークン取得</h4>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -k -X POST https://localhost:8443/api/login \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d 'username=admin&password=admin'</code></pre>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>{
+  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "token_type": "bearer"
+}</code></pre>
+            <pre class="bg-slate-900 text-white text-xs rounded-xl p-4 overflow-x-auto"><code>curl -k https://localhost:8443/api/health \
+  -H "Authorization: Bearer &lt;access_token&gt;"</code></pre>
+            <p class="text-xs text-slate-500">`{"status":"ok"}` が返れば API への認証付きアクセスが確認済み。</p>
+        </article>
+    </div>
 </section>
             </main>
         </div>

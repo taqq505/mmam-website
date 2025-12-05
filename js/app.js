@@ -15,18 +15,19 @@ const translations = {
         hero: {
             badge: 'Open source IPAM for SMPTE ST 2110',
             title: 'Media Multicast Address Manager',
-            subtitle: 'MMAM is a multicast-first IP address manager that unifies planning, NMOS integrations, and audit history to support ST 2110 operations.',
+            subtitle: 'MMAM is a multicast-first IP address manager that unifies planning, NMOS integrations, audit history, and a flow search DB to link IP telemetry with source metadata for faster troubleshooting.',
             primary: 'Open GitHub repo',
             secondary: 'View quick start',
             demo: 'Try live demo',
             guide: 'Read HOW TO USE',
             screenshot: 'Planner Explorer highlighting reserved S/G/Port blocks',
             metrics: [
+                { value: 'Flow DB', label: 'Bidirectional search', detail: 'Look up IPs from source metadata or find source metadata from IPs so ops and network teams decide faster' },
                 { value: 'Message hub', label: 'Keyed annotations', detail: 'Share text threads per address or flow ID for BCC-style workflows' },
-                { value: 'Multi-site', label: 'Address planning', detail: 'Document production + DR fabrics with S/G/Port tracking' },
                 { value: 'REST PATCH', label: 'Programmable', detail: 'Update existing flows and share keyed notes via API' }
             ],
             highlights: [
+                { eyebrow: 'Multi-site', title: 'One planner for prod + DR', desc: 'Track S/G/Port assignments for both production and disaster recovery fabrics, so planned changes and turn-ups stay in sync.' },
                 { eyebrow: 'Text hub', title: 'Shared annotations', desc: 'Alias and user-defined fields become keyed threads per multicast slot so BCC, ops, and monitoring share the same log.' },
                 { eyebrow: 'NMOS onboarding', title: 'Register faster', desc: 'Discover IS-04/05 endpoints, compare device data, and apply patches without retyping addresses.' },
                 { eyebrow: 'Automation', title: 'Continuous checks', desc: 'Scheduler jobs watch for multicast collisions or NMOS drift and publish alerts via REST and MQTT.' }
@@ -46,10 +47,11 @@ const translations = {
         vision: {
             kicker: 'Why teams adopt MMAM',
             title: 'Multicast-specific IPAM backed by PostgreSQL, REST, and Vue UI',
-            lead: 'MMAM keeps address planning, NMOS integration, and audit history in one source of truth so ST 2110 systems stay aligned.',
+            lead: 'MMAM keeps address planning, NMOS integration, and audit history in one source of truth so ST 2110 systems stay aligned, while the flow search DB links IP telemetry with source metadata for faster troubleshooting.',
             cards: [
                 { title: 'Authoritative address map', desc: 'Planner buckets and the address map explorer document every S/G/Port block for production and DR fabrics.' },
                 { title: 'API-first coordination', desc: 'REST PATCH endpoints update existing flows and share keyed notes instead of emailing spreadsheets.' },
+                { title: 'Operators + networks share context', desc: 'Link IP-only telemetry with source metadata in the same DB so network engineers and operators know exactly which flow may be stopped.' },
                 { title: 'Operational assurance', desc: 'Collision and NMOS drift checks run on the same stack, logging every detection for later review.' }
             ],
             blueprint: {
@@ -183,20 +185,21 @@ const translations = {
         hero: {
             badge: 'SMPTE ST 2110向けオープンソースIPAM',
             title: 'Media Multicast Address Manager',
-            subtitle: 'MMAMはマルチキャストに特化したIPアドレスマネージャーです。アドレス計画、NMOS連携、監査ログを一元化し、ST2110システムの運用を支援します。',
+            subtitle: 'MMAMはマルチキャストに特化したIPアドレスマネージャーです。アドレス計画、NMOS連携、監査ログを一元化し、IP情報と素材情報を即座に結び付けるフロー検索DBでトラブルシュートを加速します。',
             primary: 'GitHubを開く',
             secondary: 'クイックスタートを見る',
             demo: 'ライブデモを試す',
             guide: 'HOW TO USEを見る',
             screenshot: 'Planner / Address Mapの画面イメージ',
             metrics: [
+                { value: 'フローデータベース', label: '双方向検索', detail: 'IPから素材情報、素材情報からIPをすぐに調べてトラブル対応を即決できます。' },
                 { value: 'テキストハブ', label: 'キー付きメモ共有', detail: 'アドレスやフローIDごとにBCC的なメッセージスレッドを共有' },
-                { value: 'マルチサイト', label: 'アドレス計画', detail: '本番とDRをS/G/Portで一元管理' },
                 { value: 'REST PATCH', label: '自動化', detail: '既存フローをAPIで更新し、キー付きメモを共有' }
             ],
             highlights: [
+                { eyebrow: 'マルチサイト', title: '本番とDRを一元管理', desc: '本番系とDR系のS/G/Port割り当てを同じ台帳で追跡し、計画変更や切り替え判断を迷わず行えます。' },
                 { eyebrow: 'テキストハブ', title: '共有メモ', desc: 'エイリアスやユーザー項目をマルチキャスト単位のスレッドにし、BCCや運用チームが同じ記録を参照。' },
-                { eyebrow: 'NMOS連携', title: '登録作業を短縮', desc: 'IS-04/05から機器情報を取得して差分を確認し、そのままフローに適用。' },
+                { eyebrow: 'NMOS連携', title: '登録作業を短縮', desc: 'IS-04/05から機器情報を取得して差分を確認し、そのままDBへ登録。' },
                 { eyebrow: '自動チェック', title: 'ズレを即検知', desc: 'スケジューラが衝突とNMOS差分チェックを回し、RESTやMQTTで通知。' }
             ],
             panel: {
@@ -214,10 +217,11 @@ const translations = {
         vision: {
             kicker: 'WHY MMAM',
             title: 'マルチキャスト専用IPAMをワンスタックで提供',
-            lead: 'PostgreSQL + REST API + Vue UIでアドレス計画とNMOS連携、監査履歴を一箇所に集約し、ST 2110運用の整合性を守ります。',
+            lead: 'PostgreSQL + REST API + Vue UIでアドレス計画とNMOS連携、監査履歴を一箇所に集約し、フロー検索DBがIPと素材情報を即座に結び付けることでST 2110運用の整合性と対応速度を高めます。',
             cards: [
                 { title: '信頼できるアドレスマップ', desc: 'PlannerとAddress Mapで本番/DRのS/G/Portを可視化し、予約状況を共有。' },
                 { title: 'APIファースト連携', desc: 'REST PATCHで既存フローを更新し、キー付きメモを他システムへ配信。' },
+                { title: '運用とネットワークの橋渡し', desc: 'IP情報しか得られないネットワーク担当者と、素材視点の放送オペレーターが同じフローデータベースを参照し即断できます。' },
                 { title: '運用保証', desc: 'コリジョンとNMOS差分チェックが同じ基盤で動作し、検出履歴を蓄積。' }
             ],
             blueprint: {

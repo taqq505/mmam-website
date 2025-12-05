@@ -32,12 +32,18 @@
     <nav class="flex-1 px-4 py-6 overflow-y-auto text-sm space-y-1">
         <a href="index.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="overview">概要</a>
         <a href="stack.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="stack">スタック構成</a>
-        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flow-hub">フローとテキストハブ</a>
-        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / Address Map</a>
-        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS連携</a>
-        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker & 自動化</a>
-        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST API / MQTT</a>
-        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ</a>
+        <a href="setup.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="setup">セットアップ＆コンフィグレーション</a>
+        <a href="dashboard.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="dashboard">Dashboard / ダッシュボード</a>
+        <a href="flows.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="flows">Flows / フロー一覧</a>
+        <a href="search.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="search">Search / 検索</a>
+        <a href="new-flow.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="new-flow">New Flow / 新規フロー</a>
+        <a href="nmos.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="nmos">NMOS Wizard / インポート</a>
+        <a href="planner.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="planner">Planner / プランナー</a>
+        <a href="checker.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="checker">Checker / チェック</a>
+        <a href="users.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="users">Users / ユーザー管理</a>
+        <a href="settings.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="settings">Settings / 設定</a>
+        <a href="usecases.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="usecases">ユースケース</a>
+        <a href="api.html" class="guide-link block px-3 py-2 rounded hover:bg-white/10 transition" data-guide-link="api">REST APIまとめ</a>
     </nav>
     <div class="px-4 py-4 border-t border-white/10 space-y-3 text-xs">
         <a href="../index.html" class="block bg-white/10 rounded px-3 py-2 text-center">トップページへ</a>
@@ -66,31 +72,29 @@
 <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 space-y-6">
     <h3 class="text-2xl font-semibold">認証と基本リクエスト</h3>
     <ol class="list-decimal ml-5 text-slate-700 space-y-2">
-        <li><code>POST /login</code> にユーザー名/パスワードを送信し、JWTを取得。</li>
+        <li><code>POST /api/login</code> にユーザー名/パスワードを送信し、JWTを取得。</li>
         <li>以降のRESTリクエストでは <code>Authorization: Bearer &lt;token&gt;</code> を付与。</li>
         <li>トークンは1時間有効。自動スクリプトは期限切れ前にリフレッシュするか再ログイン。</li>
     </ol>
-    <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>curl -X POST https://localhost:8443/login \\
-  -H \"Content-Type: application/json\" \\
-  -d '{\"username\":\"admin\",\"password\":\"admin\"}'</code></pre>
+    <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>curl -X POST https://localhost:8443/api/login \\
+  -H \"Content-Type: application/x-www-form-urlencoded\" \\
+  -d 'username=admin&password=admin'</code></pre>
 </section>
 
 <section class="grid md:grid-cols-2 gap-6">
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
         <h3 class="text-xl font-semibold">主要RESTエンドポイント</h3>
         <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li><code>GET /flows</code>, <code>POST /flows</code>, <code>PATCH /flows/{id}</code></li>
-            <li><code>GET /address/buckets/overview</code>, <code>POST /address/buckets/child</code></li>
-            <li><code>GET /checker/latest</code>, <code>POST /automation/jobs/{id}/enable</code></li>
-            <li><code>GET /logs?kind=api|audit</code></li>
+            <li><code>GET /api/flows</code>, <code>POST /api/flows</code>, <code>PATCH /api/flows/{id}</code></li>
+            <li><code>GET /api/address/buckets/overview</code>, <code>POST /api/address/buckets/child</code></li>
+            <li><code>GET /api/checker/latest</code>, <code>POST /api/automation/jobs/{id}/enable</code></li>
+            <li><code>GET /api/logs?kind=api|audit</code></li>
         </ul>
     </article>
     <article class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-3">
         <h3 class="text-xl font-semibold">MQTTトピック</h3>
         <ul class="list-disc ml-5 text-slate-600 space-y-1">
-            <li><code>mmam/flows/events</code> — Flow作成/更新/削除。</li>
-            <li><code>mmam/checker/events</code> — 自動検証の結果。</li>
-            <li><code>mmam/automation/jobs/&lt;id&gt;</code> — ジョブ状態の推移。</li>
+            <li><code>mmam/flows/events</code> — Flow作成/更新/削除（<code>/all</code> と <code>/flow/{id}</code> にブロードキャスト）。</li>
         </ul>
         <pre class="bg-slate-900 text-white text-xs rounded-2xl p-4 overflow-x-auto"><code>// MQTT.js例
 client.subscribe('mmam/flows/events');
@@ -208,14 +212,9 @@ const client = mqtt.connect('mqtt://localhost:1883', {
 client.on('connect', () => {
   console.log('MQTT接続成功');
 
-  // フローイベントを購読
+  // フローイベントを購読（作成/更新/削除）
   client.subscribe('mmam/flows/events', (err) => {
     if (!err) console.log('購読開始: mmam/flows/events');
-  });
-
-  // Checker結果を購読
-  client.subscribe('mmam/checker/events', (err) => {
-    if (!err) console.log('購読開始: mmam/checker/events');
   });
 });
 
@@ -225,19 +224,11 @@ client.on('message', (topic, payload) => {
   if (topic === 'mmam/flows/events') {
     console.log(`フローイベント: ${event.event}`);
     console.log(`  flow_id: ${event.flow_id}`);
-    console.log(`  display_name: ${event.display_name}`);
+    console.log(`  display_name: ${event.flow?.display_name}`);
 
     // Slackへ通知する例
     if (event.event === 'created') {
-      notifySlack(`新しいフローが作成されました: ${event.display_name}`);
-    }
-  }
-
-  if (topic === 'mmam/checker/events') {
-    console.log(`Checker結果: ${event.status}`);
-    if (event.status === 'error') {
-      // エラー時はアラート
-      console.error(`衝突検出: ${event.message}`);
+      notifySlack(`新しいフローが作成されました: ${event.flow?.display_name}`);
     }
   }
 });</code></pre>
@@ -251,7 +242,6 @@ import json
 def on_connect(client, userdata, flags, rc):
     print(f"MQTT接続: {rc}")
     client.subscribe("mmam/flows/events")
-    client.subscribe("mmam/checker/events")
 
 def on_message(client, userdata, msg):
     event = json.loads(msg.payload.decode())
@@ -259,14 +249,8 @@ def on_message(client, userdata, msg):
     if msg.topic == "mmam/flows/events":
         print(f"フローイベント: {event['event']}")
         print(f"  flow_id: {event['flow_id']}")
-
         # データベースに記録する例
         log_to_database(event)
-
-    elif msg.topic == "mmam/checker/events":
-        if event["status"] == "error":
-            # メール通知
-            send_alert_email(event["message"])
 
 client = mqtt.Client()
 client.username_pw_set("mmam", "your-mqtt-password")
@@ -287,15 +271,6 @@ client.loop_forever()</code></pre>
                 <li><code>404 Not Found</code>: flow_id が存在しない</li>
                 <li><code>423 Locked</code>: フローがロック中 → 解除を待つ</li>
                 <li><code>422 Unprocessable Entity</code>: バリデーションエラー</li>
-            </ul>
-        </div>
-        <div class="border border-slate-200 rounded-xl p-4 space-y-2">
-            <h4 class="font-semibold text-sm text-slate-800">運用のヒント</h4>
-            <ul class="list-disc ml-5 text-xs text-slate-600 space-y-1">
-                <li>PATCH では変更するフィールドだけ送信（全フィールド不要）</li>
-                <li>トークンは環境変数で管理（ハードコード禁止）</li>
-                <li>本番環境では必ず正規の証明書を使用</li>
-                <li>リトライロジックを実装（ネットワーク障害対策）</li>
             </ul>
         </div>
     </div>
