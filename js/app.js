@@ -27,10 +27,10 @@ const translations = {
                 { value: 'REST PATCH', label: 'Programmable', detail: 'Update existing flows and share keyed notes via API' }
             ],
             highlights: [
-                { eyebrow: 'Multi-site', title: 'One planner for prod + DR', desc: 'Track S/G/Port assignments for both production and disaster recovery fabrics, so planned changes and turn-ups stay in sync.' },
+                { eyebrow: 'Multi-site', title: 'One planner for prod + backup', desc: 'Track S/G/Port assignments for both production and backup fabrics, so planned changes and turn-ups stay in sync.' },
                 { eyebrow: 'Text hub', title: 'Shared annotations', desc: 'Alias and user-defined fields become keyed threads per multicast slot so BCC, ops, and monitoring share the same log.' },
                 { eyebrow: 'NMOS onboarding', title: 'Register faster', desc: 'Discover IS-04/05 endpoints, compare device data, and apply patches without retyping addresses.' },
-                { eyebrow: 'Automation', title: 'Continuous checks', desc: 'Scheduler jobs watch for multicast collisions or NMOS drift and publish alerts via REST and MQTT.' }
+                { eyebrow: 'Automation', title: 'Manual + scheduled checks', desc: 'Run collision and NMOS checks on demand or schedule them, then pull the latest results via REST or MQTT if enabled.' }
             ],
             panel: {
                 title: 'Included services',
@@ -49,7 +49,7 @@ const translations = {
             title: 'Multicast-specific IPAM backed by PostgreSQL, REST, and Vue UI',
             lead: 'MMAM keeps address planning, NMOS integration, and audit history in one source of truth so ST 2110 systems stay aligned, while the flow search DB links IP telemetry with source metadata for faster troubleshooting.',
             cards: [
-                { title: 'Authoritative address map', desc: 'Planner buckets and the address map explorer document every S/G/Port block for production and DR fabrics.' },
+                { title: 'Authoritative address map', desc: 'Planner buckets and the address map explorer document every S/G/Port block for production and backup fabrics.' },
                 { title: 'API-first coordination', desc: 'REST PATCH endpoints update existing flows and share keyed notes instead of emailing spreadsheets.' },
                 { title: 'Operators + networks share context', desc: 'Link IP-only telemetry with source metadata in the same DB so network engineers and operators know exactly which flow may be stopped.' },
                 { title: 'Operational assurance', desc: 'Collision and NMOS drift checks run on the same stack, logging every detection for later review.' }
@@ -74,7 +74,7 @@ const translations = {
                     eyebrow: 'Address map',
                     title: 'Purpose-built planning',
                     items: [
-                        'Planner buckets and views for each site, service, or DR fabric',
+                        'Planner buckets and views for each site, service, or backup fabric',
                         'Address map explorer visualizes S/G/Port blocks and occupancy',
                         'Collision checker surfaces duplicate multicast or port usage before it hits the air'
                     ]
@@ -183,7 +183,7 @@ const translations = {
             openRepo: 'GitHub'
         },
         hero: {
-            badge: 'SMPTE ST 2110向けオープンソースIPAM',
+            badge: 'SMPTE ST 2110向けオープンソースフローデータベース',
             title: 'Media Multicast Address Manager',
             subtitle: 'MMAMはマルチキャストに特化したIPアドレスマネージャーです。アドレス計画、NMOS連携、監査ログを一元化し、IP情報と素材情報を即座に結び付けるフロー検索DBでトラブルシュートを加速します。',
             primary: 'GitHubを開く',
@@ -193,14 +193,14 @@ const translations = {
             screenshot: 'Planner / Address Mapの画面イメージ',
             metrics: [
                 { value: 'フローデータベース', label: '双方向検索', detail: 'IPから素材情報、素材情報からIPをすぐに調べてトラブル対応を即決できます。' },
-                { value: 'テキストハブ', label: 'キー付きメモ共有', detail: 'アドレスやフローIDごとにBCC的なメッセージスレッドを共有' },
-                { value: 'REST PATCH', label: '自動化', detail: '既存フローをAPIで更新し、キー付きメモを共有' }
+                { value: 'テキストハブ', label: 'テキスト共有', detail: 'アドレスやフローIDをキーにaliasなどの情報を保存可能' },
+                { value: 'REST PATCH', label: '自動化', detail: '多彩なAPIを使用し独自の管理システムも構築可能' }
             ],
             highlights: [
-                { eyebrow: 'マルチサイト', title: '本番とDRを一元管理', desc: '本番系とDR系のS/G/Port割り当てを同じ台帳で追跡し、計画変更や切り替え判断を迷わず行えます。' },
-                { eyebrow: 'テキストハブ', title: '共有メモ', desc: 'エイリアスやユーザー項目をマルチキャスト単位のスレッドにし、BCCや運用チームが同じ記録を参照。' },
+                { eyebrow: '放送インフラ向け', title: 'ST 2022-7対応', desc: 'ST 2022-7 のプライマリー/セカンダリーアドレスをデュアルで管理し、どちらのパスでも同じ情報を参照できます。' },
+                { eyebrow: 'テキストハブ', title: '共有メモ', desc: 'エイリアスやユーザーフィールドをフロー単位で管理し、システム間連携をスムーズに' },
                 { eyebrow: 'NMOS連携', title: '登録作業を短縮', desc: 'IS-04/05から機器情報を取得して差分を確認し、そのままDBへ登録。' },
-                { eyebrow: '自動チェック', title: 'ズレを即検知', desc: 'スケジューラが衝突とNMOS差分チェックを回し、RESTやMQTTで通知。' }
+                { eyebrow: '自動チェック', title: '不整合を検出', desc: 'アドレス衝突やNMOS差分のチェック機能で、運用状態を常に把握。' }
             ],
             panel: {
                 title: '同梱サービス',
@@ -216,42 +216,42 @@ const translations = {
         },
         vision: {
             kicker: 'WHY MMAM',
-            title: 'マルチキャスト専用IPAMをワンスタックで提供',
+            title: 'メディアマルチキャスト専用DBをワンスタックで提供',
             lead: 'PostgreSQL + REST API + Vue UIでアドレス計画とNMOS連携、監査履歴を一箇所に集約し、フロー検索DBがIPと素材情報を即座に結び付けることでST 2110運用の整合性と対応速度を高めます。',
             cards: [
-                { title: '信頼できるアドレスマップ', desc: 'PlannerとAddress Mapで本番/DRのS/G/Portを可視化し、予約状況を共有。' },
-                { title: 'APIファースト連携', desc: 'REST PATCHで既存フローを更新し、キー付きメモを他システムへ配信。' },
+                { title: '信頼できるアドレスマップ', desc: 'PlannerとAddress Mapでprimary/secondaryのマルチキャストアドレスを可視化し、状況を把握。' },
+                { title: 'APIファースト連携', desc: 'REST PATCHで既存フローを更新し、変更点を他システムへ配信。' },
                 { title: '運用とネットワークの橋渡し', desc: 'IP情報しか得られないネットワーク担当者と、素材視点の放送オペレーターが同じフローデータベースを参照し即断できます。' },
                 { title: '運用保証', desc: 'コリジョンとNMOS差分チェックが同じ基盤で動作し、検出履歴を蓄積。' }
             ],
             blueprint: {
                 title: 'プレイブック',
-                headline: '日常運用の型',
-                desc: 'UIとAPIを組み合わせ、常に最新のマルチキャスト計画を維持します。',
+                headline: '運用例',
+                desc: '常に最新の情報を持ったDBを中心にシステム連携を前提とした運用が構築できます。',
                 items: [
-                    'フローごとにエイリアス/ユーザー項目で共有メモを残しテキストハブとして公開',
-                    'NMOS情報を取り込み差分を確認し、そのままデバイスへ反映',
-                    '衝突検出とNMOSチェックをスケジューラで回し、逸脱を自動通知'
+                    'デコーダをはじめとした、日々フローの内容が変わるデバイスにalias情報を追加入力し、複数のBCCに情報を共有',
+                    'システムを連携させ統合監視システムのダッシュボードにIPだけではなくフロー情報を表示',
+                    'アドレスマップ機能で、空いているアドレスレンジを探し、システム拡張を容易にします。'
                 ]
             }
         },
         capabilities: {
             kicker: '主要機能',
-            title: 'マルチキャストIPAM・API・UIを一体で提供',
+            title: 'マルチキャストDB・API・UIを一体で提供',
             lead: 'PostgreSQL + FastAPI + Vue UIを使い、ST 2110向けの計画と運用を一つのツールで完結させます。',
             columns: [
                 {
                     eyebrow: 'アドレスマップ',
                     title: '計画の見える化',
                     items: [
-                        'サイトや番組ごとに使えるPlannerフォルダとビュー',
-                        'Address MapでS/G/Portの割り当てと空き状況を一目で確認',
-                        '衝突チェッカーで重複マルチキャストやポート使用を事前に検知'
+                        '事前に計画したアドレスプールを保存し、使用率を視覚化',
+                        'Address Mapでアドレスの割り当てと空き状況を一目で確認',
+                        '衝突チェッカーで重複マルチキャストやポート使用を把握'
                     ]
                 },
                 {
                     eyebrow: '連携',
-                    title: 'REST + テキストハブ',
+                    title: 'REST + テキストハブ + MQTT',
                     items: [
                         'REST PATCHで既存フローを再インポートせずに更新',
                         'エイリアス/ユーザー項目をキー付きテキストチャンネルとしてBCCや監視系へ共有',
@@ -262,8 +262,8 @@ const translations = {
                     eyebrow: 'NMOSと自動化',
                     title: 'デバイスとつながる',
                     items: [
-                        'IS-04/05ノードを検出してフロー定義を取り込み',
-                        'MMAMからNMOSパラメータを適用し、二重入力を排除',
+                        'IS-04/05ノードを検出してフロー定義を直接取り込み',
+                        '登録されたデバイスは、いつでも再度 NMOS ノードへアクセスし、最新の情報を取得できます。',
                         'スケジューラで衝突/NMOS差分チェックを回し、アラートと履歴を記録'
                     ]
                 }
